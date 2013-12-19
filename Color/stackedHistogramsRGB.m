@@ -1,4 +1,4 @@
-function [descriptor] = stacked_histograms( im, bins )
+function [descriptor] = stackedHistogramsRGB( im, bins )
 
 if ( bins > 256 )
     bins = 256;

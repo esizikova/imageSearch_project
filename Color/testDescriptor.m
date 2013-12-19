@@ -3,19 +3,21 @@ close all;
 
 %read in all images
 [images, labels] = loadImages( '../Dataset/' );
-noOfCat = 8; % for now i just use 2 categories
+noOfCat = 8;
 
 % confusion matrix 
 distMat = zeros( noOfCat*3 );
 
 % # histogram bins - interestingly, lower number of bins gives better (visually) clustering
-bins = 12;
+bins = 3;
 for i = 1 : noOfCat*3
+    im1 = images{i};
+    im1Stat = imageStatisticsLab(im1)';
+    descriptor1 = im1Stat;
     for j = 1 : noOfCat*3
-        im1 = images{i};
         im2 = images{j};
-        descriptor1 = stackedHistograms ( im1, bins );
-        descriptor2 = stackedHistograms ( im2, bins );
+        im2Stat = imageStatisticsLab(im2)';
+        descriptor2 = im2Stat;
         euclidDist = norm(descriptor1 - descriptor2);
         distMat(i,j) = euclidDist;
     end;
@@ -23,13 +25,16 @@ end;
 
 % show the distance matrix nicely
 plotMatrix ( distMat, labels );
+colormap gray
 
 %--------------------------------------------------
 % k-means clustering
 dataPts = zeros( noOfCat*3 , size( descriptor1,1 ) );
 for i = 1:noOfCat*3
     im = images{i};
-    dataPts(i,:) = stackedHistograms ( im, bins );
+    imStat = imageStatisticsLab(im);
+    size(imStat)
+    dataPts(i,:) = imStat';
 end;
 
 [clusterIdx, ctrs] = kmeans( dataPts, noOfCat, ...
