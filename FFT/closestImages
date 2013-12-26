@@ -1,0 +1,26 @@
+File contains the closest images as output by fft.py
+==================================================================
+data/highway_art254.jpg	data/opencountry_fie10.jpg
+data/coast_bea3.jpg	data/coast_bea10.jpg
+data/mountain_land145.jpg	data/mountain_land198.jpg
+data/insidecity_a140032.jpg	data/mountain_land198.jpg
+data/highway_a836030.jpg	data/forest_bost102.jpg
+data/forest_nat1253.jpg	data/mountain_land198.jpg
+data/coast_bea10.jpg	data/coast_bea3.jpg
+data/coast_bea1.jpg	data/highway_a836030.jpg
+data/forest_cdmc458.jpg	data/mountain_land198.jpg
+data/tallbuilding_a212018.jpg	data/opencountry_fie10.jpg
+data/tallbuilding_a212055.jpg	data/mountain_land198.jpg
+data/street_art758.jpg	data/opencountry_fie10.jpg
+data/tallbuilding_a244040.jpg	data/mountain_land198.jpg
+data/street_art256.jpg	data/mountain_land145.jpg
+data/insidecity_a248032.jpg	data/mountain_land198.jpg
+data/opencountry_fie10.jpg	data/mountain_land198.jpg
+data/mountain_land189.jpg	data/mountain_land145.jpg
+data/highway_a866047.jpg	data/mountain_land198.jpg
+data/opencountry_fie5.jpg	data/mountain_land198.jpg
+data/insidecity_a463070.jpg	data/forest_cdmc458.jpg
+data/mountain_land198.jpg	data/opencountry_fie10.jpg
+data/forest_bost102.jpg	data/forest_cdmc458.jpg
+data/street_art475.jpg	data/forest_cdmc458.jpg
+data/opencountry_fie7.jpg	data/opencountry_fie10.jpg
