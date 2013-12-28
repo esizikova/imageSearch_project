@@ -5,18 +5,16 @@ close all;
 [images, labels] = loadImages( '../Dataset/' );
 noOfCat = 8;
 
-% confusion matrix 
+% compute confusion matrix 
 distMat = zeros( noOfCat*3 );
-
-% # histogram bins - interestingly, lower number of bins gives better (visually) clustering
 bins = 3;
 for i = 1 : noOfCat*3
     im1 = images{i};
-    im1Stat = imageStatisticsLab(im1)';
+    im1Stat = imageStatisticsHSV(im1)';
     descriptor1 = im1Stat;
     for j = 1 : noOfCat*3
         im2 = images{j};
-        im2Stat = imageStatisticsLab(im2)';
+        im2Stat = imageStatisticsHSV(im2)';
         descriptor2 = im2Stat;
         euclidDist = norm(descriptor1 - descriptor2);
         distMat(i,j) = euclidDist;
@@ -32,7 +30,7 @@ colormap gray
 dataPts = zeros( noOfCat*3 , size( descriptor1,1 ) );
 for i = 1:noOfCat*3
     im = images{i};
-    imStat = imageStatisticsLab(im);
+    imStat = imageStatisticsHSV(im);
     size(imStat)
     dataPts(i,:) = imStat';
 end;
