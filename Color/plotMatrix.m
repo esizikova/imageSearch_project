@@ -10,6 +10,8 @@ K = get(gca,'YLim');
 set( gca,'YTick',linspace( K(1),K(2), size( matrix,1 ) ) );
 set( gca, 'ytickLabel', labels );
 
+ set(gcf,'PaperPositionMode','auto')
+ set(gcf, 'Position', [100 100 1300 900])
 
 end
 

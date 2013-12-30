@@ -1,56 +1,37 @@
+% Cleanup workspace
 clear all;
 close all;
 
-%read in all images
+% Add subfolders to search path
+addpath([ pwd,'/Descriptors'] ); 
+
+% Read in all images
 [images, labels] = loadImages( '../Dataset/' );
-noOfCat = 8;
 
-% compute confusion matrix 
-distMat = zeros( noOfCat*3 );
-bins = 3;
-for i = 1 : noOfCat*3
-    im1 = images{i};
-    im1Stat = imageStatisticsHSV(im1)';
-    descriptor1 = im1Stat;
-    for j = 1 : noOfCat*3
-        im2 = images{j};
-        im2Stat = imageStatisticsHSV(im2)';
-        descriptor2 = im2Stat;
-        euclidDist = norm(descriptor1 - descriptor2);
-        distMat(i,j) = euclidDist;
-    end;
-end;
+%global vars
+descriptorName = 'statisticsRGB'; %change this to use different descriptor
+nBins          = 0;
+noOfDatapoints = size( images, 1 ); 
+noOfCat        = distinctiveLabes ( labels );
 
-% show the distance matrix nicely
-plotMatrix ( distMat, labels );
+% Create the map of function handles 
+functionMap = createFunctionHandleMap();
+
+% compute and show the distance matrix nicely
+confMat = computeConfusionMatrix ( images, noOfCat, ...
+    functionMap(descriptorName), nBins );
+plotMatrix ( confMat, labels );
 colormap gray
 
 %--------------------------------------------------
+
 % k-means clustering
-dataPts = zeros( noOfCat*3 , size( descriptor1,1 ) );
-for i = 1:noOfCat*3
-    im = images{i};
-    imStat = imageStatisticsHSV(im);
-    size(imStat)
-    dataPts(i,:) = imStat';
-end;
+[clusterInd, mostFreqEl] = kMeansClustering(images, noOfCat, ...
+    functionMap(descriptorName), nBins);
 
-[clusterIdx, ctrs] = kmeans( dataPts, noOfCat, ...
-                    'Distance', 'sqEuclidean',...
-                    'Replicates', 15 );
+% in this visualization each row is a cluster
+plotKMeansClustering(images, noOfCat, clusterInd, mostFreqEl);
 
-frequency = sortrows(tabulate(clusterIdx));  %# compute sorted frequency table
-mostFreqElement = max( frequency(:,2) );
-
-%each row is a cluster
-figure;
-for i = 1 : noOfCat
-    ind = find (clusterIdx == i);
-    for j = 1:size( ind, 1 )
-        subplot ( noOfCat, mostFreqElement, mostFreqElement * (i - 1) + j );
-        imshow ( images{ ind(j) } );
-    end;
-end;
 
 
 
