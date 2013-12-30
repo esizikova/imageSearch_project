@@ -1,7 +1,7 @@
 %521 - Term Project
 %SVD Exploration
 
-%read in all images
+%% read in all images
 [images_set, labels] = loadImages( '../Dataset/' );
 noOfCat = 8;
 
@@ -10,61 +10,54 @@ for i = 1:length(images_set)
     images(:,:,:,i) = images_set{i};
 end
 
-%SVD - compression
+%SVD - compute
+use_color = false;
+clear U S V
 for i = 1:size(images,4)
-    [U(:,:,:,i),S(:,:,:,i),V(:,:,:,i)] = imageSVD(images(:,:,:,i));
-
-    %Reconstruct from less singular values
-    %num_sv = 10;
-    %out_img(:,:,1,i) = U(:,1:num_sv,1,i)*S(1:num_sv,1:num_sv,1,i)*V(:,1:num_sv,1,i)';
-    %out_img(:,:,2,i) = U(:,1:num_sv,2,i)*S(1:num_sv,1:num_sv,2,i)*V(:,1:num_sv,2,i)';
-    %out_img(:,:,3,i) = U(:,1:num_sv,3,i)*S(1:num_sv,1:num_sv,3,i)*V(:,1:num_sv,3,i)';
-
-    %imshow(uint8(out_img(:,:,:,i)))
+    if use_color
+        [U(:,:,:,i),S(:,:,:,i),V(:,:,:,i)] = imageSVD(images(:,:,:,i)); % color
+    else
+        [U(:,:,1,i),S(:,:,1,i),V(:,:,1,i)] = imageSVD(images(:,:,:,i), use_color); % Black and white
+    end
 end
 
-%% SVD - Just look at singular values
-num_sv = 10;
+%% Descriptors
 for i = 1:size(images,4)
     for j = 1:size(images,4)
-        desc_1 = SVDSingularValue(images(:,:,:,i), num_sv, true, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
-        desc_2 = SVDSingularValue(images(:,:,:,j), num_sv, true, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j));
-        sv_dist(i,j) = norm(desc_1 - desc_2);
+        % Just look at Singular Values
+        %num_sv = 10;
+        %desc_1 = SVDSingularValue(images(:,:,:,i), num_sv, use_color, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
+        %desc_2 = SVDSingularValue(images(:,:,:,j), num_sv, use_color, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j));
+        
+        % Stack slices of U and V
+        %num_ev = 3;
+        %desc_1 = SVDEVStacked(images(:,:,:,i), num_ev, use_color, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
+        %desc_2 = SVDEVStacked(images(:,:,:,j), num_ev, use_color, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j));         
+        
+        % Stack slices of U and V with scaling by S
+        num_ev = 1;
+        desc_1 = SVD_EV_SV_Stacked(images(:,:,:,i), num_ev, use_color, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
+        desc_2 = SVD_EV_SV_Stacked(images(:,:,:,j), num_ev, use_color, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j));    
+        
+        %Main diagonal of resulting compressed image
+        %num_sv = 3;
+        %desc_1 = SVDDiagonal(images(:,:,:,i), num_sv, use_color, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
+        %desc_2 = SVDDiagonal(images(:,:,:,j), num_sv, use_color, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j)); 
+        
+        %Euclidean distance
+        %dist(i,j) = norm(desc_1 - desc_2);
+        
+        %Cosine similarity
+        dist(i,j) = dot(desc_1,desc_2)/(norm(desc_1)*norm(desc_2));
     end
 end
 
 % show the distance matrix nicely
-plotMatrix ( sv_dist, labels );
-
-%% SVD - Stack slices of U and V
-num_ev = 3;
-for i = 1:size(images,4)
-    for j = 1:size(images,4)
-        desc_1 = SVDEVStacked(images(:,:,:,i), num_ev, true, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
-        desc_2 = SVDEVStacked(images(:,:,:,j), num_ev, true, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j)); 
-        slice_dist(i,j) = norm(desc_1 - desc_2);
-    end
-end
-
-% show the distance matrix nicely
-plotMatrix ( slice_dist, labels );
-
-%% SVD - Main diagonal of resulting compressed image
-n_sv = 100;
-for i = 1:size(images,4)
-    for j = 1:size(images,4)
-        desc_1 = SVDDiagonal(images(:,:,:,i), num_sv, true, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i));
-        desc_2 = SVDDiagonal(images(:,:,:,j), num_sv, true, U(:,:,:,j), S(:,:,:,j), V(:,:,:,j)); 
-        diag_dist(i,j) = norm(desc_1 - desc_2);
-    end
-end
-
-% show the distance matrix nicely
-plotMatrix ( diag_dist, labels );
+plotMatrix ( dist, labels );
 
 %% k-means clustering
 for i = 1:size(images,4)
-    dataPts(i,:) = SVDDiagonal(images(:,:,:,i), 100, true, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i))';
+    dataPts(i,:) = SVDDiagonal(images(:,:,:,i), 100, use_color, U(:,:,:,i), S(:,:,:,i), V(:,:,:,i))';
 end;
 
 [clusterIdx, ctrs] = kmeans( dataPts, noOfCat, ...
@@ -84,6 +77,42 @@ for i = 1 : noOfCat
     end;
 end;
 
+%% Plots of U/V
+
+plot(U(:,1,1,1),'red')  % coast
+hold on
+plot(U(:,1,1,2),'red')
+plot(U(:,1,1,3),'red')
+plot(U(:,1,1,4),'blue') % forest
+plot(U(:,1,1,5),'blue')
+plot(U(:,1,1,6),'blue')
+hold off
+
+plot(U(:,1,1,7),'green') % highway
+plot(U(:,1,1,8),'green')
+plot(U(:,1,1,9),'green')
+plot(U(:,1,1,10),'black') % insidecity
+plot(U(:,1,1,11),'black')
+plot(U(:,1,1,12),'black')
+plot(U(:,1,1,13), 'Color', [0.5430 0 0] ) % mountain
+plot(U(:,1,1,14), 'Color', [0.5430 0 0] )
+plot(U(:,1,1,15), 'Color', [0.5430 0 0] )
+plot(U(:,1,1,16),'yellow') % opencountry
+plot(U(:,1,1,17),'yellow')
+plot(U(:,1,1,18),'yellow')
+plot(U(:,1,1,19),'cyan') % street
+plot(U(:,1,1,20),'cyan')
+plot(U(:,1,1,21),'cyan')
+plot(U(:,1,1,22),'magenta') % tallbuilding
+plot(U(:,1,1,23),'magenta')
+plot(U(:,1,1,24),'magenta')
+hold off
+
+
+%cosine similarity
+A = U(:,1,1,1);
+B = U(:,1,1,5);
+sim = dot(A,B)/(norm(A)*norm(B))
 
 %% Old stuff
 %Normalize back to uint8
