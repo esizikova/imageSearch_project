@@ -1,7 +1,7 @@
 close all;
 clear all;
 
-im = imread ( 'Dataset/coast_bea1.jpg' );
+im = imread ( '/home/lena/Documents/CS_Projects/imageSearch_project/trunk/Dataset/coast_bea1.jpg' );
 im = double(im) / 255;
 im = rgb2gray(im);
 

@@ -1,0 +1,2 @@
+- plot images against the magnitude of their FFT matrix (norm), and look how this plot behaves
+
