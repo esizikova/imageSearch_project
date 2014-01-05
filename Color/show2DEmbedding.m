@@ -22,7 +22,7 @@ descriptorSize = descriptorSize1 + ...
                  descriptorSize2 ;
              
 %prepare the pairwise distance 
-descriptors = zeros( noOfDatapoints, descriptorSize  ); 
+descriptors = zeros( noOfDatapoints, descriptorSize   ); 
 for i = 1:noOfDatapoints
     d1 =  fHandle1( images{i} );
     d2 =  fHandle2( images{i} );
@@ -36,7 +36,7 @@ D = pdist( descriptors, 'euclidean');
 
 %plot results
 figure(1); hold on; axis equal;
-imSize = 5.1;
+imSize = 3.1;
 for i = 1:noOfDatapoints
     loc_x = embedding2D(i,1);
     loc_y = embedding2D(i,2);

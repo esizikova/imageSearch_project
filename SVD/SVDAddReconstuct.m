@@ -7,14 +7,13 @@ clear all;
 noOfDatapoints = size ( images, 1 ); 
 
 % compute the SVD
-im = histeq( single( rgb2gray ( images{24} ) ) / 255 );
+im = single( rgb2gray ( images{15} ) ) / 255;
 [U,S,V] = svd ( im );
 
 im_final = zeros(256);
 
-for s = 1:20;
+for s = 1:120;
     % only use single singular value to create image component
-    S(s,s)
     im_r = U(:,s) * S(s,s) * V(:,s)';
     im_final = im_final + im_r;
     
