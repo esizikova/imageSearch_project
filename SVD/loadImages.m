@@ -1,6 +1,7 @@
 function [ images, labels ] = loadImages( directory )
 
 dCell = dir([ directory '*.jpg']);
+dCell = cat(1,dCell, dir([directory '*.png']));
 labels = cell ( size ( dCell, 1 ), 1 );
 images = cell ( size ( dCell, 1 ), 1 );
 for d = 1:length(dCell) 
