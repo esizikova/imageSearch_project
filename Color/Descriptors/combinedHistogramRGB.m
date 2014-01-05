@@ -23,7 +23,7 @@ for b = 1:size( hist_B, 1 )
         end;
     end;
 end;
-
+H = H';
 
 end
 

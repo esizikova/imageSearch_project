@@ -2,7 +2,6 @@ function [ confMat ] = computeConfusionMatrix( images, noOfCat, fHandle, nBins )
 
 confMat = zeros( size( images, 1 ) );
 
-
 for i = 1 : noOfCat*3
     im1 = images{i};
     if ( nBins > 0 )

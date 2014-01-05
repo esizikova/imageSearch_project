@@ -24,6 +24,6 @@ for v = 1:size( hist_V, 1 )
         end;
     end;
 end;
-
+H = H';
 end
 

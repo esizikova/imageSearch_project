@@ -15,7 +15,7 @@ hist_H = imhist ( im_H, 5*bins ) / normalizer ;
 hist_S = imhist ( im_S, bins ) / normalizer ;
 hist_V = imhist ( im_V, bins ) / normalizer ;
 
-descriptor = [ hist_H; hist_S; hist_V ];
+descriptor = [ hist_H; hist_S; hist_V ]';
 end
 
 
