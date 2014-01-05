@@ -17,12 +17,12 @@
 %imwrite(img, '../SVDTestImages/randomBottomHalfSpace.png','PNG');
 
 %Some tests
-%[images, labels] = loadImages('../SVDTestImages/');
-[images, labels] = loadImages('../Dataset/');
+[images, labels] = loadImages('../SVDTestImages/');
+%[images, labels] = loadImages('../Dataset/');
 
 %Save all plotTopSingularValues
 for i = 1:length(images)
-   plotTopSingularValues(rgb2gray(images{i}));
+   plotTopSingularValues(images{i});
    name = strsplit(labels{i},'.');
    filename = strcat('singularValuePlots/',name{1},int2str(i),'.png');
    saveas(gcf,filename,'png')
