@@ -3,10 +3,10 @@ clear all;
 close all;
 
 % Add subfolders to search path
-addpath([ pwd,'/Descriptors'] ); 
+addpath([ pwd,'/Color/Descriptors/'] ); 
 
 % Read in all images
-[images, labels] = loadImages( '../Dataset/' );
+[images, labels] = loadImages( './Dataset/' );
 
 %global vars
 descriptorName = 'statisticsRGB'; %change this to use different descriptor
@@ -25,12 +25,12 @@ colormap gray
 
 %--------------------------------------------------
 
-% k-means clustering
+%{ k-means clustering
 [clusterInd, mostFreqEl] = kMeansClustering(images, noOfCat, ...
     functionMap(descriptorName), nBins);
 
 % in this visualization each row is a cluster
-plotKMeansClustering(images, noOfCat, clusterInd, mostFreqEl);
+plotKMeansClustering(images, noOfCat, clusterInd, mostFreqEl); %}
 
 
 

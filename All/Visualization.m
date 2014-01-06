@@ -19,9 +19,11 @@ noOfDatapoints = size(images,2);
 functionMap = createFunctionHandleMap();
 
 % get the handles to descriptors here
-f1 = functionMap ( 'singularValues' );
-f2 = functionMap ( 'statisticsLab' );
-fHandles = { f1, f2 };
+%f1 = functionMap ( 'singularValues' );
+%f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+f1 = functionMap ( 'WindowFFT' );
+fHandles = { f1};
 
 % compute descriptors for single image to get the total length
 descriptorLength = 0;

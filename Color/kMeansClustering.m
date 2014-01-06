@@ -29,4 +29,3 @@ frequency = sortrows( tabulate( clusterIndices ) );
 mostFreqElement = max( frequency(:,2) );
 
 end
-

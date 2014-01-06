@@ -17,7 +17,6 @@ for i = 1 : noOfCat*3
             descriptorB = fHandle ( im2 );
         end;
         euclidDist = norm ( descriptorA - descriptorB );
-        
         confMat(i,j) = euclidDist;
     end;
 end;
