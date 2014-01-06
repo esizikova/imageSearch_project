@@ -1,13 +1,12 @@
-function [desc] = SVDDiagonal(img, num_sv, color, U, S, V)
-    if nargin < 2
+function [desc] = SVDDiagonal(img, varargin)
+    if nargin < 1
         disp('Invalid no. of arguments! ');
         return;
-    elseif nargin < 3
-        color = true;
-        [U,S,V] = imageSVD(img, color);
-    elseif nargin < 4
-        [U,S,V] = imageSVD(img, color);
     end
+    
+    num_sv = 10;
+    color = false;
+    [U,S,V] = imageSVD(img, color);
     
     if color
         out_img(:,:,1) = U(:,1:num_sv,1)*S(1:num_sv,1:num_sv,1)*V(:,1:num_sv,1)';

@@ -1,11 +1,11 @@
-function [ desc ] = SVDBasisFFT(img, U, S, V)
+function [ desc ] = SVDBasisFFT(img, varargin)
     if nargin < 1
         disp('Invalid no. of arguments! ');
         return;
-    elseif nargin < 4
-        img = rgb2gray(img);
-        [U,S,V] = svd(double(img));
     end
+    
+    img = rgb2gray(img);
+    [U,S,V] = svd(double(img));
     
     N = 256; %sampling frequecy
 

@@ -29,6 +29,75 @@ for i = 1:length(images)
    close(gcf)
 end
 
+%Rotated image
+A = rgb2gray(images{2});
+A = imrotate(images{2}, 45,'crop');
+A = A(42:210,42:210);
+plotTopCompressions(A)
+plotTopSingularValues(A)
+
+%% FFT of basis vectors
+N = 256; %sampling frequecy
+U_fft = cell(length(images),1);
+for i = 1:length(images)
+    A = rgb2gray(images{i});
+    [U,S,V] = svd(double(A));
+    y = abs(fft(U(:,1),N));
+    U_fft{i} = y(1:N/2);
+end
+
+V_fft = cell(length(images),1);
+for i = 1:length(images)
+    A = rgb2gray(images{i});
+    [U,S,V] = svd(double(A));
+    y = abs(fft(V(:,1),N));
+    V_fft{i} = y(1:N/2);
+end
+
+for i = 1:length(images)
+    for j = 1:length(images)
+        %Euclidean distance
+        dist(i,j) = norm(U_fft{i} - U_fft{j});
+    end
+end
+
+% PLOT
+plotMatrix ( dist, labels );
+
+% CLUSTERING
+clear dataPts
+for i = 1:length(images)
+    %dataPts(i,:) = [U_fft{i}',V_fft{i}'];
+    dataPts(i,:) = U_fft{i}';
+    %dataPts(i,:) = V_fft{i}';
+end;
+
+[clusterIdx, ctrs] = kmeans( dataPts, noOfCat, ...
+                    'Distance', 'sqEuclidean',...
+                    'Replicates', 15 );
+
+frequency = sortrows(tabulate(clusterIdx));  %# compute sorted frequency table
+mostFreqElement = max( frequency(:,2) );
+
+%each row is a cluster
+figure;
+for i = 1 : noOfCat
+    ind = find (clusterIdx == i);
+    for j = 1:size( ind, 1 )
+        subplot ( noOfCat, mostFreqElement, mostFreqElement * (i - 1) + j );
+        imshow ( images{ind(j)} );
+    end;
+end;
+
+%% Variance
+
+
+%% Sum of diagonals
+for i = 1:length(images)
+    [U,S,V] = svd(double(rgb2gray(images{i})));
+    sum(diag(S))
+end
+
 %diagonal
 [U,S,V] = svd(double(images{1}));
 num_sv = 4;

@@ -1,13 +1,12 @@
-function [desc] = SVDSingularValue (img, num_sv, color, U, S, V)  
-    if nargin < 2
+function [desc] = SVDSingularValue (img, varargin)  
+    if nargin < 1
         disp('Invalid no. of arguments! ');
         return;
-    elseif nargin < 3
-        color = true;
-        [U,S,V] = imageSVD(img, color);
-    elseif nargin < 4
-        [U,S,V] = imageSVD(img, color);
     end
+    
+    num_sv = 20;
+    color = false;
+    [U,S,V] = imageSVD(img, color);
     
     if color
         desc = cat(1,diag(S(1:num_sv,1:num_sv,1)), ...

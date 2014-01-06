@@ -1,14 +1,13 @@
-function [desc] = SVD_USV_Stacked(img, num_ev, color, U, S, V)
-    if nargin < 2
+function [desc] = SVD_USV_Stacked(img, varargin)
+    if nargin < 1
         disp('Invalid no. of arguments! ');
         return;
-    elseif nargin < 3
-        color = true;
-        [U,S,V] = imageSVD(img, color);
-    elseif nargin < 4
-        [U,S,V] = imageSVD(img, color);
     end
     
+    num_ev = 1;
+    color = true;
+    [U,S,V] = imageSVD(img, color);
+
     if color
         red = cat(1,reshape(U(:,1:num_ev,1)*S(1:num_ev,1:num_ev,1),num_ev*size(U,1),1),reshape(S(1:num_ev,1:num_ev,1)*V(:,1:num_ev,1)',num_ev*size(V,1),1));
         green = cat(1,reshape(U(:,1:num_ev,2)*S(1:num_ev,1:num_ev,2),num_ev*size(U,1),1),reshape(S(1:num_ev,1:num_ev,2)*V(:,1:num_ev,2)',num_ev*size(V,1),1));
