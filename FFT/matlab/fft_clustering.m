@@ -3,7 +3,6 @@ clear all;
 close all;
 
 % Add subfolders to search path
-
 addpath('/home/lena/Documents/CS_Projects/imageSearch_project/trunk/Color/Descriptors/'); 
 
 % Read in all images

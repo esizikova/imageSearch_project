@@ -12,18 +12,19 @@ imSize = 5.1; % if images in the 2d embedding are to small, increase this
 addpath([ pwd,'/Descriptors'] );
 
 % Load the images
-[images, labels] = loadImages( '../gistDataset/', 5 );
+nImages = 10;
+[images, labels] = loadImages( '../gistDataset/', 10 );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
 functionMap = createFunctionHandleMap();
 
 % get the handles to descriptors here
-%f1 = functionMap ( 'singularValues' );
-%f2 = functionMap ( 'statisticsLab' );
-%fHandles = { f1, f2 };
-f1 = functionMap ( 'UVBasisFFT' );
-fHandles = { f1 };
+f1 = functionMap ( 'singularValues' );
+f2 = functionMap ( 'statisticsLab' );
+fHandles = { f1, f2 };
+% f1 = functionMap ( 'WindowFFT' );
+% fHandles = {f1};
 
 % compute descriptors for single image to get the total length
 descriptorLength = 0;
@@ -41,7 +42,7 @@ for i = 1:noOfDatapoints
     fullDescriptor = [];
     for j = 1:length(fHandles)
         fHandle = fHandles{j};
-        curDescriptor = fHandle ( images{i} );
+        curDescriptor = real( fHandle ( images{i} ) );
         fullDescriptor = [fullDescriptor ; curDescriptor];
     end;
     descriptors( i, : ) = fullDescriptor;
@@ -51,9 +52,26 @@ toc;
 dVec = pdist( descriptors, 'euclidean');
 D = squareform(dVec);
 
+% Precision recall/nearest neighbor
+queryImageIdx = 4;
+queryDescriptor = descriptors(queryImageIdx, :);
+
+neighborIds = PrecisionRecall ( queryImageIdx, descriptors, labels, nImages );
+k = size(neighborIds,2);
+
+figure(1);
+subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
+for i = 1:k
+    subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
+        title(['Neighbor ' num2str(i) ] );
+end;
+
+return;
+
+
 % Confusion matrix plotting
 if ( confMatrix )
-    plotMatrix(D,labels);
+    plotMatrix( D, labels );
 end;
 
 % 2D embedding plotting
