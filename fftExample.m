@@ -1,13 +1,13 @@
 close all;
 clear all;
 
-im = imread ( '/home/lena/Documents/CS_Projects/imageSearch_project/trunk/Dataset/sin3.gif' );
+im = imread ( 'Dataset/coast_bea1.jpg' );
 im = double(im) / 255;
 %im = rgb2gray(im);  % 256*256
 
 im_fft = fft2(im);  % 256*256
 imshow(fftshift(im_fft));
-%{
+
 %normally zero frequency is displayed in the upper left. fftshift moves it
 %to hte center.
 im_phase = angle (im_fft );
@@ -25,4 +25,3 @@ subplot(2,2,2), imshow( fftshift(im_phase),[] ), title ('phase image');
 % visualizing, take the log of the amplitude
 subplot(2,2,3), imshow( log(fftshift(im_amplitude)),[] ), title ('amplitude image');
 subplot(2,2,4), imshow( im_reconstruct,[] ), title ('reconstructed image');
-%}

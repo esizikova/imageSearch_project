@@ -2,15 +2,18 @@
 close all;
 clear all;
 
-% Choose what visualization you want
+% Choose what visualization you want + options
 confMatrix = 1;
-2DEmbedding = 1;
+embedding2D = 1;
+kMeans = 1;
+imSize = 5.1; % if images in the 2d embedding are to small, increase this
 
 % Add subfolders to search path
 addpath([ pwd,'/Descriptors'] );
 
 % Load the images
-[images, labels] = loadImages( '../gistDataset/', 5 );
+nImages = 10;
+[images, labels] = loadImages( '../gistDataset/', 10 );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
@@ -20,6 +23,8 @@ functionMap = createFunctionHandleMap();
 f1 = functionMap ( 'singularValues' );
 f2 = functionMap ( 'statisticsLab' );
 fHandles = { f1, f2 };
+% f1 = functionMap ( 'WindowFFT' );
+% fHandles = {f1};
 
 % compute descriptors for single image to get the total length
 descriptorLength = 0;
@@ -37,7 +42,7 @@ for i = 1:noOfDatapoints
     fullDescriptor = [];
     for j = 1:length(fHandles)
         fHandle = fHandles{j};
-        curDescriptor = fHandle ( images{i} );
+        curDescriptor = real( fHandle ( images{i} ) );
         fullDescriptor = [fullDescriptor ; curDescriptor];
     end;
     descriptors( i, : ) = fullDescriptor;
@@ -47,11 +52,36 @@ toc;
 dVec = pdist( descriptors, 'euclidean');
 D = squareform(dVec);
 
+queryImageIdx = 11;
+queryDescriptor = descriptors(queryImageIdx, :);
+tic;
+neighborIds = PrecisionRecall ( queryImageIdx, descriptors, labels, nImages );
+figure(1);
+subplot(1,2*k,1), imshow(images{queryImageIdx} );
+k = size(neighborIds,2);
+for i = 1:k
+    subplot(2, 2*k, k + i); imshow(images{neighborIds(i)});
+end;
+toc;
+return;
+
+
+% Confusion matrix plotting
 if ( confMatrix )
-    plotMatrix(D,labels);
+    plotMatrix( D, labels );
 end;
 
-if ( 2DEmbedding ) 
-    [embedding2D,eigvals] = cmdscale(D);
+% 2D embedding plotting
+if ( embedding2D ) 
+    [embedding,~] = cmdscale(dVec);
+    plot2DEmbedding(embedding, images, imSize);
+end;
+
+if ( kMeans )
+% K means clustering
+[clusterInd, mostFreqEl] = kMeansClustering( descriptors, 8 );
+
+% in this visualization each row is a cluster
+plotKMeansClustering(images, 8, clusterInd, mostFreqEl);
 end;
 
