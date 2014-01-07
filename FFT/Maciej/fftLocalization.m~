@@ -1,0 +1,16 @@
+clear all;
+close all; 
+
+[images,labels] = loadImages( '../../Dataset/', 3 );
+
+im = rgb2gray(images{23}); 
+
+im_fft = fft2(im);
+
+im_amplitude = abs( im_fft );
+
+for i = 1:size ( images, 2 )
+    mean = mean ( im_amplitude(:) );
+    std_dev = std( im_amplitude(:) );
+    disp( [labels{i} ' -  ] );
+end;
