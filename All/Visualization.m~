@@ -23,6 +23,21 @@ bands = createBands(128);
 
 
 % get the handles to descriptors here
+<<<<<<< HEAD
+%f1 = functionMap ( 'singularValues' );
+%f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+
+%f1 = functionMap ( 'UVBasisFFT' );
+%f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+%fWeighting = {1, 0.1};
+
+f1 = functionMap ( 'UVBasisRotNorm' );
+f2 = functionMap ( 'statisticsLab' );
+fHandles = { f1, f2 };
+fWeighting = {1, 0.008};
+=======
 f1 = functionMap ( 'FFTBandDescriptor' );
 f2 = functionMap ( 'stackedLab' );
 f3 = functionMap ( 'FFTLocalization' );
@@ -38,6 +53,7 @@ weights = zeros(size(fHandles,2));
 weights(1) = 0;
 weights(2) = 10;
 weights(3) = 0;
+>>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
 
 % compute descriptors for single image to get the total length
 %disp(images);
@@ -56,7 +72,11 @@ for i = 1:noOfDatapoints
     fullDescriptor = [];
     for j = 1:length(fHandles)
         fHandle = fHandles{j};
+<<<<<<< HEAD
+        curDescriptor = fWeighting{j}*real( fHandle ( images{i} ) );
+=======
         curDescriptor = weights(j) * fHandle ( images{i}, arguments{j} );
+>>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
         fullDescriptor = [fullDescriptor ; curDescriptor];
     end;
     descriptors( i, : ) = fullDescriptor;
@@ -66,9 +86,13 @@ end
 dVec = pdist( descriptors, 'euclidean');
 D = squareform(dVec);
 
-
+<<<<<<< HEAD
+% Precision recall/nearest neighbor
+queryImageIdx = 20;
+=======
 % nearest neighbor
 queryImageIdx = 32;
+>>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
 queryDescriptor = descriptors(queryImageIdx, :);
 
 neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
@@ -80,6 +104,13 @@ for i = 1:k
         title(['Neighbor ' num2str(i) ] );
 end;
 
+<<<<<<< HEAD
+
+%return;
+
+
+=======
+>>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
 % Confusion matrix plotting
 if ( confMatrix )
     plotMatrix( D, labels );
