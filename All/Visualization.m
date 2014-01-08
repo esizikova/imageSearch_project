@@ -13,20 +13,21 @@ addpath([ pwd,'/Descriptors'] );
 
 % Load the images
 nImages = 10;
-[images, labels] = loadImages( '../gistDataset/', 10 );
+[images, labels] = loadImages( '../Dataset/', 10 );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
 functionMap = createFunctionHandleMap();
 
 % get the handles to descriptors here
-f1 = functionMap ( 'singularValues' );
-f2 = functionMap ( 'statisticsLab' );
-fHandles = { f1, f2 };
-% f1 = functionMap ( 'WindowFFT' );
-% fHandles = {f1};
+% f1 = functionMap ( 'singularValues' );
+% f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+ f1 = functionMap ( 'stackedLab' );
+ fHandles = {f1};
 
 % compute descriptors for single image to get the total length
+%disp(images);
 descriptorLength = 0;
 for i = 1:length(fHandles)
     fHandle = fHandles{i};
@@ -36,7 +37,7 @@ end;
 
 % Compute the descriptors for each image, and store them
 % prepare the pairwise distance 
-tic
+
 descriptors = zeros( noOfDatapoints, descriptorLength ); 
 for i = 1:noOfDatapoints
     fullDescriptor = [];
@@ -57,14 +58,20 @@ queryImageIdx = 4;
 queryDescriptor = descriptors(queryImageIdx, :);
 
 neighborIds = PrecisionRecall ( queryImageIdx, descriptors, labels, nImages );
+disp(neighborIds)
 k = size(neighborIds,2);
+disp(k)
 
 figure(1);
+j=1;
+
 subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
 for i = 1:k
-    subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
-        title(['Neighbor ' num2str(i) ] );
-end;
+     subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
+      title(['Neighbor ' num2str(i) ] );
+ end;
+
+
 
 return;
 
