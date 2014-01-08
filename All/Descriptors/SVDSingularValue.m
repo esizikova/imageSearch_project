@@ -4,8 +4,8 @@ function [desc] = SVDSingularValue (img, varargin)
         return;
     end
     
-    num_sv = 20;
-    color = false;
+    num_sv = 10;
+    color = true;
     [U,S,V] = imageSVD(img, color);
     
     if color

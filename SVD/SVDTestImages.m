@@ -17,7 +17,7 @@
 %imwrite(img, '../SVDTestImages/randomBottomHalfSpace.png','PNG');
 
 %Some tests
-[images, labels] = loadImages('../SVDTestImages/');
+%[images, labels] = loadImages('../SVDTestImages/');
 %[images, labels] = loadImages('../Dataset/');
 
 %Save all plotTopSingularValues
@@ -35,6 +35,93 @@ A = imrotate(images{2}, 45,'crop');
 A = A(42:210,42:210);
 plotTopCompressions(A)
 plotTopSingularValues(A)
+
+%% Rotated Images
+[images, labels] = loadImages('../rotationDataset/');
+unique_labels = unique(labels);
+noOfCat = length(unique_labels);
+for l = 1:length(unique_labels)
+    for j = 1:length(labels)
+        if ~strcmp(labels{j},unique_labels{l})
+            continue
+        end
+        for i = 1:8
+            A = rgb2gray(images{j});
+            A = imrotate(A, 45*(i-1),'crop');
+            A = A(42:210,42:210);
+            imwrite(A,strcat('../rotationDataset/',labels{j},'_',int2str(i+8*(j-1)),'.jpg'),'jpg')
+        end
+    end
+end
+
+%[images, labels] = loadImages('../rotationDataset/');
+noOfCat = length(unique(labels));
+desc = cell(length(images),1);
+for i = 1:length(images)
+    %A = SVDBasisFFT(images{i});
+    %B = SVDSingularValue(images{i});
+    %desc{i} = [A/mean(A), (B/mean(B))'];
+    %desc{i} = SVDSingularValue(images{i});
+    %desc{i} = SVDBasisFFT(images{i});
+    desc{i} = SVDBasisFFTRotated(images{i});
+end
+
+for i = 1:length(images)
+    for j = 1:length(images)
+        %Min dist
+        %dist1 = norm(desc{i} - desc{j});
+        %dist2 = norm(desc{i} - [desc{j}(129:256),desc{j}(1:128)]);
+        %if dist2 < dist1
+        %    desc{j} = [desc{j}(129:256),desc{j}(1:128)];
+        %end
+        
+        %Euclidean distance
+        dist(i,j) = norm(desc{i} - desc{j});
+    end
+end
+
+% PLOT
+plotMatrix ( dist, labels );
+
+% CLUSTERING
+clear dataPts
+for i = 1:length(images)
+    dataPts(i,:) = desc{i}';
+end;
+
+[clusterIdx, ctrs] = kmeans( dataPts, noOfCat, ...
+                    'Distance', 'sqEuclidean',...
+                    'Replicates', 15 );
+
+frequency = sortrows(tabulate(clusterIdx));  %# compute sorted frequency table
+mostFreqElement = max( frequency(:,2) );
+
+%each row is a cluster
+figure;
+for i = 1 : noOfCat
+    ind = find (clusterIdx == i);
+    for j = 1:size( ind, 1 )
+        subplot ( noOfCat, mostFreqElement, mostFreqElement * (i - 1) + j );
+        imshow ( images{ind(j)} );
+    end;
+end;
+
+%% FFT tests
+
+for i = 1:24
+    A = images{i};
+    A = rgb2gray(A);
+    [U,S,V] = svd(double(A));
+    x = U(:,1);
+    m = length(x);          % Window length
+    n = pow2(nextpow2(m));  % Transform length
+    y = fft(x,n);           % DFT
+    plot(abs(y(1:n/2)))
+    %f = (0:n-1)*(1/n);      % Frequency range
+    %power = y.*conj(y)/n;   % Power of the DFT
+    %plot(f(1:n/2),power(1:n/2))
+    hold on
+end
 
 %% FFT of basis vectors
 N = 256; %sampling frequecy

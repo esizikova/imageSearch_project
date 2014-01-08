@@ -1,4 +1,4 @@
-function [ desc ] = SVDBasisFFT(img, U, S, V)
+function [ desc ] = SVDBasisFFTRotated(img, varargin)
     if nargin < 1
         disp('Invalid no. of arguments! ');
         return;
@@ -25,5 +25,23 @@ function [ desc ] = SVDBasisFFT(img, U, S, V)
     end
 
     desc = [U_fft', V_fft'];
-    %desc = U_fft';
+    
+    %do rotation 45 degrees
+    A = imrotate(img, 45,'crop');
+    A = A(42:211,42:211);
+    [U,S,V] = svd(double(A));
+    
+    N = 170;
+    U_fft = [];
+    V_fft = [];
+    for i = 1:num_sv
+        y = abs(fft(U(:,1),N));
+        U_fft = [U_fft; y(1:N/2)];
+
+        %FFT of first col of V
+        y = abs(fft(V(:,1),N));
+        V_fft = [V_fft; y(1:N/2)];
+    end
+    
+    desc = [desc, U_fft', V_fft'];
 end
