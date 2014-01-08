@@ -3,9 +3,10 @@ close all;
 clear all;
 
 % Choose what visualization you want + options
-confMatrix = 0;
+confMatrix = 1;
 embedding2D = 1;
-kMeans = 0;
+kMeans = 1;
+neighborQuery = 1;
 
 % Add subfolders to search path
 addpath([ pwd,'/Descriptors'] );
@@ -19,25 +20,26 @@ noOfDatapoints = size(images,2);
 functionMap = createFunctionHandleMap();
 
 %prepare bads for fftbands descriptor
-bands = createBands(128);
-
+bands = createBands(64);
 
 % get the handles to descriptors here
-f1 = functionMap ( 'FFTBandDescriptor' );
-f2 = functionMap ( 'statisticsHSV' );
-f3 = functionMap ( 'FFTLocalization' );
-fHandles = {f1, f2, f3};
+f1 = functionMap ( 'UVBasisRotNorm' );
+f2 = functionMap ( 'statisticsLab' );
+f3 = functionMap ( 'FFTBandDescriptor' );
+f4 = functionMap ( 'FFTLocalization' );
+fHandles =   {f1, f2, f3};
 
 %prepare arguments for the functions
 arguments = cell(size(fHandles,2));
-arguments{1} = bands;
-arguments{2} = 128;
+arguments{3} = bands;
+arguments{2} = 12;
 
 %prepare weights
 weights = zeros(size(fHandles,2));
-weights(1) = 0;
-weights(2) = 10;
-weights(3) = 0;
+weights(1) = 3;
+weights(2) = 0.75;
+weights(3) = 2.5;
+weights(4) = 5;
 
 % compute descriptors for single image to get the total length
 %disp(images);
@@ -68,18 +70,19 @@ D = squareform(dVec);
 
 
 % nearest neighbor
-queryImageIdx = 32;
-queryDescriptor = descriptors(queryImageIdx, :);
-
-neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
-k = size(neighborIds,2);
-
-subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
-for i = 1:k
-    subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
-        title(['Neighbor ' num2str(i) ] );
+if(neighborQuery)
+    queryImageIdx = 22;
+    queryDescriptor = descriptors(queryImageIdx, :);
+    
+    neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
+    k = size(neighborIds,2);
+    
+    subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
+    for i = 1:k
+        subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
+            title(['Neighbor ' num2str(i) ] );
+    end;
 end;
-
 % Confusion matrix plotting
 if ( confMatrix )
     plotMatrix( D, labels );
@@ -90,7 +93,7 @@ if ( embedding2D )
     [embedding,~] = cmdscale(dVec);
     max_emb = max(max(embedding));
     min_emb = min(min(embedding));
-    imSize = 0.1*abs(max_emb - min_emb);
+    imSize = 0.05*abs(max_emb - min_emb);
     plot2DEmbedding(embedding, images, imSize);
 end;
 
@@ -99,6 +102,6 @@ if ( kMeans )
 [clusterInd, mostFreqEl] = kMeansClustering( descriptors, 8 );
 
 % in this visualization each row is a cluster
-plotKMeansClustering(images, 8, clusterInd, mostFreqEl);
+plotKMeansClustering(images, 6, clusterInd, mostFreqEl);
 end;
 

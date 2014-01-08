@@ -15,7 +15,7 @@ im_mean_L  = mean( im_L(:) );
 im_mean_a  = mean( im_a(:) );
 im_mean_b  = mean( im_b(:) );
 
-stat = [ im_mean_a, im_mean_b ]';
+stat = [ 0.1*im_mean_L, im_mean_a, im_mean_b, 0.1*im_std_dev_L, im_std_dev_a, im_std_dev_b ]';
 stat = stat / norm(stat);
 end
 

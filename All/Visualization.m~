@@ -3,57 +3,42 @@ close all;
 clear all;
 
 % Choose what visualization you want + options
-confMatrix = 0;
-embedding2D = 1;
+confMatrix = 1;
+embedding2D = 0;
 kMeans = 0;
+neighborQuery = 0;
 
 % Add subfolders to search path
 addpath([ pwd,'/Descriptors'] );
 
 % Load the images
 nImages = 10;
-[images, labels] = loadImages( '../gistDataset/', 10 );
+[images, labels] = loadImages( '../gistDataset/', 15 );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
 functionMap = createFunctionHandleMap();
 
 %prepare bads for fftbands descriptor
-bands = createBands(128);
+bands = createBands(6);
 
 
 % get the handles to descriptors here
-<<<<<<< HEAD
-%f1 = functionMap ( 'singularValues' );
-%f2 = functionMap ( 'statisticsLab' );
-%fHandles = { f1, f2 };
-
-%f1 = functionMap ( 'UVBasisFFT' );
-%f2 = functionMap ( 'statisticsLab' );
-%fHandles = { f1, f2 };
-%fWeighting = {1, 0.1};
-
-f1 = functionMap ( 'UVBasisRotNorm' );
-f2 = functionMap ( 'statisticsLab' );
-fHandles = { f1, f2 };
-fWeighting = {1, 0.008};
-=======
 f1 = functionMap ( 'FFTBandDescriptor' );
 f2 = functionMap ( 'stackedLab' );
-f3 = functionMap ( 'FFTLocalization' );
-fHandles = {f1, f2, f3};
+f3 = functionMap ( 'UVBasisRotNorm' );
+fHandles =   {f1, f2, f3};
 
 %prepare arguments for the functions
 arguments = cell(size(fHandles,2));
 arguments{1} = bands;
-arguments{2} = 128;
+arguments{2} = 12;
 
 %prepare weights
 weights = zeros(size(fHandles,2));
 weights(1) = 0;
-weights(2) = 10;
+weights(2) = 1;
 weights(3) = 0;
->>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
 
 % compute descriptors for single image to get the total length
 %disp(images);
@@ -72,11 +57,7 @@ for i = 1:noOfDatapoints
     fullDescriptor = [];
     for j = 1:length(fHandles)
         fHandle = fHandles{j};
-<<<<<<< HEAD
-        curDescriptor = fWeighting{j}*real( fHandle ( images{i} ) );
-=======
         curDescriptor = weights(j) * fHandle ( images{i}, arguments{j} );
->>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
         fullDescriptor = [fullDescriptor ; curDescriptor];
     end;
     descriptors( i, : ) = fullDescriptor;
@@ -86,31 +67,21 @@ end
 dVec = pdist( descriptors, 'euclidean');
 D = squareform(dVec);
 
-<<<<<<< HEAD
-% Precision recall/nearest neighbor
-queryImageIdx = 20;
-=======
+
 % nearest neighbor
-queryImageIdx = 32;
->>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
-queryDescriptor = descriptors(queryImageIdx, :);
-
-neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
-k = size(neighborIds,2);
-
-subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
-for i = 1:k
-    subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
-        title(['Neighbor ' num2str(i) ] );
+if(neighborQuery)
+    queryImageIdx = 12;
+    queryDescriptor = descriptors(queryImageIdx, :);
+    
+    neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
+    k = size(neighborIds,2);
+    
+    subplot( 1, k + 1, 1), imshow( images{queryImageIdx} ), title('Query Image');
+    for i = 1:k
+        subplot(1, k+1, i + 1); imshow(images{neighborIds(i)}),...
+            title(['Neighbor ' num2str(i) ] );
+    end;
 end;
-
-<<<<<<< HEAD
-
-%return;
-
-
-=======
->>>>>>> 2ee6aae195575dc4ee1c57a821818b3653f8a67e
 % Confusion matrix plotting
 if ( confMatrix )
     plotMatrix( D, labels );
@@ -121,7 +92,7 @@ if ( embedding2D )
     [embedding,~] = cmdscale(dVec);
     max_emb = max(max(embedding));
     min_emb = min(min(embedding));
-    imSize = 0.1*abs(max_emb - min_emb);
+    imSize = 0.05*abs(max_emb - min_emb);
     plot2DEmbedding(embedding, images, imSize);
 end;
 

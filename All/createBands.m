@@ -1,7 +1,7 @@
 function [ bands ] = createBands( noOfBands )
 
 % prepare bands
-bandSizes = uint8(linspace(8, 256, noOfBands))/2;
+bandSizes = uint8(linspace(10, 200, noOfBands))/2;
 bands = zeros( 256, 256, noOfBands );
 for i = 1:noOfBands
     halfSize = bandSizes(i);

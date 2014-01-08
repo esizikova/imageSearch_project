@@ -2,7 +2,7 @@ clear all;
 close all; 
 
 [images,labels] = loadImages( '../../Dataset/', 3 );
-band_filter_im = double( imread('band.png')) / 255;
+% band_filter_im = double( imread('band.png')) / 255;
 noOfImages = size ( images, 2 );
 
 % Similar to the fftLocalization we will look here at the frequency
