@@ -24,7 +24,7 @@ bands = createBands(128);
 
 % get the handles to descriptors here
 f1 = functionMap ( 'FFTBandDescriptor' );
-f2 = functionMap ( 'stackedLab' );
+f2 = functionMap ( 'statisticsHSV' );
 f3 = functionMap ( 'FFTLocalization' );
 fHandles = {f1, f2, f3};
 

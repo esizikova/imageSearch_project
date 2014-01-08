@@ -22,7 +22,6 @@ for i = 1:noOfBands
     bands(extends, extends, i) = bandShape;
 end;
 
-
 %make sure bands do no overlap
 figure;
 for i = noOfBands:-1:2
