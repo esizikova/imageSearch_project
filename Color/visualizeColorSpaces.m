@@ -13,11 +13,11 @@ B = RGB(:,3);
 figure(1);
 
 % show RGB cube
-subplot(1,3,1);
-scatter3( R, G, B, 15.0, RGB, 'fill' );
-title( 'RGB' );
-axis equal;
-axis off;
+% subplot(1,3,1);
+% scatter3( R, G, B, 15.0, RGB, 'fill' );
+% title( 'RGB' );
+% axis equal;
+% axis off;
 
 % convert to HSV
 tic;
@@ -28,12 +28,11 @@ V = HSV ( :, 3 );
 toc;
 
 % show HSV 
-subplot(1,3,2);
-scatter3( H, S, V, 15.0, RGB, 'fill' );
+% subplot(1,3,2);
+scatter3( H, S, V, 25.0, RGB, 'fill' );
 title( 'HSV' );
 axis equal;
-axis off;
-
+return
                                 
 
 % convert to Lab

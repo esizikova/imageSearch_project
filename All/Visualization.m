@@ -3,9 +3,9 @@ close all;
 clear all;
 
 % Choose what visualization you want + options
-confMatrix = 1;
-embedding2D = 1;
-kMeans = 1;
+confMatrix = 0;
+embedding2D = 0;
+kMeans = 0;
 neighborQuery = 1;
 
 % Add subfolders to search path
@@ -13,7 +13,7 @@ addpath([ pwd,'/Descriptors'] );
 
 % Load the images
 nImages = 10;
-[images, labels] = loadImages( '../gistDataset/', 10 );
+[images, labels] = loadImages( '../gistDataset/', 20 );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
@@ -24,7 +24,7 @@ bands = createBands(64);
 
 % get the handles to descriptors here
 f1 = functionMap ( 'UVBasisRotNorm' );
-f2 = functionMap ( 'statisticsLab' );
+f2 = functionMap ( 'stackedLab' );
 f3 = functionMap ( 'FFTBandDescriptor' );
 f4 = functionMap ( 'FFTLocalization' );
 fHandles =   {f1, f2, f3};
@@ -38,8 +38,8 @@ arguments{2} = 12;
 weights = zeros(size(fHandles,2));
 weights(1) = 3;
 weights(2) = 0.75;
-weights(3) = 2.5;
-weights(4) = 5;
+weights(3) = 2;
+weights(4) = 0;
 
 % compute descriptors for single image to get the total length
 %disp(images);
@@ -71,7 +71,7 @@ D = squareform(dVec);
 
 % nearest neighbor
 if(neighborQuery)
-    queryImageIdx = 22;
+    queryImageIdx = 60;
     queryDescriptor = descriptors(queryImageIdx, :);
     
     neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
