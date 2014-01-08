@@ -20,11 +20,19 @@ noOfDatapoints = size(images,2);
 functionMap = createFunctionHandleMap();
 
 % get the handles to descriptors here
-f1 = functionMap ( 'singularValues' );
+%f1 = functionMap ( 'singularValues' );
+%f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+
+%f1 = functionMap ( 'UVBasisFFT' );
+%f2 = functionMap ( 'statisticsLab' );
+%fHandles = { f1, f2 };
+%fWeighting = {1, 0.1};
+
+f1 = functionMap ( 'UVBasisRotNorm' );
 f2 = functionMap ( 'statisticsLab' );
 fHandles = { f1, f2 };
-% f1 = functionMap ( 'WindowFFT' );
-% fHandles = {f1};
+fWeighting = {1, 0.008};
 
 % compute descriptors for single image to get the total length
 descriptorLength = 0;
@@ -42,7 +50,7 @@ for i = 1:noOfDatapoints
     fullDescriptor = [];
     for j = 1:length(fHandles)
         fHandle = fHandles{j};
-        curDescriptor = real( fHandle ( images{i} ) );
+        curDescriptor = fWeighting{j}*real( fHandle ( images{i} ) );
         fullDescriptor = [fullDescriptor ; curDescriptor];
     end;
     descriptors( i, : ) = fullDescriptor;
@@ -53,7 +61,7 @@ dVec = pdist( descriptors, 'euclidean');
 D = squareform(dVec);
 
 % Precision recall/nearest neighbor
-queryImageIdx = 4;
+queryImageIdx = 20;
 queryDescriptor = descriptors(queryImageIdx, :);
 
 neighborIds = PrecisionRecall ( queryImageIdx, descriptors, labels, nImages );
@@ -66,7 +74,8 @@ for i = 1:k
         title(['Neighbor ' num2str(i) ] );
 end;
 
-return;
+
+%return;
 
 
 % Confusion matrix plotting
@@ -75,7 +84,7 @@ if ( confMatrix )
 end;
 
 % 2D embedding plotting
-if ( embedding2D ) 
+if ( embedding2D )
     [embedding,~] = cmdscale(dVec);
     plot2DEmbedding(embedding, images, imSize);
 end;

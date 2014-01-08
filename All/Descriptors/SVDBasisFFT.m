@@ -17,5 +17,5 @@ function [ desc ] = SVDBasisFFT(img, varargin)
     y = abs(fft(V(:,1),N));
     V_fft = y(1:N/2);
 
-    desc = [U_fft', V_fft'];
+    desc = [U_fft;V_fft];
 end
