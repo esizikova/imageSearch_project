@@ -53,7 +53,7 @@ end
 subplot(2,2,4);
 imshow(imadjust(mat2gray(H)),'XData',theta,'YData',rho,...
       'InitialMagnification','fit');
-title('Hough Transform of Gantrycrane Image');
+title('Hough Transform');
 xlabel('\theta'), ylabel('\rho');
 axis on, axis normal, hold on;
 plot(x,y,'s','color','black');

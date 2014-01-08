@@ -1,9 +1,9 @@
 close all;
 clear all;
 
-im = imread ( 'Dataset/coast_bea1.jpg' );
+im = imread ( 'Dataset/tallbuilding_a244040.jpg' );
 im = double(im) / 255;
-%im = rgb2gray(im);  % 256*256
+im = rgb2gray(im);  % 256*256
 
 im_fft = fft2(im);  % 256*256
 imshow(fftshift(im_fft));
@@ -13,7 +13,7 @@ imshow(fftshift(im_fft));
 im_phase = angle (im_fft );
 im_amplitude = abs( im_fft );
 % im_phase = double(rand(256, 256));
-im_amplitude = double(rand(256, 256));
+% im_amplitude = double(rand(256, 256));
 im_fft2 = im_amplitude.*exp(i*im_phase);
 
 im_reconstruct = ifft2( im_fft2 );
