@@ -28,5 +28,7 @@ hist_L = imhist ( im_L, nBins ) / normalizer ;
 hist_a = imhist ( im_a, nBins ) / normalizer ;
 hist_b = imhist ( im_b, nBins ) / normalizer ;
 
-descriptor = [ hist_L; hist_a; hist_b ];
+descriptor = [ 0.1*hist_L; hist_a; hist_b ];
+% descriptor = [ hist_a; hist_b ];
+descriptor = descriptor / norm(descriptor);
 end

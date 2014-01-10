@@ -1,7 +1,7 @@
 function [] = plot2DEmbedding ( embedding, images, imSize )
 noOfDatapoints = size(images,2);
 
-figure; hold on; axis equal;
+figure; hold on; axis equal; axis off;
 for i = 1:noOfDatapoints
     loc_x = embedding(i,1);
     loc_y = embedding(i,2);

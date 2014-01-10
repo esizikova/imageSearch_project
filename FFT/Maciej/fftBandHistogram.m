@@ -2,7 +2,7 @@ clear all;
 close all; 
 
 [images,labels] = loadImages( '../../Dataset/', 3 );
-band_filter_im = double( imread('band.png')) / 255;
+% band_filter_im = double( imread('band.png')) / 255;
 noOfImages = size ( images, 2 );
 
 % Similar to the fftLocalization we will look here at the frequency
@@ -21,7 +21,6 @@ for i = 1:noOfBands
     extends = 129 - halfSize:127 + halfSize;
     bands(extends, extends, i) = bandShape;
 end;
-
 
 %make sure bands do no overlap
 figure;

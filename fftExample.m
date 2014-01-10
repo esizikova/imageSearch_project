@@ -19,7 +19,6 @@ im_fft2 = im_amplitude.*exp(i*im_phase);
 
 im_reconstruct = ifft2( im_fft2 );
 
-
 subplot(2,2,1), imshow( im,[] ), title ('original image');
 subplot(2,2,2), imshow( fftshift(im_phase),[] ), title ('phase image');
 % peak frequencies, are very high, so to see any useful infromation when
