@@ -1,5 +1,5 @@
-function [ desc ] = SVDBasisFFTRotatedNormalized(img, varargin)
-    if nargin < 1
+function [ desc ] = SVDBasisFFTRotatedNormalized(img, num_sv, varargin)
+    if nargin < 2
         disp('Invalid no. of arguments! ');
         return;
     elseif nargin < 4
@@ -10,28 +10,27 @@ function [ desc ] = SVDBasisFFTRotatedNormalized(img, varargin)
     end
     
     N = size(img,1); %sampling frequecy
-    num_sv = 2;
 
     %FFT of first col of U
     U_fft = [];
     V_fft = [];
     for i = 1:num_sv
         y = abs(fft(U(:,1),N));
-        %U_fft = [U_fft; y(1:N/2)];
         U_fft = [U_fft; y(1:30)/sum(y(1:30))];
         
         %FFT of first col of V
         y = abs(fft(V(:,1),N));
-        %V_fft = [V_fft; y(1:N/2)];
         V_fft = [V_fft; y(1:30)/sum(y(1:30))];
     end
 
-    %desc = [(U_fft/sum(U_fft)); (V_fft/sum(V_fft))];
     desc = [U_fft; V_fft];
     
     %do rotation 45 degrees
     A = imrotate(img, 45,'crop');
-    A = A(42:211,42:211);
+    
+    %only take non-black portion of image
+    A = A(round(.16*size(img,1)):round(.84*size(img,2)),round(.16*size(img,1)):round(.84*size(img,2)));
+    
     [U,S,V] = svd(double(A));
     
     N = 170;
@@ -46,7 +45,28 @@ function [ desc ] = SVDBasisFFTRotatedNormalized(img, varargin)
         V_fft = [V_fft; y(1:30)/sum(y(1:30))];
     end
     
-    %desc = [desc; (U_fft/sum(U_fft)); (V_fft/sum(V_fft))];
+    desc = [desc; U_fft; V_fft];
+    
+    %do rotation -45 degrees
+    A = imrotate(img, -45,'crop');
+    
+    %only take non-black portion of image
+    A = A(round(.16*size(img,1)):round(.84*size(img,2)),round(.16*size(img,1)):round(.84*size(img,2)));
+    
+    [U,S,V] = svd(double(A));
+    
+    N = 170;
+    U_fft = [];
+    V_fft = [];
+    for i = 1:num_sv
+        y = abs(fft(U(:,1),N));
+        U_fft = [U_fft; y(1:30)/sum(y(1:30))];
+
+        %FFT of first col of V
+        y = abs(fft(V(:,1),N));
+        V_fft = [V_fft; y(1:30)/sum(y(1:30))];
+    end
+    
     desc = [desc; U_fft; V_fft];
 
 end

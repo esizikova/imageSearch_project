@@ -25,43 +25,84 @@ bands = createBands(64);
 % get the handles to descriptors here
 f1 = functionMap ( 'UVBasisRotNorm' );
 f2 = functionMap ( 'stackedLab' );
-f3 = functionMap ( 'FFTBandDescriptor' );
-f4 = functionMap ( 'FFTLocalization' );
-fHandles =   {f1, f2, f3};
+%f3 = functionMap ( 'FFTBandDescriptor' );
+%f4 = functionMap ( 'FFTLocalization' );
+fHandles =   {f1, f2};
 
 %prepare arguments for the functions
 arguments = cell(size(fHandles,2));
-arguments{3} = bands;
+arguments{1} = 1;
 arguments{2} = 12;
+%arguments{3} = bands;
 
 %prepare weights
 weights = zeros(size(fHandles,2));
 weights(1) = 3;
 weights(2) = 0.75;
 weights(3) = 2;
-weights(4) = 0;
+
+%windowed descriptors
+%specify the number of bins to break an image up into
+%NOTE: If division is not even it will still run, but the last row/col may
+%      be left out depending on rounding
+rBins = 4; %num bins in row direction
+cBins = 4; %num bins in column direction
+
+%TEST OF WINDOWING -- CAN REMOVE
+%imshow(images{2}(:,:,:));
+%newImg = uint8(zeros(size(images{2})));
+%pause(2)
+%for i = 1:rBins
+%    for j = 1:cBins
+%        rWidth = round(size(images{2},1)/rBins);
+%        cWidth = round(size(images{2},2)/cBins);
+%        rRange = 1+rWidth*(i-1):rWidth*i;
+%        cRange = 1+cWidth*(j-1):cWidth*j;
+%        imshow(images{2}(rRange,cRange,:));
+%        newImg(rRange,cRange,:) = images{2}(rRange,cRange,:);
+%        drawnow;
+%        pause(0.3)
+%    end
+%end;
+%imshow(newImg(:,:,:));
+
 
 % compute descriptors for single image to get the total length
 %disp(images);
 descriptorLength = 0;
-for i = 1:length(fHandles)
-    fHandle = fHandles{i};
-    curLength = size( fHandle (images{1}, arguments{i} ), 1 );
-    descriptorLength = descriptorLength + curLength;
+for i = 1:rBins
+    for j = 1:cBins
+        for k = 1:length(fHandles)
+            fHandle = fHandles{k};
+            rWidth = round(size(images{1},1)/rBins);
+            cWidth = round(size(images{1},2)/cBins);
+            rRange = 1+rWidth*(i-1):rWidth*i;
+            cRange = 1+cWidth*(j-1):cWidth*j;
+            curLength = size( fHandle (images{1}(rRange,cRange,:), arguments{k} ), 1 );
+            descriptorLength = descriptorLength + curLength;
+        end
+    end
 end;
-
 
 % Compute the descriptors for each image, and store them
 % prepare the pairwise distance 
 descriptors = zeros( noOfDatapoints, descriptorLength ); 
-for i = 1:noOfDatapoints
+for z = 1:noOfDatapoints
     fullDescriptor = [];
-    for j = 1:length(fHandles)
-        fHandle = fHandles{j};
-        curDescriptor = weights(j) * fHandle ( images{i}, arguments{j} );
-        fullDescriptor = [fullDescriptor ; curDescriptor];
-    end;
-    descriptors( i, : ) = fullDescriptor;
+    for i = 1:rBins
+        for j = 1:cBins
+            rWidth = round(size(images{z},1)/rBins);
+            cWidth = round(size(images{z},2)/cBins);
+            rRange = 1+rWidth*(i-1):rWidth*i;
+            cRange = 1+cWidth*(j-1):cWidth*j;
+            for k = 1:length(fHandles)
+                fHandle = fHandles{k};
+                curDescriptor = weights(k) * fHandle ( images{z}(rRange,cRange,:), arguments{k} );
+                fullDescriptor = [fullDescriptor ; curDescriptor];
+            end;
+        end
+    end     
+    descriptors( z, : ) = fullDescriptor;
 end
 
 
