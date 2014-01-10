@@ -54,7 +54,7 @@ for l = 1:length(unique_labels)
     end
 end
 
-%[images, labels] = loadImages('../rotationDataset/');
+[images, labels] = loadImages('../rotationDataset/');
 noOfCat = length(unique(labels));
 desc = cell(length(images),1);
 for i = 1:length(images)
@@ -63,7 +63,7 @@ for i = 1:length(images)
     %desc{i} = [A/mean(A), (B/mean(B))'];
     %desc{i} = SVDSingularValue(images{i});
     %desc{i} = SVDBasisFFT(images{i});
-    desc{i} = SVDBasisFFTRotated(images{i});
+    desc{i} = SVDBasisFFTRotatedNormalized(images{i});
 end
 
 for i = 1:length(images)
@@ -176,7 +176,17 @@ for i = 1 : noOfCat
     end;
 end;
 
-%% Variance
+%% FFT Plots
+plot(U_fft{1}(2:30)/sum(U_fft{1}(2:30)),'blue')
+hold on
+plot(U_fft{2}(2:30)/sum(U_fft{2}(2:30)),'blue')
+plot(U_fft{3}(2:30)/sum(U_fft{3}(2:30)),'blue')
+plot(U_fft{4}(1:30)/sum(U_fft{4}(1:30)),'red')
+plot(U_fft{5}(1:30)/sum(U_fft{5}(1:30)),'red')
+plot(U_fft{6}(1:30)/sum(U_fft{6}(1:30)),'red')
+plot(U_fft{7}(1:30)/sum(U_fft{7}(1:30)),'green')
+plot(U_fft{8}(1:30)/sum(U_fft{8}(1:30)),'green')
+plot(U_fft{9}(1:30)/sum(U_fft{9}(1:30)),'green')
 
 
 %% Sum of diagonals

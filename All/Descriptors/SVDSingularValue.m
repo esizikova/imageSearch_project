@@ -5,7 +5,7 @@ function [desc] = SVDSingularValue (img, varargin)
     end
     
     num_sv = 10;
-    color = true;
+    color = false;
     [U,S,V] = imageSVD(img, color);
     
     if color
@@ -13,6 +13,6 @@ function [desc] = SVDSingularValue (img, varargin)
                      diag(S(1:num_sv,1:num_sv,2)), ...
                      diag(S(1:num_sv,1:num_sv,3)));
     else
-        desc = diag(S(1:num_sv,1:num_sv));
+        desc = diag(S(1:num_sv,1:num_sv)/sum(diag(S)));
     end
 end

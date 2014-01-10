@@ -5,7 +5,7 @@ clear all;
 % Choose what visualization you want + options
 confMatrix = 0;
 embedding2D = 1;
-kMeans = 0;
+kMeans = 1;
 
 % Add subfolders to search path
 addpath([ pwd,'/Descriptors'] );
@@ -23,21 +23,17 @@ bands = createBands(128);
 
 
 % get the handles to descriptors here
-f1 = functionMap ( 'FFTBandDescriptor' );
-f2 = functionMap ( 'stackedLab' );
-f3 = functionMap ( 'FFTLocalization' );
-fHandles = {f1, f2, f3};
+f1 = functionMap ( 'UVBasisRotNorm' );
+f2 = functionMap ( 'statisticsLab' );
+fHandles = {f1, f2};
 
 %prepare arguments for the functions
 arguments = cell(size(fHandles,2));
-arguments{1} = bands;
-arguments{2} = 128;
 
 %prepare weights
 weights = zeros(size(fHandles,2));
-weights(1) = 0;
-weights(2) = 10;
-weights(3) = 0;
+weights(1) = 1;
+weights(2) = .25;
 
 % compute descriptors for single image to get the total length
 %disp(images);
