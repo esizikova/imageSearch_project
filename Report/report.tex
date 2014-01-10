@@ -10,7 +10,10 @@
 \chapter{Introduction}
 \section{Abstract}
 This report explores a variety of image properties that make it possible to understand vast collections of images better. In particular, we look at how image color, saturation, sharpness, and detail can be extracted and compared between images using methods such as Fsat Fourier Tranform (FFT) and SVD (Singular Value Decomposition). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are created in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
+
 \section{Background Work}
+There are many possible situtations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be docomposed to. Both of these would be easy problems to solve, if the images were arranotated with words: textual search is a well-solved problem. However, when the images are not labelled (this is known as unsupervised learning), and the image collection is extremely large, it is impractical to label the images by hand. For such problems, it is important to analyze image content automatically.
+
 
 \chapter{Methods}
 \section{Data}
