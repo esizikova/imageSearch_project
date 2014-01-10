@@ -14,6 +14,7 @@ This report explores a variety of image properties that make it possible to unde
 \section{Background Work}
 There are many possible situtations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be docomposed to. Both of these would be easy problems to solve, if the images were arranotated with words: textual search is a well-solved problem. However, when the images are not labelled (this is known as unsupervised learning), and the image collection is extremely large, it is impractical to label the images by hand. For such problems, it is important to analyze image content automatically.
 
+Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures and finally creates a mathematical model of the image. While the exact implementation is not available, Google Image Search does not provide clustering capabilities of analyzing existing input datasets. A more closer work is that of Oliva and Torralba \cite{gist_descriptor} which create a GIST descriptor (cite Freedmans work!!!) 
 
 \chapter{Methods}
 \section{Data}
@@ -28,6 +29,32 @@ There are many possible situtations in which we would need to understand and com
 %\subsection{Your Subsection title here}
 %\subsubsection{Your subsubsection title here}
 %\paragraph{Your paragraph title here}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{google_blog}
+  Johanna Wright,
+  \emph{Search by Text, Voice, or Image}.
+  Inside Search: Official Google Search Blog,
+  2011.
+  
+\bibitem{gist_descriptor}
+  Aude Oliva, Antonio Torralba,
+  \emph{	Modeling the Shape of the Scene: a Holistic Representation of the Spatial Envelope}.
+  International Journal of Computer Vision, 
+  Vol. 42(3): 145-175, 
+  2001.
+ 
+% example bib item  
+\bibitem{lamport94}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+\end{thebibliography}
 
 \end{document}
 
