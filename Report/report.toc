@@ -1,11 +1,13 @@
-\contentsline {chapter}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {1.1}Abstract}{2}
-\contentsline {section}{\numberline {1.2}Background Work}{2}
-\contentsline {chapter}{\numberline {2}Methods}{4}
-\contentsline {section}{\numberline {2.1}Data}{4}
-\contentsline {section}{\numberline {2.2}Implementation}{4}
-\contentsline {section}{\numberline {2.3}Color Analysis}{4}
-\contentsline {section}{\numberline {2.4}Fast Fourier Transform}{4}
-\contentsline {section}{\numberline {2.5}Singular Value Decomposition}{4}
-\contentsline {chapter}{\numberline {3}Analysis}{5}
-\contentsline {chapter}{\numberline {4}Suggestions for Further Work}{6}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}Abstract}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Background Work}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Methods}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Data}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Implementation}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Color Analysis}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Fast Fourier Transform (FFT)}{5}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Localization}{5}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Amplitude and Phase Analysis}{7}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Singular Value Decomposition}{7}{section.2.5}
+\contentsline {chapter}{\numberline {3}Analysis}{9}{chapter.3}
+\contentsline {chapter}{\numberline {4}Suggestions for Further Work}{10}{chapter.4}
