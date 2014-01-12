@@ -1,5 +1,6 @@
 \documentclass{report}
 \usepackage{fullpage}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{hyperref}
 \usepackage{amsfonts}
 \usepackage{float}
@@ -35,6 +36,8 @@ We tested the descriptors on two data-sets ?????
 When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. [[I originally was going to discuss this in the SVD section, but I think it fits well here.]]
 
 \section{Color Analysis}
+We began the exporation of image properties by considering the color analysis method. In particular, we split an Red-Green-Blue (RGB) image into 
+
 \section{Fast Fourier Transform (FFT)} (????? what is the 2D FFT in terms of FFT)
 A $2$-dimensional FFT of a (grayscale) image is a transformation from the spatial domain to the frequency domain. In the spatial domain, an image is represented by function $f(x,y)$ on all relevant points $(x,y)$ in  $\mathbb{R}^2$. In the frequncy domain, the image is represented by a function $F(u,v)$ where $u$ and $v$ are frequency values. It follows that in the frequency decomposition, an image is represented by a matrix of complex values $F$, where $F(u,v)$ encodes the amplitude and the phase of the frequencies $u$ and $v$. Mathematically, the $2$-D FFT is defined as:
 \begin{eqnarray}
@@ -83,12 +86,12 @@ The given analysis yielded an easy descriptor, in which we sorted the images acc
 \caption{Ordering of a Subset of the ???? Dataset by Increasing Contribution of Low Frequencies}
 \label{fig:fft_low_freq_order}
 \end{figure}
-One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies.
+One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies. Notice that this analysis discards a lot of information about the distribution of frequency contribution. We therefore proceeded into analyzing both phase and amplitude footprints of the image in greater detail.
 
 
 
 \subsection{Amplitude and Phase Analysis}
-Consider the decomposition of an image of a building in a city from the (???????????) GIST dataset into itd frequency and amplitude images.
+Consider the decomposition of an image of a building in a city from the (???????????) GIST dataset into its frequency and amplitude footprints.
 \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.2\textwidth}
@@ -120,6 +123,36 @@ Consider the decomposition of an image of a building in a city from the (???????
         \end{subfigure}
         \caption{Example of localization properties of different functions in the spatial and Fourier domains. Images localized in the spatial domain are not localized in the Fourier domain, and vice versa.}\label{fig:fft_localization}
 \end{figure}
+As Oliva writes in \cite{gist_descriptor}, the phase image represents local properties of the image. It contains information relative to the form and the position of image components, while the amplitude talks about orientation, smoothness,
+length and width of the contours in the given image. This can be further understood by taking the true phase values of the image, and setting all the amplitude values to $1$ (effectively taking out all amplitude variation and flattening the image), or taking true amplitude values and randomizing the phase:
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.2\textwidth}
+                \includegraphics[width=\textwidth]{graphics/original.png}
+                \caption{Original image}
+                \label{fig:gull}
+        \end{subfigure}%
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.2\textwidth}
+                \includegraphics[width=\textwidth]{graphics/flat_power.jpg}
+                \caption{Flat amplitude}
+                \label{fig:mouse}
+        \end{subfigure}
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.2\textwidth}
+                \includegraphics[width=\textwidth]{graphics/randomized_phase.jpg}
+                \caption{Randomized phase}
+                \label{fig:tiger}
+        \end{subfigure}
+        \caption{Analysis of Contributions of both Phase and Amplitude to an Image}\label{fig:fft_randomization}
+\end{figure}
+Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. Conversely, the amplitude-preserved image is meaningless to out eyes: it shows the distribution and concentration of color. 
+
+
 
 
 \section{Singular Value Decomposition}
