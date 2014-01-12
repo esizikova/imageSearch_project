@@ -1,5 +1,6 @@
 \documentclass{report}
 \usepackage{fullpage}
+\usepackage{hyperref}
 \renewcommand{\baselinestretch}{2}
 \author{Steven Englehardt, Maciej Halber, Elena Sizikova}
 \title{Understanding Collections of Images \\ \small{COS 521 Final Project Report}}
@@ -9,19 +10,30 @@
 
 \chapter{Introduction}
 \section{Abstract}
-This report explores a variety of image properties that make it possible to understand vast collections of images better. In particular, we look at how image color, saturation, sharpness, and detail can be extracted and compared between images using methods such as Fsat Fourier Tranform (FFT) and SVD (Singular Value Decomposition). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are created in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
+This report explores a variety of image properties that make it possible to understand vast collections of images. In particular, we look at how image color, saturation, sharpness, and detail can be extracted and compared between images using methods such as Fast Fourier Transform (FFT) and Singular Value Decomposition (SVD). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are created in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
 
 \section{Background Work}
-There are many possible situtations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be docomposed to. Both of these would be easy problems to solve, if the images were arranotated with words: textual search is a well-solved problem. However, when the images are not labelled (this is known as unsupervised learning), and the image collection is extremely large, it is impractical to label the images by hand. For such problems, it is important to analyze image content automatically.
+There are many possible situations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be decomposed to. Both of these would be easy problems to solve, if the images were annotated with words: textual search is a well-solved problem. However, when the images are not labelled (this is known as unsupervised learning), and the image collection is extremely large, it is impractical to label the images by hand. For such problems, it is important to analyze image content automatically.
 
 Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures and finally creates a mathematical model of the image. While the exact implementation is not available, Google Image Search does not provide clustering capabilities of analyzing existing input datasets. A more closer work is that of Oliva and Torralba \cite{gist_descriptor} which create a GIST descriptor (cite Freedmans work!!!) 
 
 \chapter{Methods}
 \section{Data}
 \section{Implementation}
+
+When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. [[I originally was going to discuss this in the SVD section, but I think it fits well here.]]
+
 \section{Color Analysis}
 \section{Fast Fourier Transform}
 \section{Singular Value Decomposition}
+A deeper understanding of Singular value decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. An $m \times n$ matrix $A$ has an SVD defined by:
+$$A_{\scriptscriptstyle m \times n} = U_{\scriptscriptstyle m \times m}S_{\scriptscriptstyle m \times n}V_{\scriptscriptstyle n \times n}^T$$
+where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ and $V$ are known as the left and right singular vectors of $A$, respectively. $U$ and $V$ are orthonormal matrices, and the columns are basis vectors for the reconstruction. It is useful to think of each singular value in $S$ as scaling the basis vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image.
+
+[[ Perhaps it makes sense to go a bit more in depth here on the mathematical definition of singular values given on \url{https://en.wikipedia.org/wiki/Singular_value} and \url{https://en.wikipedia.org/wiki/Singular_value_decomposition#Singular_values.2C_singular_vectors.2C_and_their_relation_to_the_SVD}
+]]
+
+With this perspective, we 
 
 \chapter{Analysis}
 
@@ -46,13 +58,19 @@ Existing methods of image search by analyzing content of the image include Googl
   Vol. 42(3): 145-175, 
   2001.
  
-% example bib item  
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
+\bibitem{svd_image_coding}
+  Andrews, Harry C. and Patterson, C., III,
+  \emph{ Singular Value Decomposition (SVD) Image Coding}.
+  IEEE Transactions on Communications,
+  Vol. 24(4): 425-432,
+  1976.
+
+\bibitem{svd_image_retrieval}
+  Jie-xian Zeng; Dong-ge Bi; Xiang Fu,
+  \emph{A Matching Method Based on SVD for Image Retrieval}.
+  Measuring Technology and Mechatronics Automation, 2009. ICMTMA '09. International Conference on, 
+  Vol. 1: 396-398, 
+  11-12 April 2009
 
 \end{thebibliography}
 
