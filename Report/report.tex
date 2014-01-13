@@ -162,12 +162,38 @@ Consider an $m \times n$ matrix $A$. The singular values of $A$  correspond to t
 
 SVD conveniently decomposes $A$, separating out singular values, row space vectors, and column space vectors into three different matrices. The SVD of $A$ is defined as:
 $$A_{\scriptscriptstyle m \times n} = U_{\scriptscriptstyle m \times m}S_{\scriptscriptstyle m \times n}V_{\scriptscriptstyle n \times n}^T$$
-where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ are the eigenvectors of $AA^T$ and the columns of $V$ are the eigenvectors of $A^TA$. $U$ and $V$ are known as the left and right singular vectors of $A$, respectively.
+where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ are the eigenvectors of $AA^T$ and the columns of $V$ are the eigenvectors of $A^TA$ \cite{using_svd}. $U$ and $V$ are known as the left and right singular vectors of $A$, respectively.
 
 The rank of a matrix is informally defined as a measure of the "nondegenerateness" of system of linear equations encoded by that matrix, or more formally is equal to the size of the row space or column space of the matrix. Linearly independent singular vectors correspond to non-degenerate singular values.  The rank of a matrix is thus equal to the number of non-degenerate singular values of the matrix, and is also equal to the number of linearly independent vectors in the row space and column space. If all singular values are non-degenerate, $A$ is a full rank matrix and the SVD of $A$ is unique.
 
-\subsection{Singular Values and Eigenimages}
-It is useful to think of each singular value in $S$ as scaling the basis vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image. This construction is what enables image compression through a low-rank matrix approximation. The rank of a matrix is defined 
+\subsection{SVD and Compression}
+It is useful to think of each singular value in $S$ as scaling the row and column singular vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image. This construction is what enables image compression through a low-rank matrix approximation. Let $\tilde{A}$ represent the $k$-approximation of $A$, where $rank(\tilde{A}) = k$. Thus:
+$$\tilde{A} = U(:,1:k)\tilde{S}V(:,1:k)^T$$
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{graphics/guy.jpg}
+                \caption{Original image}
+                \label{fig:gull}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{graphics/guyTopCompressions.png}
+                \caption{Rank 1 to 4 from top left to bottom right}
+                \label{fig:mouse}
+        \end{subfigure}
+        \caption{Rank k-approximations of an image using SVD}\label{fig:svd_compression}
+\end{figure}
+
+The performance of SVD in image compression shows that there is a significant amount of visual information in low rank approximations of images. Our desire is to capture this low rank information in a concise descriptor for use in image retrieval. An examination of both the singular values and the singular vectors follows.
+
+\subsection{Retrieval using Singular Values}
+
+Image retrieval using all singular values of a matrix has been shown to perform better than a simple distance metric, such as the Mahalanobis distance, Manhattan distance, or Euclidean distance \cite{svd_image_retrieval}. Several factors contribute to this performance, but relate to the fact that the distribution of singular values in $S$ is connected to the rank of $A$, the image matrix. 
+
+The alignment of an images' strongest color contours to either the horizontal or vertical axis allow it to be fully captured in the left or right singular vectors of an image and thus requires few singular values. The means the image's matrix representation is of lower rank and thus loses less information
+
+
 
 \chapter{Analysis}
 
