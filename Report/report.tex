@@ -156,14 +156,18 @@ Note that a reconstructed image in which the amplitude information was not prese
 
 
 \section{Singular Value Decomposition}
-A deeper understanding of Singular value decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. An $m \times n$ matrix $A$ has an SVD defined by:
+A deeper understanding of Singular Value Decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. 
+
+Consider an $m \times n$ matrix $A$. The singular values of $A$  correspond to the non-zero square roots of the eigenvalues from $AA^T$ and $A^TA$. The matrix $AA^T$ is spanned by the row space of A, and the matrix $A^TA$ is spanned by the column space of $A$ \cite{using_svd}. The row space and column space being the set of all linear combinations of row vectors and column vectors of $A$, respectively.
+
+SVD conveniently decomposes $A$, separating out singular values, row space vectors, and column space vectors into three different matrices. The SVD of $A$ is defined as:
 $$A_{\scriptscriptstyle m \times n} = U_{\scriptscriptstyle m \times m}S_{\scriptscriptstyle m \times n}V_{\scriptscriptstyle n \times n}^T$$
-where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ and $V$ are known as the left and right singular vectors of $A$, respectively. $U$ and $V$ are orthonormal matrices, and the columns are basis vectors for the reconstruction. It is useful to think of each singular value in $S$ as scaling the basis vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image.
+where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ are the eigenvectors of $AA^T$ and the columns of $V$ are the eigenvectors of $A^TA$. $U$ and $V$ are known as the left and right singular vectors of $A$, respectively.
 
-[[ Perhaps it makes sense to go a bit more in depth here on the mathematical definition of singular values given on \url{https://en.wikipedia.org/wiki/Singular_value} and \url{https://en.wikipedia.org/wiki/Singular_value_decomposition#Singular_values.2C_singular_vectors.2C_and_their_relation_to_the_SVD}
-]]
+The rank of a matrix is informally defined as a measure of the "nondegenerateness" of system of linear equations encoded by that matrix, or more formally is equal to the size of the row space or column space of the matrix. Linearly independent singular vectors correspond to non-degenerate singular values.  The rank of a matrix is thus equal to the number of non-degenerate singular values of the matrix, and is also equal to the number of linearly independent vectors in the row space and column space. If all singular values are non-degenerate, $A$ is a full rank matrix and the SVD of $A$ is unique.
 
-With this perspective, we 
+\subsection{Singular Values and Eigenimages}
+It is useful to think of each singular value in $S$ as scaling the basis vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image. This construction is what enables image compression through a low-rank matrix approximation. The rank of a matrix is defined 
 
 \chapter{Analysis}
 
@@ -173,7 +177,7 @@ With this perspective, we
 %\paragraph{Your paragraph title here}
 
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{4}
 
 \bibitem{google_blog}
   Johanna Wright,
@@ -187,7 +191,14 @@ With this perspective, we
   International Journal of Computer Vision, 
   Vol. 42(3): 145-175, 
   2001.
- 
+
+\bibitem{using_svd}
+  Ientilucci, Emmett J,
+  \emph{Using the singular value decomposition}. 
+  Chester F. Carlson Center for Imaging Science,
+  Rochester Institute of Technology,
+  2003.
+
 \bibitem{svd_image_coding}
   Andrews, Harry C. and Patterson, C., III,
   \emph{ Singular Value Decomposition (SVD) Image Coding}.
