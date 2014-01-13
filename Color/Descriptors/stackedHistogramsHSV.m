@@ -11,7 +11,7 @@ im_S = im_HSV ( :, : , 2 );
 im_V = im_HSV ( :, : , 3 );
 
 normalizer = ( size( im_HSV, 1 ) * size( im_HSV, 2 ) );
-hist_H = imhist ( im_H, 5*bins ) / normalizer ;
+hist_H = imhist ( im_H, 4*bins ) / normalizer ;
 hist_S = imhist ( im_S, bins ) / normalizer ;
 hist_V = imhist ( im_V, bins ) / normalizer ;
 

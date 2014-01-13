@@ -92,13 +92,23 @@ Another color space which we have considered in this work was the $L^*a^*b^*$ co
 \subsection{Color-based Descriptors}
 The color information is widely used for image retrial, since as a descriptor it has a nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, color closely relate to how we percieve images as similar. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
 
-A very crude way of comparing images in terms of colors is to average each of the channels in specific color space, and use it as a $3$-value descriptor, which will be a point in a color space. Figure \ref{fig:colSpaces} shows points plotted in $\mathcal{R}^3$. What is interesting about all the color spaces is the fact that we can easily navigate through them and have a good understanding how single parameter affects overall color appearance.
+A very crude way of comparing images in terms of colors is to average each of the channels in specific color space, and use it as a $3$-value descriptor, which will be a point in a color space. Figure \ref{fig:colSpaces} shows points plotted in $\mathcal{R}_3$. What is interesting about all the color spaces is the fact that we can easily navigate through them and have a good understanding how single parameter affects overall color appearance.
 
-{\color{red} Insert color space figure }
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.3]{graphics/colorSpaces.png}
+\caption{Points in $\mathcal{R}_3$, plotted according to their values in RGB, HSV and $L^*a^*b^*$ color spaces }
+\label{fig:colSpaces}
+\end{figure}
 
 This gave us the inspiration to look for similar, simple parameters that relate to overall image structure, using FFT and SVD ( see sections \ref{sec:FFT} and \ref{sec:SVD} respectively). However by a simple averaging we are not obtaining information regarding the overall color distribution. A more common way of investigating the color distribution is \textit{normalized color histogram}. To create it we first create bins - given the number of bins $n$ we create a set of uniformly spaced ranges $R = \{r_1, r_2, ..., r_n\}$. Now for each pixel $p_i$ we determine its value $v_i$ and determine into which $r_k$ it falls to and increment value at the relating bin. After visiting all pixels $p_i$ we normalize each bin by total number of pixels. This produces a length $n$ vector that better describe the the overall value distribution. Above structure of course describes the procedure for gray scale images, however it is trivial to extend it to color images where we create a histogram for each color channel, and then concatenate resulting vectors.
 
-{\color{red} Insert the Color histogram image }
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.3]{graphics/colorHistogram.png}
+\caption{Image and its color histogram in RGB, with $n = 3$ bins per channel. }
+\label{fig:colSpaces}
+\end{figure}
 
 We then designed our descriptor for each color space. As noted in \cite{HSV_non_uniform}, hue is more important for color perception than saturation and lightness, and thus the HSV histogram have been always computed giving more bins to hue channel (i.e. provided that the required length of descriptor is $n$, the number of bins for hue would be given by $\frac{n}{2}$, while other two parameters $\frac{n}{4}$. Similarly we conjecture that in terms of $L^*a^*b^*$ color space the lightness is less important than parameters describing colors, so we have also modified the number of bins for each channel accordingly ( $L^* = \frac{2*n}{8}$,$ a^* = \frac{3*n}{8}$, $b^* = \frac{3*n}{8}$ )
 
@@ -112,7 +122,7 @@ F(u,v) = \int \int ^{\infty}_{-\infty} f(x,y)e^{-j2\pi (ux+vy)}dx dy
 \end{eqnarray}
 For $n$ points, we can compute the $1$-D DFT efficiently in $O(n\log{n})$ operations. The Matlab implemetation of the $2$-D FFT is extremely  fast, and we had no computational time issues with basing descriptors on these computations.
 
-\subsection{Localization}
+\subsection{Localization fact}
 To understand the properties of the $2$-D Fourier Transform, we started by analyzying the $1$-D variant first. Consider the following functions, and their representations in the Fourier domain (\ref{fig:fft_localization}). A plot of $f(x)=\cos {x}$ is not very well localized in the spatial domain, that is the function could be said to be stretch along the x-axis. However it's representation in Fourier domain is extremly packed --- represented by a single peak. Conversely, $g(x)=\cos {50x}$ is well localized in the spatial domain, i.e. function can be thought of being squeezed along x-axis. In the Fourier domain, the same function is no longer localized - we observe the peaks to spread apart away from the zero value. This simple fact regarding the behavior of Fourier Transfrom suggested us a way of how to tackle images in the Fourier domain. Images containing a lot of high frequency periodicy ( buildings ) will have more contribution from these frequencies - by normalizing the image in Fourier domain we are able then to measure contribution from low frequencies. Again for a images with a lot of high frequency information we expect to observe less overall contribution after normalization.
 \begin{figure}[h]
         \centering
@@ -155,7 +165,6 @@ The given analysis yielded an easy descriptor, in which we sorted the images acc
 \label{fig:fft_low_freq_order}
 \end{figure}
 One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies. Notice that this analysis discards a lot of information about the distribution of frequency contribution. We therefore proceeded into analyzing both phase and amplitude footprints of the image in greater detail.
-
 
 
 \subsection{Amplitude and Phase Analysis}
@@ -219,9 +228,6 @@ length and width of the contours in the given image. This can be further underst
         \caption{Analysis of Contributions of both Phase and Amplitude to an Image}\label{fig:fft_randomization}
 \end{figure}
 Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. Conversely, the amplitude-preserved image is meaningless to out eyes: it shows the distribution and concentration of color. 
-
-
-
 
 \section{Singular Value Decomposition}
 \label{sec:SVD}
