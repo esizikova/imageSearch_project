@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{color}
 \renewcommand{\baselinestretch}{2}
 \author{Steven Englehardt, Maciej Halber, Elena Sizikova}
 \title{Understanding Collections of Images \\ \small{COS 521 Final Project Report}}
@@ -16,9 +17,11 @@
 
 \chapter{Introduction}
 \section{Abstract}
-This report explores a variety of image properties that make it possible to understand vast collections of images. In particular, we look at how image color, saturation, sharpness, and detail can be extracted and compared between images using methods such as Fast Fourier Transform (FFT) and Singular Value Decomposition (SVD). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are created in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
+This report explores a variety of image properties which make it possible to understand and explore collections of images. In particular, we look at how properties like color distribution, saturation, sharpness, and detail can be extracted and compared between images. To perform these task we usemethods such as Fast Fourier Transform (FFT) and Singular Value Decomposition (SVD). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are formed in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
 
 \section{Background Work}
+{\color{red} I'll look at this section closer tmrw, definietly needs some expanding. Will add some color histogram stuff  -- Maciej}
+
 There are many possible situations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be decomposed to. Both of these would be easy problems to solve, if the images were annotated with words: textual search is a well-solved problem. However, when the images are not labelled (this is known as unsupervised learning), and the image collection is extremely large, it is impractical to label the images by hand. For such problems, it is important to analyze image content automatically.
 
 Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures and finally creates a mathematical model of the image. While the exact implementation is not available, Google Image Search does not provide clustering capabilities of analyzing existing input datasets. A more closer work is that of Oliva and Torralba \cite{gist_descriptor} which create a GIST descriptor (cite Freedmans work!!!), and use perceptual dimensions (naturalness, openness, roughness, expansion, ruggedness) to classify natural images, for example, pictures of coasts, mountains or cities. The authors work with a low dimensional representation of the scene which is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates (!!!! Expand). 
@@ -27,16 +30,21 @@ Having completed a graduate course in algorithms, our goal was to understand the
 
 
 \chapter{Methods}
-Three directions of image analysis were analyzed and tested. We first started with a collection of color images that were analyzed by the method of Color Histograms. We also analyzed the properties of the FFT method and the SVD method on the corresponding greyscale images. The resulting descriptors were then compared against each other and subsequently combined into a joint descriptor, that used the information from all three methods to describe images.
+In this work, we focused on three directions to analyze the image structure, being color distributions, frequency distribution and geometrical structure. Color distribution is widely analyzed using color histograms, frequencies can be easily investigated using Fast Fourier Transform. For geometrical structure we have decided to explore the Singular Value Decomposition of the image in hope of discovering some useful properties ( see chapter \ref{sec:SVD} ). 
+
+ 
+%   We first started with a collection of color images that were analyzed by the method of Color Histograms. We also analyzed the properties of the FFT method and the SVD method on the corresponding greyscale images. The resulting descriptors were then compared against each other and subsequently combined into a joint descriptor, that used the information from all three methods to describe images.
 
 \section{Data}
-We tested the descriptors on two data-sets ?????
+%We tested the descriptors on two data-sets ?????
+The dataset that we have used for exploring the image structure has been provided with work by Oliva and Torralba \cite{gist_descriptor}. The dataset contains images from 8 categories, {\color{red} Expand!}
+
 \section{Implementation}
 
-When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. [[I originally was going to discuss this in the SVD section, but I think it fits well here.]]
+When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. {\color{red} Above sentence is not exactly true - recovering luminance vs preserving color is a huge area of work, basically look up for integral images if interested. Will have to tweak the section a bit}
 
 \section{Color Analysis}
-We began the exporation of image properties by considering the color analysis method. In particular, the range of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. One of the most common such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue colors.  
+We began the exporation of image properties by considering the color distribution. In particular, the range of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. One of the most common such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue colors.  
 \begin{figure}[hbtp]
 \centering
 \caption{RGB Cube Model}
@@ -73,17 +81,17 @@ In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents 
 
 [LAB color model intro !!!!!!!!!]
 
+{\color{red} We need to think about how much we want to talk to colors, especially when the performace between different color space descriptors is negligible. I would introduce the color spaces, and using them motivate the need for having simple parameters which allow for straightforward exploration }
 
-
-\section{Fast Fourier Transform (FFT)} (????? what is the 2D FFT in terms of FFT)
-A $2$-dimensional FFT of a (grayscale) image is a transformation from the spatial domain to the frequency domain. In the spatial domain, an image is represented by function $f(x,y)$ on all relevant points $(x,y)$ in  $\mathbb{R}^2$. In the frequncy domain, the image is represented by a function $F(u,v)$ where $u$ and $v$ are frequency values. It follows that in the frequency decomposition, an image is represented by a matrix of complex values $F$, where $F(u,v)$ encodes the amplitude and the phase of the frequencies $u$ and $v$. Mathematically, the $2$-D FFT is defined as:
+\section{Fourier Transform} (????? what is the 2D FFT in terms of FFT {\color{red} FFT is just an algorithm for computing the fourier transform. We are less interested in the fact how it is able to perform the transform quickly and more in the properties of discrete fourier transform })
+A $2$-dimensional, discrete Fourier Transform of an (grayscale) image is a transformation from the spatial domain to the frequency domain. In the spatial domain, an image is represented by function $f(x,y)$ on all relevant points $(x,y)$ in  $\mathbb{R}^2$. In the frequncy domain, the image is represented by a function $F(u,v)$ where $u$ and $v$ are frequency values. It follows that in the frequency decomposition, an image is represented by a matrix of complex values $F$, where $F(u,v)$ encodes the amplitude and the phase of the frequencies $u$ and $v$. Mathematically, the $2$-D Fourier Transform is defined as:
 \begin{eqnarray}
 F(u,v) = \int \int ^{\infty}_{-\infty} f(x,y)e^{-j2\pi (ux+vy)}dx dy
 \end{eqnarray}
 For $n$ points, we can compute the $1$-D DFT efficiently in $O(n\log{n})$ operations. The Matlab implemetation of the $2$-D FFT is extremely  fast, and we had no computational time issues with basing descriptors on these computations.
 
 \subsection{Localization}
-To understand the properties of the $2$-D FFT, we started by analyzying the $1$-D FFT first. Consider the following functions, and their representations in the Fourier domain (\ref{fig:fft_localization}). A plot of $f(x)=\cos {x}$ is not localized in the spatial domain, but is localized in the Fourier domain: it is represented by a single peak. Conversely, $g(x)=\cos {50x}$ is localized in the spatial domain, as it consists of oscillations around $x=0$. In the Fourier domain, the same function is no longer localized. This example is representative of the behavior of FFT, and suggested us a  way of how to tackle images in the Fourier domain.
+To understand the properties of the $2$-D Fourier Transform, we started by analyzying the $1$-D variant first. Consider the following functions, and their representations in the Fourier domain (\ref{fig:fft_localization}). A plot of $f(x)=\cos {x}$ is not very well localized in the spatial domain, that is the function could be said to be stretch along the x-axis. However it's representation in Fourier domain is extremly packed --- represented by a single peak. Conversely, $g(x)=\cos {50x}$ is well localized in the spatial domain, i.e. function can be thought of being squeezed along x-axis. In the Fourier domain, the same function is no longer localized - we observe the peaks to spread apart away from the zero value. This simple fact regarding the behavior of Fourier Transfrom suggested us a way of how to tackle images in the Fourier domain. Images containing a lot of high frequency periodicy ( buildings ) will have more contribution from these frequencies - by normalizing the image in Fourier domain we are able then to measure contribution from low frequencies. Again for a images with a lot of high frequency information we expect to observe less overall contribution after normalization.
 \begin{figure}[h]
         \centering
         \begin{subfigure}[b]{0.2\textwidth}
@@ -116,11 +124,12 @@ To understand the properties of the $2$-D FFT, we started by analyzying the $1$-
         \caption{Example of localization properties of different functions in the spatial and Fourier domains. Images localized in the spatial domain are not localized in the Fourier domain, and vice versa.}\label{fig:fft_localization}
 \end{figure}
 
-The given analysis yielded an easy descriptor, in which we sorted the images according the increasing contribution of low frequencies (alternatively, the decreasing contribution of high frequencies) \ref{fig:fft_low_freq_order} (!!!!!! Maciej, how exactly did you generate this?? Is this based on amplitude?). The images should be read as one line that wraps from right to left. 
+The given analysis yielded an easy descriptor, in which we sorted the images according the increasing contribution of low frequencies (alternatively, the decreasing contribution of high frequencies) \ref{fig:fft_low_freq_order} (!!!!!! Maciej, how exactly did you generate this?? Is this based on amplitude? {\color{red}Tried to scribble some explanation above, will need to go through it again}). The images should be read as one line that starts at top-left corner and ends in bottom-right. 
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.3]{graphics/FrequencyOrdered.png}
-\caption{Ordering of a Subset of the ???? Dataset by Increasing Contribution of Low Frequencies}
+\caption{Ordering of a subset of the dataset by increasing contribution of low frequencies}
 \label{fig:fft_low_freq_order}
 \end{figure}
 One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies. Notice that this analysis discards a lot of information about the distribution of frequency contribution. We therefore proceeded into analyzing both phase and amplitude footprints of the image in greater detail.
@@ -193,6 +202,7 @@ Note that a reconstructed image in which the amplitude information was not prese
 
 
 \section{Singular Value Decomposition}
+\label{sec:SVD}
 A deeper understanding of Singular Value Decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. 
 
 Consider an $m \times n$ matrix $A$. The singular values of $A$  correspond to the non-zero square roots of the eigenvalues from $AA^T$ and $A^TA$. The matrix $AA^T$ is spanned by the row space of A, and the matrix $A^TA$ is spanned by the column space of $A$ \cite{using_svd}. The row space and column space being the set of all linear combinations of row vectors and column vectors of $A$, respectively.
@@ -243,7 +253,9 @@ E: I think we can introduce K-means, embedding, search by query, and any other s
 %\subsection{Your Subsection title here}
 %\subsubsection{Your subsubsection title here}
 %\paragraph{Your paragraph title here}
-
+Just some quick ideas - our exploration assumed that each property is indepenend which is obviously not true, and it would be interesting to look at similarities/ collerations between SVD and FT. 
+Our exploration was purely based on properties of algorithms and visual exploration using MDS and k-nearest neighbour searches. Our performance for retrival is not really measured other that providing visual examples - some improvements on this front would be nice.
+Images are extremly high dimensional space, and our analysis might not be entirely revealing - using some machine learning techinques (vide Zeyu and Shuran ) could help us to learn some more about mentioned dimensionality independence etc.
 
 \begin{thebibliography}{6}
 
