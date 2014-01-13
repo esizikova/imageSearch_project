@@ -6,9 +6,9 @@ function plotTopCompressions(image)
 figure;
 
 num_sv = 1;
-for i = 1:3
-    for j = 1:3
-        subplot(3,3,num_sv); imshow(uint8(U(:,1:num_sv)*S(1:num_sv,1:num_sv)*V(:,1:num_sv)')); title(num_sv)
+for i = 1:2
+    for j = 1:2
+        subplot(2,2,num_sv); imshow(uint8(U(:,1:num_sv)*S(1:num_sv,1:num_sv)*V(:,1:num_sv)')); % title(num_sv)
         num_sv = num_sv + 1;
     end
 end

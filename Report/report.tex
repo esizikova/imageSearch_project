@@ -36,7 +36,44 @@ We tested the descriptors on two data-sets ?????
 When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. [[I originally was going to discuss this in the SVD section, but I think it fits well here.]]
 
 \section{Color Analysis}
-We began the exporation of image properties by considering the color analysis method. In particular, we split an Red-Green-Blue (RGB) image into 
+We began the exporation of image properties by considering the color analysis method. In particular, the range of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. One of the most common such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue colors.  
+\begin{figure}[hbtp]
+\centering
+\caption{RGB Cube Model}
+\includegraphics[scale=0.5]{graphics/rgb_cube.png}
+\end{figure}
+
+The Hue-Saturation-Value (HSV) Hexcone model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}.
+\begin{figure}[hbtp]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_cube.png}
+                \caption{The RGB cube viewed along Black-White diagonal}
+                \label{fig:gull}
+        \end{subfigure}%
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_rescale1.png}
+                \caption{Recoordination}
+                \label{fig:mouse}
+        \end{subfigure}
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_rescale2.png}
+                \caption{Hue-Saturation Triangle}
+                \label{fig:tiger}
+        \end{subfigure}
+        \caption{Transformation of the RGB cube to HSV color space}\label{fig:hsv_visualisation}
+\end{figure}
+In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The hue and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. As noted further in \cite{color_model_ref}, this model is representative of how artists select colors. We therefore also used the HSV model in our analysis as a first comparison to the RGB model.
+
+[LAB color model intro !!!!!!!!!]
+
+
 
 \section{Fast Fourier Transform (FFT)} (????? what is the 2D FFT in terms of FFT)
 A $2$-dimensional FFT of a (grayscale) image is a transformation from the spatial domain to the frequency domain. In the spatial domain, an image is represented by function $f(x,y)$ on all relevant points $(x,y)$ in  $\mathbb{R}^2$. In the frequncy domain, the image is represented by a function $F(u,v)$ where $u$ and $v$ are frequency values. It follows that in the frequency decomposition, an image is represented by a matrix of complex values $F$, where $F(u,v)$ encodes the amplitude and the phase of the frequencies $u$ and $v$. Mathematically, the $2$-D FFT is defined as:
@@ -156,16 +193,48 @@ Note that a reconstructed image in which the amplitude information was not prese
 
 
 \section{Singular Value Decomposition}
-A deeper understanding of Singular value decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. An $m \times n$ matrix $A$ has an SVD defined by:
+A deeper understanding of Singular Value Decomposition (SVD) in the context of images allows the creation of a descriptor that captures overall image complexity in a relatively small descriptor length. SVD is a factorization of any real or complex 2-dimensional matrix. Since images will always be represented by real matrices, we ignore the complex case in our analysis. 
+
+Consider an $m \times n$ matrix $A$. The singular values of $A$  correspond to the non-zero square roots of the eigenvalues from $AA^T$ and $A^TA$. The matrix $AA^T$ is spanned by the row space of A, and the matrix $A^TA$ is spanned by the column space of $A$ \cite{using_svd}. The row space and column space being the set of all linear combinations of row vectors and column vectors of $A$, respectively.
+
+SVD conveniently decomposes $A$, separating out singular values, row space vectors, and column space vectors into three different matrices. The SVD of $A$ is defined as:
 $$A_{\scriptscriptstyle m \times n} = U_{\scriptscriptstyle m \times m}S_{\scriptscriptstyle m \times n}V_{\scriptscriptstyle n \times n}^T$$
-where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ and $V$ are known as the left and right singular vectors of $A$, respectively. $U$ and $V$ are orthonormal matrices, and the columns are basis vectors for the reconstruction. It is useful to think of each singular value in $S$ as scaling the basis vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image.
+where $S$ is a diagonal $m \times n$ matrix with the singular values of $A$ on the main diagonal (in decreasing order). The columns of $U$ are the eigenvectors of $AA^T$ and the columns of $V$ are the eigenvectors of $A^TA$ \cite{using_svd}. $U$ and $V$ are known as the left and right singular vectors of $A$, respectively.
 
-[[ Perhaps it makes sense to go a bit more in depth here on the mathematical definition of singular values given on \url{https://en.wikipedia.org/wiki/Singular_value} and \url{https://en.wikipedia.org/wiki/Singular_value_decomposition#Singular_values.2C_singular_vectors.2C_and_their_relation_to_the_SVD}
-]]
+The rank of a matrix is informally defined as a measure of the "nondegenerateness" of system of linear equations encoded by that matrix, or more formally is equal to the size of the row space or column space of the matrix. Linearly independent singular vectors correspond to non-degenerate singular values.  The rank of a matrix is thus equal to the number of non-degenerate singular values of the matrix, and is also equal to the number of linearly independent vectors in the row space and column space. If all singular values are non-degenerate, $A$ is a full rank matrix and the SVD of $A$ is unique.
 
-With this perspective, we 
+\subsection{SVD and Compression}
+It is useful to think of each singular value in $S$ as scaling the row and column singular vectors from $U$ and $V$ to generate an 'eigenimage' \cite{svd_image_coding}, or the contribution of that specific singular value to the overall image. This construction is what enables image compression through a low-rank matrix approximation. Let $\tilde{A}$ represent the $k$-approximation of $A$, where $rank(\tilde{A}) = k$. Thus:
+$$\tilde{A} = U(:,1:k)\tilde{S}V(:,1:k)^T$$
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{graphics/guy.jpg}
+                \caption{Original image}
+                \label{fig:gull}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{graphics/guyTopCompressions.png}
+                \caption{Rank 1 to 4 from top left to bottom right}
+                \label{fig:mouse}
+        \end{subfigure}
+        \caption{Rank k-approximations of an image using SVD}\label{fig:svd_compression}
+\end{figure}
+
+The performance of SVD in image compression shows that there is a significant amount of visual information in low rank approximations of images. Our desire is to capture this low rank information in a concise descriptor for use in image retrieval. An examination of both the singular values and the singular vectors follows.
+
+\subsection{Retrieval using Singular Values}
+
+Image retrieval using all singular values of a matrix has been shown to perform better than a simple distance metric, such as the Mahalanobis distance, Manhattan distance, or Euclidean distance \cite{svd_image_retrieval}. Several factors contribute to this performance, but relate to the fact that the distribution of singular values in $S$ is connected to the rank of $A$, the image matrix. 
+
+The alignment of an images' strongest color contours to either the horizontal or vertical axis allow it to be fully captured in the left or right singular vectors of an image and thus requires few singular values. The means the image's matrix representation is of lower rank and thus loses less information
+
+
 
 \chapter{Analysis}
+
+[Steve] I suppose that here we should give a brief summary of k-means clustering and multidimensional scaling, and then show the results of the descriptor (with and without windowing) and an analysis of that? I was planning to investigate the properties of SVD and show some basic performance results in the SVD section....but that presents the problem that I evaluate my results with k-means and k-means won't be introduced yet..
 
 \chapter{Suggestions for Further Work}
 %\subsection{Your Subsection title here}
@@ -173,7 +242,7 @@ With this perspective, we
 %\paragraph{Your paragraph title here}
 
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{6}
 
 \bibitem{google_blog}
   Johanna Wright,
@@ -187,7 +256,14 @@ With this perspective, we
   International Journal of Computer Vision, 
   Vol. 42(3): 145-175, 
   2001.
- 
+
+\bibitem{using_svd}
+  Ientilucci, Emmett J,
+  \emph{Using the singular value decomposition}. 
+  Chester F. Carlson Center for Imaging Science,
+  Rochester Institute of Technology,
+  2003.
+
 \bibitem{svd_image_coding}
   Andrews, Harry C. and Patterson, C., III,
   \emph{ Singular Value Decomposition (SVD) Image Coding}.
@@ -201,6 +277,12 @@ With this perspective, we
   Measuring Technology and Mechatronics Automation, 2009. ICMTMA '09. International Conference on, 
   Vol. 1: 396-398, 
   11-12 April 2009
+  
+\bibitem{color_model_ref}
+  Agoston, Max K.
+  \emph{Computer Graphics and Geometric Modelling: Mathematics}.
+  Springer; 2005 edition,
+  ISBN:1852338172
 
 \end{thebibliography}
 
