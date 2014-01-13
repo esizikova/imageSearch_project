@@ -1,6 +1,6 @@
 \documentclass{report}
 \usepackage{fullpage}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage{hyperref}
 \usepackage{amsfonts}
 \usepackage{float}
@@ -8,7 +8,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{color}
-\renewcommand{\baselinestretch}{2}
+\renewcommand{\baselinestretch}{1.5}
 \author{Steven Englehardt, Maciej Halber, Elena Sizikova}
 \title{Understanding Collections of Images \\ \small{COS 521 Final Project Report}}
 \begin{document}
@@ -17,7 +17,7 @@
 
 \chapter{Introduction}
 \section{Abstract}
-This report explores a variety of image properties which make it possible to understand and explore collections of images. In particular, we look at how properties like color distribution, saturation, sharpness, and detail can be extracted and compared between images. To perform these task we usemethods such as Fast Fourier Transform (FFT) and Singular Value Decomposition (SVD). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are formed in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
+This report explores a variety of image properties which make it possible to understand and explore collections of images. In particular, we look at how properties like color distribution, saturation, sharpness, and detail can be extracted and compared between images. To perform these task we use methods such as Fast Fourier Transform (FFT) and Singular Value Decomposition (SVD). We seek to understand how the theoretical underpinnings of these two algorithms affect the way the images are formed in the first place. Ultimately, we provide a way of decomposing the image into mathematical notation (a descriptor) that differentiates well between a collection of images.
 
 \section{Background Work}
 {\color{red} I'll look at this section closer tmrw, definietly needs some expanding. Will add some color histogram stuff  -- Maciej}
@@ -41,17 +41,21 @@ The dataset that we have used for exploring the image structure has been provide
 
 \section{Implementation}
 
-When factoring images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. {\color{red} Above sentence is not exactly true - recovering luminance vs preserving color is a huge area of work, basically look up for integral images if interested. Will have to tweak the section a bit}
+When decomposing images using SVD or working with the FFT of an image, we chose to work in grayscale. The choice to do so was motivated by the desire to explore the physical meaning of the decomposition or transformation in the context of images. Though it is entirely possible to separate the red, green, and blue channels and work with each separately, it is difficult to determine whether relative differences in colors or deeper properties of the decomposition/transformation are leading to the observed descriptor performance. To do the conversion we used matlab's built-in \textit{rgb2gray} function, which removes hue and saturation information but preserves luminance. {\color{red} Above sentence is not exactly true - recovering luminance vs preserving color is a huge area of work, basically look up for integral images if interested. Will have to tweak the section a bit}
 
 \section{Color Analysis}
-We began the exporation of image properties by considering the color distribution. In particular, the range of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. One of the most common such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue colors.  
+\subsection{Color Spaces}
+% The subset of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. 
+In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
 \begin{figure}[hbtp]
 \centering
-\caption{RGB Cube Model}
 \includegraphics[scale=0.5]{graphics/rgb_cube.png}
+\caption{RGB Cube Model}
 \end{figure}
 
-The Hue-Saturation-Value (HSV) Hexcone model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}.
+One of such models is Hue-Saturation-Value model, which were designed to give more intuitive in terms of human color perception, and thus is widely used as color picker in many photo-editing and digital painting packages \cite{color_model_ref}.
+HSV model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}.
+
 \begin{figure}[hbtp]
         \centering
         \begin{subfigure}[b]{0.3\textwidth}
@@ -77,9 +81,23 @@ The Hue-Saturation-Value (HSV) Hexcone model is a fairly straightforward transfo
         \end{subfigure}
         \caption{Transformation of the RGB cube to HSV color space}\label{fig:hsv_visualisation}
 \end{figure}
-In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The hue and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. As noted further in \cite{color_model_ref}, this model is representative of how artists select colors. We therefore also used the HSV model in our analysis as a first comparison to the RGB model.
 
-[LAB color model intro !!!!!!!!!]
+In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The saturation and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. \\
+
+{\color{red} @Elena - if you have some nice figure for L*a*b we can put it here}\\
+
+Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. Since $L^*a^*b^*$ aims to be most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
+
+\subsection{Color-based Descriptors}
+The color information is widely used in literature
+
+issues with colors are 
+HSV - we use linear distance metric, and not the circular one, which is wrong
+Lab - completly non linear, if we recover from 8-bit per pixel we are not recovering much info.
+
+We began our exploration of image properties by considering the color distribution. In particular, 
+
+{\color{red} - Ok here introduce the fact that we used image statisitcs (mean color, standard deviation) Other thing to note is that the statistics themselves are not very revealing in terms of overall distribution and thus we have chosen to use image histograms. Report that the embeddings using different color spaces have not revealed to bear much difference in our design, i.e, all performed well in differentiating sets of images}
 
 {\color{red} We need to think about how much we want to talk to colors, especially when the performace between different color space descriptors is negligible. I would introduce the color spaces, and using them motivate the need for having simple parameters which allow for straightforward exploration }
 
@@ -255,7 +273,8 @@ E: I think we can introduce K-means, embedding, search by query, and any other s
 %\paragraph{Your paragraph title here}
 Just some quick ideas - our exploration assumed that each property is indepenend which is obviously not true, and it would be interesting to look at similarities/ collerations between SVD and FT. 
 Our exploration was purely based on properties of algorithms and visual exploration using MDS and k-nearest neighbour searches. Our performance for retrival is not really measured other that providing visual examples - some improvements on this front would be nice.
-Images are extremly high dimensional space, and our analysis might not be entirely revealing - using some machine learning techinques (vide Zeyu and Shuran ) could help us to learn some more about mentioned dimensionality independence etc.
+Images are extremly high dimensional space, and our analysis might not be entirely revealing - using some machine learning techniques (vide Zeyu and Shuran ) could help us to learn some more about mentioned dimensionality independence etc.
+This project have not really focused on the color investigation very deeply where we have settled on euclidean distance between the RGB values. investigation of the non-linear distance metrics in HSV and Lab spaces might yield better results.
 
 \begin{thebibliography}{6}
 
