@@ -43,8 +43,35 @@ We began the exporation of image properties by considering the color analysis me
 \includegraphics[scale=0.5]{graphics/rgb_cube.png}
 \end{figure}
 
+The Hue-Saturation-Value (HSV) Hexcone model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}.
+\begin{figure}[hbtp]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_cube.png}
+                \caption{The RGB cube viewed along Black-White diagonal}
+                \label{fig:gull}
+        \end{subfigure}%
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_rescale1.png}
+                \caption{Recoordination}
+                \label{fig:mouse}
+        \end{subfigure}
+        ~
+         %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{graphics/hsv_rescale2.png}
+                \caption{Hue-Saturation Triangle}
+                \label{fig:tiger}
+        \end{subfigure}
+        \caption{Transformation of the RGB cube to HSV color space}\label{fig:hsv_visualisation}
+\end{figure}
+In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The hue and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. As noted further in \cite{color_model_ref}, this model is representative of how artists select colors. We therefore also used the HSV model in our analysis as a first comparison to the RGB model.
 
-
+[LAB color model intro !!!!!!!!!]
 
 
 
