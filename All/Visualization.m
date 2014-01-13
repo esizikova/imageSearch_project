@@ -5,7 +5,7 @@ clear all;
 % Choose what visualization you want + options
 confMatrix = 0;
 embedding2D = 1;
-kMeans = 1;
+kMeans = 0;
 neighborQuery = 1;
 
 % Add subfolders to search path
@@ -19,34 +19,34 @@ noOfDatapoints = size(images,2);
 % Create the map of function handles 
 functionMap = createFunctionHandleMap();
 
-%prepare bads for fftbands descriptor
-bands = createBands(64);
-
-% get the handles to descriptors here
-f1 = functionMap ( 'UVBasisRotNorm' );
-f2 = functionMap ( 'stackedLab' );
-%f3 = functionMap ( 'FFTBandDescriptor' );
-%f4 = functionMap ( 'FFTLocalization' );
-fHandles =   {f1, f2};
-
-%prepare arguments for the functions
-arguments = cell(size(fHandles,2));
-arguments{1} = 1;
-arguments{2} = 12;
-%arguments{3} = bands;
-
-%prepare weights
-weights = zeros(size(fHandles,2));
-weights(1) = 3;
-weights(2) = 0.75;
-weights(3) = 2;
-
 %windowed descriptors
 %specify the number of bins to break an image up into
 %NOTE: If division is not even it will still run, but the last row/col may
 %      be left out depending on rounding
 rBins = 4; %num bins in row direction
 cBins = 4; %num bins in column direction
+
+%prepare bads for fftbands descriptor
+bands = createBands ( 8, rBins, cBins );
+
+% get the handles to descriptors here
+f1 = functionMap ( 'UVBasisRotNorm' );
+f2 = functionMap ( 'stackedLab' );
+f3 = functionMap ( 'FFTBandDescriptor' );
+% f4 = functionMap ( 'FFTLocalization' );
+fHandles =   {f1, f2, f3};
+
+%prepare arguments for the functions
+arguments = cell(size(fHandles,2));
+arguments{1} = 1;
+arguments{2} = 12;
+arguments{3} = bands;
+
+%prepare weights
+weights = zeros(size(fHandles,2));
+weights(1) = 3;
+weights(2) = 1.75;
+weights(3) = 4;
 
 %TEST OF WINDOWING -- CAN REMOVE
 %imshow(images{2}(:,:,:));
