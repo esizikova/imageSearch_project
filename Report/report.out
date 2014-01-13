@@ -8,10 +8,11 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{Color Spaces}{section.2.3}% 8
 \BOOKMARK [2][-]{subsection.2.3.2}{Color-based Descriptors}{section.2.3}% 9
 \BOOKMARK [1][-]{section.2.4}{Fourier Transform}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.4.1}{Localization fact}{section.2.4}% 11
-\BOOKMARK [2][-]{subsection.2.4.2}{Amplitude and Phase Analysis}{section.2.4}% 12
-\BOOKMARK [1][-]{section.2.5}{Singular Value Decomposition}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.5.1}{SVD and Compression}{section.2.5}% 14
-\BOOKMARK [2][-]{subsection.2.5.2}{Singular Values}{section.2.5}% 15
-\BOOKMARK [0][-]{chapter.3}{Analysis}{}% 16
-\BOOKMARK [0][-]{chapter.4}{Suggestions for Further Work}{}% 17
+\BOOKMARK [2][-]{subsection.2.4.1}{Amplitude and Phase Analysis}{section.2.4}% 11
+\BOOKMARK [2][-]{subsection.2.4.2}{Localization fact}{section.2.4}% 12
+\BOOKMARK [2][-]{subsection.2.4.3}{Frequency-Based Descriptor}{section.2.4}% 13
+\BOOKMARK [1][-]{section.2.5}{Singular Value Decomposition}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.5.1}{SVD and Compression}{section.2.5}% 15
+\BOOKMARK [2][-]{subsection.2.5.2}{Singular Values}{section.2.5}% 16
+\BOOKMARK [0][-]{chapter.3}{Analysis}{}% 17
+\BOOKMARK [0][-]{chapter.4}{Suggestions for Further Work}{}% 18
