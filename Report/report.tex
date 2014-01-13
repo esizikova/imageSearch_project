@@ -45,6 +45,7 @@ When decomposing images using SVD or working with the FFT of an image, we chose 
 
 \section{Color Analysis}
 \subsection{Color Spaces}
+\label{sec:colorSpaces}
 % The subset of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. 
 In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
 \begin{figure}[hbtp]
@@ -89,19 +90,22 @@ In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents 
 Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. Since $L^*a^*b^*$ aims to be most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
 
 \subsection{Color-based Descriptors}
-The color information is widely used in literature
+The color information is widely used for image retrial, since as a descriptor it has a nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, color closely relate to how we percieve images as similar. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
 
-issues with colors are 
-HSV - we use linear distance metric, and not the circular one, which is wrong
-Lab - completly non linear, if we recover from 8-bit per pixel we are not recovering much info.
+A very crude way of comparing images in terms of colors is to average each of the channels in specific color space, and use it as a $3$-value descriptor, which will be a point in a color space. Figure \ref{fig:colSpaces} shows points plotted in $\mathcal{R}^3$. What is interesting about all the color spaces is the fact that we can easily navigate through them and have a good understanding how single parameter affects overall color appearance.
 
-We began our exploration of image properties by considering the color distribution. In particular, 
+{\color{red} Insert color space figure }
 
-{\color{red} - Ok here introduce the fact that we used image statisitcs (mean color, standard deviation) Other thing to note is that the statistics themselves are not very revealing in terms of overall distribution and thus we have chosen to use image histograms. Report that the embeddings using different color spaces have not revealed to bear much difference in our design, i.e, all performed well in differentiating sets of images}
+This gave us the inspiration to look for similar, simple parameters that relate to overall image structure, using FFT and SVD ( see sections \ref{sec:FFT} and \ref{sec:SVD} respectively). However by a simple averaging we are not obtaining information regarding the overall color distribution. A more common way of investigating the color distribution is \textit{normalized color histogram}. To create it we first create bins - given the number of bins $n$ we create a set of uniformly spaced ranges $R = \{r_1, r_2, ..., r_n\}$. Now for each pixel $p_i$ we determine its value $v_i$ and determine into which $r_k$ it falls to and increment value at the relating bin. After visiting all pixels $p_i$ we normalize each bin by total number of pixels. This produces a length $n$ vector that better describe the the overall value distribution. Above structure of course describes the procedure for gray scale images, however it is trivial to extend it to color images where we create a histogram for each color channel, and then concatenate resulting vectors.
 
-{\color{red} We need to think about how much we want to talk to colors, especially when the performace between different color space descriptors is negligible. I would introduce the color spaces, and using them motivate the need for having simple parameters which allow for straightforward exploration }
+{\color{red} Insert the Color histogram image }
 
-\section{Fourier Transform} (????? what is the 2D FFT in terms of FFT {\color{red} FFT is just an algorithm for computing the fourier transform. We are less interested in the fact how it is able to perform the transform quickly and more in the properties of discrete fourier transform })
+We then designed our descriptor for each color space. As noted in \cite{HSV_non_uniform}, hue is more important for color perception than saturation and lightness, and thus the HSV histogram have been always computed giving more bins to hue channel (i.e. provided that the required length of descriptor is $n$, the number of bins for hue would be given by $\frac{n}{2}$, while other two parameters $\frac{n}{4}$. Similarly we conjecture that in terms of $L^*a^*b^*$ color space the lightness is less important than parameters describing colors, so we have also modified the number of bins for each channel accordingly ( $L^* = \frac{2*n}{8}$,$ a^* = \frac{3*n}{8}$, $b^* = \frac{3*n}{8}$ )
+
+To sum up for color descriptors we have looked both at simple averaging of values as well as normalized color histograms. All these have been implemented to work with each of the color spaces discussed in section \ref{sec:colorSpaces}. In chapter \ref{chap:analysis} we discuss the overall performance of all descriptors discussed here. Also note that in literature it is common to note that uniform quantization does not take the spatial relationship between pixels into account, and investigate the techniques to overcome this drawback \cite{GaussQunatization}. However because of time limitation we have decided to settle for simpler approach.
+
+\section{Fourier Transform} 
+\label{sec:FFT}(????? what is the 2D FFT in terms of FFT {\color{red} FFT is just an algorithm for computing the fourier transform. We are less interested in the fact how it is able to perform the transform quickly and more in the properties of discrete fourier transform })
 A $2$-dimensional, discrete Fourier Transform of an (grayscale) image is a transformation from the spatial domain to the frequency domain. In the spatial domain, an image is represented by function $f(x,y)$ on all relevant points $(x,y)$ in  $\mathbb{R}^2$. In the frequncy domain, the image is represented by a function $F(u,v)$ where $u$ and $v$ are frequency values. It follows that in the frequency decomposition, an image is represented by a matrix of complex values $F$, where $F(u,v)$ encodes the amplitude and the phase of the frequencies $u$ and $v$. Mathematically, the $2$-D Fourier Transform is defined as:
 \begin{eqnarray}
 F(u,v) = \int \int ^{\infty}_{-\infty} f(x,y)e^{-j2\pi (ux+vy)}dx dy
@@ -261,7 +265,7 @@ The alignment of an images' strongest color contours to either the horizontal or
 
 
 \chapter{Analysis}
-
+\label{chap:analysis}
 [Steve] I suppose that here we should give a brief summary of k-means clustering and multidimensional scaling, and then show the results of the descriptor (with and without windowing) and an analysis of that? I was planning to investigate the properties of SVD and show some basic performance results in the SVD section....but that presents the problem that I evaluate my results with k-means and k-means won't be introduced yet..
 
 E: I think we can introduce K-means, embedding, search by query, and any other similar things we used to test descriptors with in the Methods section, all under one section, say testing framework?
@@ -317,6 +321,19 @@ This project have not really focused on the color investigation very deeply wher
   \emph{Computer Graphics and Geometric Modelling: Mathematics}.
   Springer; 2005 edition,
   ISBN:1852338172
+  
+\bibitem{HSV_non_uniform}
+    D. Androutsos and K. N. Plataniotis and A. N. Venetsanopoulos,
+    \emph{A novel vector-based approach to color image retrieval using a vector angular-based distance measure},
+    Computer Vision and Image Understanding,
+    Vol. 75 : 46-58,
+    1999
+\bibitem{GaussQunatization}    
+	Sangoh Jeong, Chee Sun Won, Robert M. Gray
+	\emph{Image retrieval using color histograms generated by Gauss mixture vector quantization},
+	Computer Vision and Image Understanding 
+	Vol 94: 44-66,
+	2004
 
 \end{thebibliography}
 
