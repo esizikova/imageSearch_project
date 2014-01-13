@@ -31,7 +31,7 @@ bands = createBands ( 8, rBins, cBins );
 
 % get the handles to descriptors here
 f1 = functionMap ( 'UVBasisRotNorm' );
-f2 = functionMap ( 'stackedLab' );
+f2 = functionMap ( 'statisticsLab' );
 f3 = functionMap ( 'FFTBandDescriptor' );
 % f4 = functionMap ( 'FFTLocalization' );
 fHandles =   {f1, f2, f3};
@@ -45,7 +45,7 @@ arguments{3} = bands;
 %prepare weights
 weights = zeros(size(fHandles,2));
 weights(1) = 3;
-weights(2) = 1.75;
+weights(2) = 2;
 weights(3) = 4;
 
 %TEST OF WINDOWING -- CAN REMOVE
