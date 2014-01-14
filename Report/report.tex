@@ -460,20 +460,18 @@ To capture local noise in singular vectors we decide to take the FFT of the sing
 \section{Overview of best performing descriptors}
 In this section we provide a quick discussion on the descriptors that we have decided to combine together and use as an aggregate descriptor to differentiate between images. The aggregated descriptor $d_a(I)$ is simply a concatenation of normalized descriptor vectors $\{\hat{d_1}(I), \hat{d_2}(I), \hat{d_3}(I)\}$. We are aware of the fact that each descriptor $d_i(I)$ might have a different importance thus in our testing stage we have tried to discover a proper weighting to each component. In sections \ref{sec:non_windowed} and \ref{sec:windowed} we show the performance of aggregated descriptor on our dataset.
 
-{\color{red} @Steve - Once you're done with the performance, check if vector lengths below agree with the ones used in visualization :) }\\
-
 \subsection{ Color-Based Descriptor }
 In our analysis we have not found the particular space performing much better than any other. One reason for that might be that, referring to the figure \ref{fig:colSpaces}, the HSV and $L^*a^*b^*$ color spaces are non-linear, while our comparison metric was euclidean distance. When comparing colors in these spaces a more sophisticated techniques than just stacking the histograms for each channel \cite{lab_fuzzy_hist}. Due to time constraints we have not implemented any of these methods and thus we have simply settled on comparing basic image statistics $\mu, \sigma$ in  $L^*a^*b^*$ color space, that is having our descriptor length $|d_1(I)| = 6$. As soon as we use windowed version of this descriptor it was found sufficient to differentiate images of different colors in our database. However we note in chapter \ref{chap:Conclusions}, that these clearly should be improved in any future work.
+
 \subsection{ Frequency-Based Descriptor }
 Our frequency descriptor, that looks at the contributions from various bands of frequencies \ref{sec:freqDescriptor} have been found to differentiate images of different appearance very well \ref{fig:fft_low_freq_order}. In final version we have decided to use 32 frequency bands, giving us a descriptor of length $|d_2(I)| = 32$ 
 
 \subsection{ SVD-Based Descriptor}
-{\color{red} @Steve - This might be a bit of a bs here, please check }\\
 
 As discussed in section \ref{sec:SVDDescriptor} the SVD based descriptor looks at frequencies of first singular vectors of 3 versions of input image, one being rotated by $45^\circ$ and second rotated by $-45^\circ$. Thus in total we consider 6 singular vectors $\vec{u}_0, \vec{v}_0, \vec{u}_{45}, \vec{v}_{45},, \vec{u}_{-45}, \vec{v}_{-45}$, and look at their frequency transform, preserving top 30 frequencies. Thus in total we have descriptor $d_3(I)$ of length $|d_3(I)| = 180$.
  
 \section{Windowed descriptors}
-
+\label{windowed}
 For natural images computing the descriptor over the whole image might led to two images with different appearance be placed in our space quite close by, especially for our color based descriptor. Thus we decided, similar to \cite{gist_descriptor}, compute a windowed version of our descriptors, where we divide our images into $n$ by $m$ grid ( in our implementation we use $n = m = 4 $ ), and compute our descriptor for each of the cells. Then we concatenate the descriptor from each cell to create a new windowed descriptor of length $|d_w(I)| = n \cdot m \cdot |d_a(I)|$. This change improved our results, as shown in section \ref{sec:non_windowed}, which will discuss the performance of non-windowed version and in section \ref{sec:windowed} 
 
 \section{Collection understanding methods}
@@ -487,6 +485,7 @@ K-means clustering attempts to partition a set of objects into $k$ clusters in w
 K-nearest neighbors is an algorithm which takes a test object and compares it to objects in a given feature space to return an output based on the k-nearest neighbors within that space. In our case we build the feature space with all the image descriptors and then query into it to return the index of the k-nearest images within that space. Retrieving images visually similar to a query image is the ultimate goal of our descriptor design, so this visualization gives us an idea of how well our descriptors ultimately perform.
 
 \section{Non-Windowed Performance}
+\label{sec:non_windowed}
 In this section we show and discuss the results of our descriptors in terms or k-nearest neighbor query output. As title indicates in this section we will discuss the results using the non windowed version of our descriptors, and in the following sections we will show the same queries using windowed variant.
 \begin{figure}[H]
         \centering
@@ -503,7 +502,9 @@ Third row show mountains, and all of our results show similar images this is cau
 Fourth row is again somewhat of a fail case. The neighbor 1 can be considered as similar image, but other three show different scenes. Arguably the structure and color is similar for neighbors 2-4, and thus have been selected as neighbors. The last neighbor appearance is less obvious, and is most likely caused by similar horizontal periodicity in both images.
 
 Last row queries for a beach pictures, and two of the neighbors are correct. The second neighbor is having somewhat similar structure, and due to the fact that sea in query image is turquoise, we have got similar picture in structure, however showing a field of grass ( turquoise is closer to green than blue ). Last two neighbors are clear fail cases, with only somewhat similar color distribution.
+
 \section{Windowed Performance}
+\label{sec:windowed}
 In this section we show results of our descriptors where they have been computed $16$ times per image, for each cell of uniformly spaced $4$ by $4$ grid.
 \begin{figure}[H]
         \centering
@@ -518,12 +519,15 @@ The second row is still hard case for our descriptor, however now 3 out of 5 nei
 
 For the third row, we observe the decline in performance, the last neighbor not being mountain anymore. This is caused by the fact that mountains have very descriptive global structure, that might not be well preserved in local patches. Still the last neighbor has very similar color, and also have quite complex texture on building's facade.
 
-Fourth row is also a clear improvement where all neighbors are showing similar scenes of deserts. We still pickup the image with the road as our third nearest neighbor, however all images are perceptually similar. The factor that seems to be grouping them together is the strong horizontal periodicity in bottom half of all images, that is successfully picked up by our frequency descriptor. 
+Fourth row is also a clear improvement where all neighbors are showing similar scenes of deserts. We still pick up the image with the road as our third nearest neighbor, however all images are perceptually similar. The factor that seems to be grouping them together is the strong horizontal periodicity in bottom half of all images, that is successfully picked up by our frequency descriptor. 
 
 Fifth row is also improvement, where all neighbors have similar orientations, showing us mostly images of coast lines, with the exception of neighbor 3. The reason it is showing is the strong contribution from the high frequencies (grass), that is also present in query image (leaves in the foreground ). Still the color distribution is close by, with grass of neighbor 3 being dark brown, that is a close in $L^*a^*b^*$ to the light brown of the coastline sand.
 
-Overall the windowed version of our descriptor is performing better then non windowed version, across different categories, as expected.
-We also provide a results of k-means clustering with $k=6$ and MDS based visualization of our space in the appendix.
+Overall the windowed version of our descriptor is performing better then non windowed version, across different categories. The localization of descriptors allows us to capture finer details that may have otherwise been lost during the processing of a full image. This comes at the cost of increased computation and descriptor length. A cost-performance analysis could be done on both the grid size and the weighting of each descriptor, but we feel that is beyond the scope of this study.
+
+We also provide a results of k-means clustering with $k=6$ in Appendix \ref{sec:appendix}. The k-means clustering shows that our aggregate descriptor is able to clearly differentiate images be overall structure. The top cluster shows images that are planes (e.g. roads, beaches, horizons), the second cluster shows images with more local structure (e.g. forests), the forth cluster shows images of large structures (e.g. mountains) and the sixth cluster shows a grouping of man made objects (e.g. building facades, streets, and alleyways). The third and fifth clusters are less clearly defined, but images in the third cluster seem to share common (somewhat unique) colors and images in the fifth cluster seem to share the general structure of a simple ground level and a sky.
+
+The MDS visualization of our space in Appendix \ref{sec:appendix} shows that the aggregate descriptor performs very well at spreading images out based on different properties. On the horizontal axis, images are differentiated by both color and overall simplicity. Simple horizons are on the far right whereas forests and dense images are on the far left. Lighter images are higher on the vertical axis than darker images. Within the space a clear clustering of image types is visible; most mountains are near other mountains, most city streets are near other city streets, etc.
 
 \chapter{Conclusions and Further Work}
 \label{chap:Conclusions}
@@ -533,7 +537,7 @@ In this work we have been working under the assumption that parameters that cont
 
 In this is project we have not really focused on the color investigation very deeply, and have settled on comparing images based on euclidean distance between the  color values. However HSV and $L^*a^*b^*$ color spaces are non-linear, thus euclidean metric is not giving us the true distance in those spaces. Further investigation of the non-linear distance metrics in HSV and $L^*a^*b^*$ spaces would most likely yield better results.
 
-Our data base provided pictures from 8 categories, and provided labels were describing these categories. However some images from one category might appear very similar to image in other category (i.e. \textit{tall buildings} and \textit{inside city} categories). With that in mind we have decided not to measure performance using the provided labels, but rather be more exploratory, since our focus was to develop understanding the factors that would cluster visually similar pictures togheter. Thus our conclusions are based on the exploration of the embeddings provided by MDS, k-means clustering, and confusion matrices. In any future investigation the database would have to be relabeled to create a subsets of visually similar images ( for example by asking users of Amazon Mechanical Turk ), and use these labels. Also our dataset has been limited to outdoor categories. It would be interesting to measure the performance in terms of database that also captures indoor environments, as well as pictures of man-made objects.
+Our data base provided pictures from 8 categories, and provided labels were describing these categories. However some images from one category might appear very similar to image in other category (i.e. \textit{tall buildings} and \textit{inside city} categories). With that in mind we have decided not to measure performance using the provided labels, but rather be more exploratory, since our focus was to develop understanding the factors that would cluster visually similar pictures together. Thus our conclusions are based on the exploration of the embeddings provided by MDS, k-means clustering, and confusion matrices. In any future investigation the database would have to be relabeled to create a subsets of visually similar images ( for example by asking users of Amazon Mechanical Turk ), and use these labels. Also our dataset has been limited to outdoor categories. It would be interesting to measure the performance in terms of database that also captures indoor environments, as well as pictures of man-made objects.
 
 
 \begin{thebibliography}{6}
@@ -634,6 +638,7 @@ Our data base provided pictures from 8 categories, and provided labels were desc
 \end{thebibliography}
 
 \section{Appendix}
+\label{sec:appendix}
 \includepdf[pages={1}]{graphics/windowed_kmeans.pdf}
 \includepdf[pages={1}]{graphics/windowed_mds.pdf}
 

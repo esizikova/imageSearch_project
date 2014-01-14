@@ -5,15 +5,15 @@ clear all;
 % Choose what visualization you want + options
 confMatrix = 0;
 embedding2D = 1;
-kMeans = 1;
+kMeans = 0;
 neighborQuery = 1;
 
 % Add subfolders to search path
 addpath([ pwd,'/Descriptors'] );
 
 % Load the images
-nImages = 10;
-[images, labels] = loadImages( '../gistDataset/', 20 );
+nImages = 40;
+[images, labels] = loadImages( '../gistDataset/', nImages );
 noOfDatapoints = size(images,2);
 
 % Create the map of function handles 
@@ -23,11 +23,11 @@ functionMap = createFunctionHandleMap();
 %specify the number of bins to break an image up into
 %NOTE: If division is not even it will still run, but the last row/col may
 %      be left out depending on rounding
-rBins = 1; %num bins in row direction
-cBins = 1; %num bins in column direction
+rBins = 4; %num bins in row direction
+cBins = 4; %num bins in column direction
 
 %prepare bads for fftbands descriptor
-bands = createBands ( 8, rBins, cBins );
+bands = createBands ( 32, rBins, cBins );
 
 % get the handles to descriptors here
 f1 = functionMap ( 'UVBasisRotNorm' );
@@ -93,7 +93,7 @@ D = squareform(dVec);
 
 % nearest neighbor
 if(neighborQuery)
-    queryImageIdx = 128;
+    queryImageIdx = 5;
     queryDescriptor = descriptors(queryImageIdx, :);
     
     neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
