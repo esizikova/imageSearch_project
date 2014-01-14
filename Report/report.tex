@@ -452,10 +452,12 @@ To capture local noise in singular vectors we decide to take the FFT of the sing
 
 \chapter{Analysis}
 \label{chap:analysis}
-[Steve] I suppose that here we should give a brief summary of k-means clustering and multidimensional scaling, and then show the results of the descriptor (with and without windowing) and an analysis of that? I was planning to investigate the properties of SVD and show some basic performance results in the SVD section....but that presents the problem that I evaluate my results with k-means and k-means won't be introduced yet..
 
-E: I think we can introduce K-means, embedding, search by query, and any other similar things we used to test descriptors with in the Methods section, all under one section, say testing framework?
-
+\section{Overview of best performing descriptors}
+\section{Windowed descriptors}
+\section{Collection understanting methods}
+\section{Non-Windowed Perfromance}
+\section{Windowed Performance}
 
 \chapter{Conclusions and Further Work}
 Work done during this project was of an exploratory nature, where we have investigated what cues for image understanding can be obtained by analysing the outputs of FFT and SVD algorithms. We have found that these methods do provide us with useful information when analysing natural images, and can be easily used in generating meaningful low level descriptors, as shown in previous chapter. Fourier domain informs us about the overal image texture and roughness. Similarly our analysis of Singular Value Decomposition shows that the singular vectors can tell us about the image geometry, and could be used for matching images of similar orientation. Our results show embedding that succesfully cluster images of similar nature quite well, however they are clearly not competetive in terms of performance with state of the art algorithms.

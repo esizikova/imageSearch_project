@@ -1,16 +1,21 @@
 \relax 
-\ifx\hyper@anchor\@undefined
-\global \let \oldcontentsline\contentsline
-\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
-\global \let \oldnewlabel\newlabel
-\gdef \newlabel#1#2{\newlabelxx{#1}#2}
-\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\let \contentsline\oldcontentsline
-\let \newlabel\oldnewlabel}
-\else
-\global \let \hyper@last\relax 
-\fi
-
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{google_blog}
 \citation{gist_descriptor}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}}
@@ -28,97 +33,102 @@
 \citation{color_model_ref}
 \citation{color_model_ref}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Color Analysis}{5}{section.2.3}}
-\newlabel{sec:color}{{2.3}{5}{Color Analysis\relax }{section.2.3}{}}
+\newlabel{sec:color}{{2.3}{5}{Color Analysis}{section.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Color Spaces}{5}{subsection.2.3.1}}
-\newlabel{sec:colorSpaces}{{2.3.1}{5}{Color Spaces\relax }{subsection.2.3.1}{}}
+\newlabel{sec:colorSpaces}{{2.3.1}{5}{Color Spaces}{subsection.2.3.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces RGB Cube Model\relax }}{5}{figure.caption.2}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:rgb_cube}{{2.1}{5}{RGB Cube Model\relax \relax }{figure.caption.2}{}}
+\newlabel{fig:rgb_cube}{{2.1}{5}{RGB Cube Model\relax }{figure.caption.2}{}}
 \citation{lab_blogspot}
 \citation{lab_blogspot}
-\newlabel{fig:gull}{{2.2a}{6}{The RGB cube viewed along Black-White diagonal\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:gull}{{a}{6}{The RGB cube viewed along Black-White diagonal\relax \relax }{figure.caption.3}{}}
-\newlabel{fig:mouse}{{2.2b}{6}{Recoordination\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:mouse}{{b}{6}{Recoordination\relax \relax }{figure.caption.3}{}}
-\newlabel{fig:tiger}{{2.2c}{6}{Hue-Saturation Triangle\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:tiger}{{c}{6}{Hue-Saturation Triangle\relax \relax }{figure.caption.3}{}}
+\newlabel{fig:gull}{{2.2a}{6}{The RGB cube viewed along Black-White diagonal\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:gull}{{a}{6}{The RGB cube viewed along Black-White diagonal\relax }{figure.caption.3}{}}
+\newlabel{fig:mouse}{{2.2b}{6}{Recoordination\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:mouse}{{b}{6}{Recoordination\relax }{figure.caption.3}{}}
+\newlabel{fig:tiger}{{2.2c}{6}{Hue-Saturation Triangle\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:tiger}{{c}{6}{Hue-Saturation Triangle\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Transformation of the RGB cube to HSV color space\relax }}{6}{figure.caption.3}}
-\newlabel{fig:hsv_visualisation}{{2.2}{6}{Transformation of the RGB cube to HSV color space\relax \relax }{figure.caption.3}{}}
+\newlabel{fig:hsv_visualisation}{{2.2}{6}{Transformation of the RGB cube to HSV color space\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Visualisation of Comission on Illumination (CIE) $L^*a^*b^*$ Color Space, also known as $L^*a^*b^*$ color space. Image obtained from \cite  {lab_blogspot}.\relax }}{6}{figure.caption.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Color-based Descriptors}{6}{subsection.2.3.2}}
 \citation{HSV_non_uniform}
 \citation{GaussQunatization}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Points in $\mathbb  {R}_3$, plotted according to their values in RGB, HSV and $L^*a^*b^*$ color spaces \relax }}{7}{figure.caption.5}}
-\newlabel{fig:colSpaces}{{2.4}{7}{Points in $\mathbb {R}_3$, plotted according to their values in RGB, HSV and $L^*a^*b^*$ color spaces \relax \relax }{figure.caption.5}{}}
+\newlabel{fig:colSpaces}{{2.4}{7}{Points in $\mathbb {R}_3$, plotted according to their values in RGB, HSV and $L^*a^*b^*$ color spaces \relax }{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Image and its color histogram in RGB, with $n = 3$ bins per channel. \relax }}{7}{figure.caption.6}}
-\newlabel{fig:colSpaces}{{2.5}{7}{Image and its color histogram in RGB, with $n = 3$ bins per channel. \relax \relax }{figure.caption.6}{}}
+\newlabel{fig:colSpaces}{{2.5}{7}{Image and its color histogram in RGB, with $n = 3$ bins per channel. \relax }{figure.caption.6}{}}
 \citation{gist_descriptor}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Fourier Transform}{8}{section.2.4}}
-\newlabel{sec:FFT}{{2.4}{8}{Fourier Transform\relax }{section.2.4}{}}
+\newlabel{sec:FFT}{{2.4}{8}{Fourier Transform}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Amplitude and Phase Analysis}{8}{subsection.2.4.1}}
-\newlabel{fig:gull}{{2.6a}{8}{Original image\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:gull}{{a}{8}{Original image\relax \relax }{figure.caption.7}{}}
-\newlabel{fig:mouse}{{2.6b}{8}{Phase $\Phi (x,y)$\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:mouse}{{b}{8}{Phase $\Phi (x,y)$\relax \relax }{figure.caption.7}{}}
-\newlabel{fig:tiger}{{2.6c}{8}{Amplitude $A(x,y)$\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:tiger}{{c}{8}{Amplitude $A(x,y)$\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:gull}{{2.6a}{8}{Original image\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:gull}{{a}{8}{Original image\relax }{figure.caption.7}{}}
+\newlabel{fig:mouse}{{2.6b}{8}{Phase $\Phi (x,y)$\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:mouse}{{b}{8}{Phase $\Phi (x,y)$\relax }{figure.caption.7}{}}
+\newlabel{fig:tiger}{{2.6c}{8}{Amplitude $A(x,y)$\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:tiger}{{c}{8}{Amplitude $A(x,y)$\relax }{figure.caption.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Phase and power spectra of building image\relax }}{8}{figure.caption.7}}
-\newlabel{fig:fft_localization}{{2.6}{8}{Phase and power spectra of building image\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:fft_localization}{{2.6}{8}{Phase and power spectra of building image\relax }{figure.caption.7}{}}
 \citation{gist_descriptor}
-\newlabel{fig:gull}{{2.7a}{9}{Original image\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:gull}{{a}{9}{Original image\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:mouse}{{2.7b}{9}{Flat amplitude\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:mouse}{{b}{9}{Flat amplitude\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:tiger}{{2.7c}{9}{Randomized phase\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:tiger}{{c}{9}{Randomized phase\relax \relax }{figure.caption.8}{}}
+\newlabel{fig:gull}{{2.7a}{9}{Original image\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:gull}{{a}{9}{Original image\relax }{figure.caption.8}{}}
+\newlabel{fig:mouse}{{2.7b}{9}{Flat amplitude\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:mouse}{{b}{9}{Flat amplitude\relax }{figure.caption.8}{}}
+\newlabel{fig:tiger}{{2.7c}{9}{Randomized phase\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:tiger}{{c}{9}{Randomized phase\relax }{figure.caption.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Analysis of Contributions of both Phase and Amplitude to an Image\relax }}{9}{figure.caption.8}}
-\newlabel{fig:fft_randomization}{{2.7}{9}{Analysis of Contributions of both Phase and Amplitude to an Image\relax \relax }{figure.caption.8}{}}
+\newlabel{fig:fft_randomization}{{2.7}{9}{Analysis of Contributions of both Phase and Amplitude to an Image\relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Localization fact}{9}{subsection.2.4.2}}
-\newlabel{fig:gull}{{2.8a}{10}{$f(x)=\cos {x}$\relax \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:gull}{{a}{10}{$f(x)=\cos {x}$\relax \relax }{figure.caption.9}{}}
-\newlabel{fig:tiger}{{2.8b}{10}{$g(x)=\cos {50x}$\relax \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:tiger}{{b}{10}{$g(x)=\cos {50x}$\relax \relax }{figure.caption.9}{}}
-\newlabel{fig:mouse}{{2.8c}{10}{$F(f(x))$\relax \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:mouse}{{c}{10}{$F(f(x))$\relax \relax }{figure.caption.9}{}}
-\newlabel{fig:mouse}{{2.8d}{10}{$F(g(x))$\relax \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:mouse}{{d}{10}{$F(g(x))$\relax \relax }{figure.caption.9}{}}
+\newlabel{fig:gull}{{2.8a}{10}{$f(x)=\cos {x}$\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:gull}{{a}{10}{$f(x)=\cos {x}$\relax }{figure.caption.9}{}}
+\newlabel{fig:tiger}{{2.8b}{10}{$g(x)=\cos {50x}$\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:tiger}{{b}{10}{$g(x)=\cos {50x}$\relax }{figure.caption.9}{}}
+\newlabel{fig:mouse}{{2.8c}{10}{$F(f(x))$\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:mouse}{{c}{10}{$F(f(x))$\relax }{figure.caption.9}{}}
+\newlabel{fig:mouse}{{2.8d}{10}{$F(g(x))$\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:mouse}{{d}{10}{$F(g(x))$\relax }{figure.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Example of localization properties of different functions in the spatial and Fourier domains. Images localized in the spatial domain are not localized in the Fourier domain, and vice versa.\relax }}{10}{figure.caption.9}}
-\newlabel{fig:fft_localization}{{2.8}{10}{Example of localization properties of different functions in the spatial and Fourier domains. Images localized in the spatial domain are not localized in the Fourier domain, and vice versa.\relax \relax }{figure.caption.9}{}}
+\newlabel{fig:fft_localization}{{2.8}{10}{Example of localization properties of different functions in the spatial and Fourier domains. Images localized in the spatial domain are not localized in the Fourier domain, and vice versa.\relax }{figure.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Ordering of a subset of the dataset by increasing contribution of low frequencies\relax }}{10}{figure.caption.10}}
-\newlabel{fig:fft_low_freq_order}{{2.9}{10}{Ordering of a subset of the dataset by increasing contribution of low frequencies\relax \relax }{figure.caption.10}{}}
+\newlabel{fig:fft_low_freq_order}{{2.9}{10}{Ordering of a subset of the dataset by increasing contribution of low frequencies\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Frequency-Based Descriptor}{10}{subsection.2.4.3}}
 \citation{using_svd}
 \citation{using_svd}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Frequency Descripor Visualization\relax }}{11}{figure.caption.11}}
-\newlabel{fig:freqDescriptor}{{2.10}{11}{Frequency Descripor Visualization\relax \relax }{figure.caption.11}{}}
+\newlabel{fig:freqDescriptor}{{2.10}{11}{Frequency Descripor Visualization\relax }{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Singular Value Decomposition}{11}{section.2.5}}
-\newlabel{sec:SVD}{{2.5}{11}{Singular Value Decomposition\relax }{section.2.5}{}}
+\newlabel{sec:SVD}{{2.5}{11}{Singular Value Decomposition}{section.2.5}{}}
 \citation{svd_image_coding}
 \citation{svd_image_retrieval}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}SVD and Compression}{12}{subsection.2.5.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Rank k-approximations of an image using SVD\relax }}{12}{figure.caption.12}}
-\newlabel{fig:svd_compression}{{2.11}{12}{Rank k-approximations of an image using SVD\relax \relax }{figure.caption.12}{}}
+\newlabel{fig:svd_compression}{{2.11}{12}{Rank k-approximations of an image using SVD\relax }{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Singular Values}{12}{subsection.2.5.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Rank 1 images and their top singular value\relax }}{13}{figure.caption.13}}
-\newlabel{fig:rank1_images}{{2.12}{13}{Rank 1 images and their top singular value\relax \relax }{figure.caption.13}{}}
+\newlabel{fig:rank1_images}{{2.12}{13}{Rank 1 images and their top singular value\relax }{figure.caption.13}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces (a-c): Random images with given intensity range (d): Singular values of (a-c)\relax }}{13}{figure.caption.14}}
-\newlabel{fig:rand_images}{{2.13}{13}{(a-c): Random images with given intensity range (d): Singular values of (a-c)\relax \relax }{figure.caption.14}{}}
+\newlabel{fig:rand_images}{{2.13}{13}{(a-c): Random images with given intensity range (d): Singular values of (a-c)\relax }{figure.caption.14}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.14}{\ignorespaces Plot of singular values under symmetry (1st value omitted for scaling)\relax }}{14}{figure.caption.15}}
-\newlabel{fig:rand_symmetry}{{2.14}{14}{Plot of singular values under symmetry (1st value omitted for scaling)\relax \relax }{figure.caption.15}{}}
+\newlabel{fig:rand_symmetry}{{2.14}{14}{Plot of singular values under symmetry (1st value omitted for scaling)\relax }{figure.caption.15}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.15}{\ignorespaces Examination of singular values for natural image classes\relax }}{15}{figure.caption.16}}
-\newlabel{fig:singular_values_natural}{{2.15}{15}{Examination of singular values for natural image classes\relax \relax }{figure.caption.16}{}}
+\newlabel{fig:singular_values_natural}{{2.15}{15}{Examination of singular values for natural image classes\relax }{figure.caption.16}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{15}{subsection.2.5.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.16}{\ignorespaces 1st singular value composite image (top), left singular vector (mid), and right singular vector (bottom) \relax }}{16}{figure.caption.17}}
-\newlabel{fig:rank1_vectors}{{2.16}{16}{1st singular value composite image (top), left singular vector (mid), and right singular vector (bottom) \relax \relax }{figure.caption.17}{}}
+\newlabel{fig:rank1_vectors}{{2.16}{16}{1st singular value composite image (top), left singular vector (mid), and right singular vector (bottom) \relax }{figure.caption.17}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.17}{\ignorespaces singular value composite image (top), left singular vector (mid), and right singular vector (bottom)\relax }}{17}{figure.caption.18}}
-\newlabel{fig:diagonal_vectors}{{2.17}{17}{singular value composite image (top), left singular vector (mid), and right singular vector (bottom)\relax \relax }{figure.caption.18}{}}
+\newlabel{fig:diagonal_vectors}{{2.17}{17}{singular value composite image (top), left singular vector (mid), and right singular vector (bottom)\relax }{figure.caption.18}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces A comparison between top singular vectors and values of natural images\relax }}{17}{figure.caption.19}}
-\newlabel{fig:natural_vectors}{{2.18}{17}{A comparison between top singular vectors and values of natural images\relax \relax }{figure.caption.19}{}}
+\newlabel{fig:natural_vectors}{{2.18}{17}{A comparison between top singular vectors and values of natural images\relax }{figure.caption.19}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{18}{subsection.2.5.4}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Analysis}{19}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:analysis}{{3}{19}{Analysis\relax }{chapter.3}{}}
+\newlabel{chap:analysis}{{3}{19}{Analysis}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview of best performing descriptors}{19}{section.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Windowed descriptors}{19}{section.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Collection understanting methods}{19}{section.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Non-Windowed Perfromance}{19}{section.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Windowed Performance}{19}{section.3.5}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Conclusions and Further Work}{20}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}

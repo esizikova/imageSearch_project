@@ -17,4 +17,9 @@
 \contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{15}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{18}{subsection.2.5.4}
 \contentsline {chapter}{\numberline {3}Analysis}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview of best performing descriptors}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Windowed descriptors}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Collection understanting methods}{19}{section.3.3}
+\contentsline {section}{\numberline {3.4}Non-Windowed Perfromance}{19}{section.3.4}
+\contentsline {section}{\numberline {3.5}Windowed Performance}{19}{section.3.5}
 \contentsline {chapter}{\numberline {4}Conclusions and Further Work}{20}{chapter.4}
