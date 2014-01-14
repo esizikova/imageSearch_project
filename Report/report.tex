@@ -26,12 +26,12 @@ There are many possible situations in which we would need to understand and comp
 
 Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures to create a mathematical model of the image. While the exact implementation is not available, and hence we cannot begin to analyze the performance of this method, Google Image Search does not provide clustering capabilities or the possibility of analysis of an input dataset.
 
-A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a descriptor, also known as the GIST descriptor, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates. The concise representation of an image using few well understood parameters served as an inspiration for our investigation in this project, by analysis of the image properties using FFT and SVD we tried to discover parameters that allow us to organize collections of images.
+A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a descriptor, also known as the GIST descriptor, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as the image's spectral properties estimates. The concise representation of an image using few well understood parameters served as an inspiration for our investigation in this project, by analysis of the image properties using FFT and SVD we tried to discover parameters that allow us to organize collections of images.
 
-In our work we mainly focus on looking at image color distribution, frequency transform, and singular value decomposition.
-As mentioned above analysis of image's frequency domain has yielded a very good descriptors, so naturally we decided to investigate the way such descriptors can be obtained. Similarly after seeing how well the SVD performs for image compression we have hoped to obtain a low dimensional descriptor that could be used for image comparison.
+In our work we mainly focus on looking at image Color Distribution, Frequency Transform, and Singular Value Decomposition (SVD).
+As mentioned above, analysis of the frequency domain in images has yielded very well-performing descriptors, so naturally we decided to investigate the way such descriptors can be obtained. Similarly after seeing how well the SVD performs for image compression we have hoped to obtain a low-dimensional descriptor that could be used for image comparison.
 
-There is a huge amount of work being done in the content-based image retrieval, as seen by the sheer amount of available surveys \cite{survey1}\cite{survey2}\cite{survey3}. In general the overall approach is to compute image descriptor based on the color, texture and shape information, and then use these vectors in to compute similarity. As seen in aforementioned surveys there is a lot of variation in terms of how the features are computed, what are the exact features we look at (which might vary depending on the application ) and then how the results are aggregated and use for analysis.
+There is a huge amount of work being done in the content-based image retrieval, as seen by the sheer amount of available surveys \cite{survey1}\cite{survey2}\cite{survey3}. In general the overall approach is to compute an image descriptor based on the color, texture and shape information, and then use these vectors in to compute similarity. As seen in aforementioned surveys there is a lot of variation in terms of how the features are computed, what are the exact features we look at (which might vary depending on the application ) and then how the results are aggregated and use for analysis.
 In our work we have used similar approach where we compute vectors according to a set of detected features, and then use them for similarity comparisons. However due to time limitations we did not focus on the shape features \cite{sift}, but more on the global image structure that we can understand by doing analysis of Fourier Transform and SVD. With that in mind we used a dataset distributed with \cite{gist_descriptor}, which contains a set of images of exterior environments. This dataset does not contain objects, which would clearly need the use of some more involved descriptors.
 
 %Having completed a graduate course in algorithms, our goal was to understand the results of such a study, and specifically answer the question: why can we estimate properties of the spatial envelope the way \cite{gist_descriptor} does? 
@@ -111,9 +111,9 @@ Another color space which we have considered in this work was the $L^*a^*b^*$ co
 
 
 \subsection{Color-based Descriptors}
-The color information is widely used for image retrial, since as a descriptor it has a nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, color closely relate to how we percieve images as similar. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
+The color information is widely used for image retrieval, since as a descriptor it has nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, colors closely relate to how we percieve image similarity. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
 
-A very crude way of comparing images in terms of colors is to average each of the channels in specific color space, and use it as a $3$-value descriptor, which will be a point in a color space. Figure \ref{fig:colSpaces} shows points plotted in $\mathbb{R}_3$. What is interesting about all the color spaces is the fact that we can easily navigate through them and have a good understanding how single parameter affects overall color appearance.
+A very crude way of comparing images in terms of colors is to average each of the channels in specific color space, and use it as a $3$-value descriptor, which will be a point in a color space. Figure \ref{fig:colSpaces} shows points plotted in $\mathbb{R}^3$. What is interesting about all the color spaces is the fact that we can easily navigate through them and have a good understanding how single parameter affects overall color appearance.
 
 \begin{figure}[hbtp]
 \centering
@@ -122,7 +122,7 @@ A very crude way of comparing images in terms of colors is to average each of th
 \label{fig:colSpaces}
 \end{figure}
 
-This gave us the inspiration to look for similar, simple parameters that relate to overall image structure, using FFT and SVD ( see sections \ref{sec:FFT} and \ref{sec:SVD} respectively). However by a simple averaging we are not obtaining information regarding the overall color distribution. A more common way of investigating the color distribution is \textit{normalized color histogram}. To create it we first create bins - given the number of bins $n$ we create a set of uniformly spaced ranges $R = \{r_1, r_2, ..., r_n\}$. Now for each pixel $p_i$ we determine its value $v_i$ and determine into which $r_k$ it falls to and increment value at the relating bin. After visiting all pixels $p_i$ we normalize each bin by total number of pixels. This produces a length $n$ vector that better describe the the overall value distribution. Above structure of course describes the procedure for gray scale images, however it is trivial to extend it to color images where we create a histogram for each color channel, and then concatenate resulting vectors.
+This gave us the inspiration to look for similar, simple parameters that relate to overall image structure, using FFT and SVD ( see sections \ref{sec:FFT} and \ref{sec:SVD} respectively). However by a simple averaging we are not obtaining information regarding the overall color distribution. A more common way of investigating the color distribution is \textit{normalized color histogram}. To create it we first create bins - given the number of bins $n$ we create a set of uniformly spaced ranges $R = \{r_1, r_2, ..., r_n\}$. Now for each pixel $p_i$ we determine its value $v_i$ and determine into which $r_k$ it falls to and increment value at the relating bin. After visiting all pixels $p_i$ we normalize each bin by total number of pixels. This produces a length $n$ vector that better describes the the overall value distribution. Above structure of course defines the procedure for grayscale images, however it is trivial to extend it to color images where we create a histogram for each of the color channels, and then concatenate resulting vectors.
 
 \begin{figure}[hbtp]
 \centering
@@ -131,9 +131,9 @@ This gave us the inspiration to look for similar, simple parameters that relate 
 \label{fig:colSpaces}
 \end{figure}
 
-We then designed our descriptor for each color space. As noted in \cite{HSV_non_uniform}, hue is more important for color perception than saturation and lightness, and thus the HSV histogram have been always computed giving more bins to hue channel (i.e. provided that the required length of descriptor is $n$, the number of bins for hue would be given by $\frac{n}{2}$, while other two parameters $\frac{n}{4}$. Similarly we conjecture that in terms of $L^*a^*b^*$ color space the lightness is less important than parameters describing colors, so we have also modified the number of bins for each channel accordingly ( $L^* = \frac{2*n}{8}$,$ a^* = \frac{3*n}{8}$, $b^* = \frac{3*n}{8}$ )
+We then designed our descriptor for each color space. As noted in \cite{HSV_non_uniform}, hue is more important for color perception than saturation and lightness, and thus the HSV histograms have been always computed giving more bins to hue channel (i.e. provided that the required length of descriptor is $n$, the number of bins for hue would be given by $\frac{n}{2}$, while other two parameters are set to $\frac{n}{4}$. Similarly we conjecture that in terms of $L^*a^*b^*$ color space the lightness is less important than parameters describing colors, so we have also modified the number of bins for each channel accordingly ( $L^* = \frac{2*n}{8}$,$ a^* = \frac{3*n}{8}$, $b^* = \frac{3*n}{8}$ )
 
-To sum up for color descriptors we have looked both at simple averaging of values as well as normalized color histograms. All these have been implemented to work with each of the color spaces discussed in section \ref{sec:colorSpaces}. In chapter \ref{chap:analysis} we discuss the overall performance of all descriptors discussed here. Also note that in literature it is common to note that uniform quantization does not take the spatial relationship between pixels into account, and investigate the techniques to overcome this drawback \cite{GaussQunatization}. However because of time limitation we have decided to settle for simpler approach.
+To sum up our color descriptors, we have looked both at simple averaging of values as well as normalized color histograms. All these have been implemented to work with each of the color spaces discussed in section \ref{sec:colorSpaces}. In chapter \ref{chap:analysis} we discuss the overall performance of all descriptors discussed here. Also note that in literature it is common to note that uniform quantization does not take the spatial relationship between pixels into account, and investigate the techniques to overcome this drawback \cite{GaussQunatization}. However because of time limitation we have decided to settle for a simpler approach.
 
 \section{Fourier Transform} 
 \label{sec:FFT} 
@@ -489,21 +489,7 @@ K-nearest neighbors is an algorithm which takes a test object and compares it to
 
 \section{Non-Windowed Performance}
 
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{graphics/non_windowed_knearest.pdf}
-        \caption{A sample of query images and the top 5 neighbors using our best-performing descriptor}
-        \label{fig:non_windowed_knearest}
-\end{figure}
-
 \section{Windowed Performance}
-
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{graphics/windowed_knearest.pdf}
-        \caption{A sample of query images and the top 5 neighbors using our windowed descriptor}
-        \label{fig:windowed_knearest}
-\end{figure}
 
 \chapter{Conclusions and Further Work}
 \label{chap:Conclusions}
