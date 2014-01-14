@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 JAN 2014 16:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 JAN 2014 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,50 +476,50 @@ Chapter 1.
 Chapter 2.
 [5
 
-] <graphics/rgb_cube.png, id=204, 321.2pt x 244.915pt>
+] <graphics/rgb_cube.png, id=205, 321.2pt x 244.915pt>
 File: graphics/rgb_cube.png Graphic file (type png)
 
 <use graphics/rgb_cube.png>
-Package pdftex.def Info: graphics/rgb_cube.png used on input line 67.
+Package pdftex.def Info: graphics/rgb_cube.png used on input line 66.
 (pdftex.def)             Requested size: 160.59961pt x 122.45718pt.
 
-<graphics/hsv_cube.png, id=207, 331.2375pt x 203.76125pt>
+<graphics/hsv_cube.png, id=208, 331.2375pt x 203.76125pt>
 File: graphics/hsv_cube.png Graphic file (type png)
 
 <use graphics/hsv_cube.png>
-Package pdftex.def Info: graphics/hsv_cube.png used on input line 78.
+Package pdftex.def Info: graphics/hsv_cube.png used on input line 77.
 (pdftex.def)             Requested size: 151.76854pt x 93.3582pt.
 
-Underfull \hbox (badness 1917) in paragraph at lines 79--79
+Underfull \hbox (badness 1917) in paragraph at lines 78--78
 []\OT1/cmr/m/n/9 (a) |The RGB cube viewed along
  []
 
-<graphics/hsv_rescale1.png, id=208, 288.07625pt x 249.93375pt>
+<graphics/hsv_rescale1.png, id=209, 288.07625pt x 249.93375pt>
 File: graphics/hsv_rescale1.png Graphic file (type png)
 
 <use graphics/hsv_rescale1.png>
-Package pdftex.def Info: graphics/hsv_rescale1.png used on input line 86.
+Package pdftex.def Info: graphics/hsv_rescale1.png used on input line 85.
 (pdftex.def)             Requested size: 151.76854pt x 131.67863pt.
 
-<graphics/hsv_rescale2.png, id=209, 291.0875pt x 249.93375pt>
+<graphics/hsv_rescale2.png, id=210, 291.0875pt x 249.93375pt>
 File: graphics/hsv_rescale2.png Graphic file (type png)
 
 <use graphics/hsv_rescale2.png>
-Package pdftex.def Info: graphics/hsv_rescale2.png used on input line 94.
+Package pdftex.def Info: graphics/hsv_rescale2.png used on input line 93.
 (pdftex.def)             Requested size: 151.76854pt x 130.31334pt.
  [6 <./graphics/rgb_cube.png>]
 <graphics/lab_space.jpg, id=224, 702.625pt x 702.625pt>
 File: graphics/lab_space.jpg Graphic file (type jpg)
 
 <use graphics/lab_space.jpg>
-Package pdftex.def Info: graphics/lab_space.jpg used on input line 108.
+Package pdftex.def Info: graphics/lab_space.jpg used on input line 107.
 (pdftex.def)             Requested size: 119.44466pt x 119.44466pt.
 
 <graphics/colorSpaces.png, id=226, 1374.13374pt x 593.21625pt>
 File: graphics/colorSpaces.png Graphic file (type png)
 
 <use graphics/colorSpaces.png>
-Package pdftex.def Info: graphics/colorSpaces.png used on input line 120.
+Package pdftex.def Info: graphics/colorSpaces.png used on input line 119.
 (pdftex.def)             Requested size: 412.2433pt x 177.96625pt.
  [7 <./graphics/hsv_cube.png> <./graphics/hsv_rescale1.png> <./graphics/hsv_res
 cale2.png> <./graphics/lab_space.jpg>]
@@ -527,44 +527,44 @@ cale2.png> <./graphics/lab_space.jpg>]
 File: graphics/colorHistogram.png Graphic file (type png)
 
 <use graphics/colorHistogram.png>
-Package pdftex.def Info: graphics/colorHistogram.png used on input line 129.
+Package pdftex.def Info: graphics/colorHistogram.png used on input line 128.
 (pdftex.def)             Requested size: 266.19655pt x 129.78587pt.
  [8 <./graphics/colorSpaces.png> <./graphics/colorHistogram.png>] <graphics/ori
 ginal.png, id=251, 256.96pt x 256.96pt>
 File: graphics/original.png Graphic file (type png)
 
 <use graphics/original.png>
-Package pdftex.def Info: graphics/original.png used on input line 151.
+Package pdftex.def Info: graphics/original.png used on input line 150.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
  <graphics/phase.png, id=252, 256.96pt x 256.96pt>
 File: graphics/phase.png Graphic file (type png)
 
 <use graphics/phase.png>
-Package pdftex.def Info: graphics/phase.png used on input line 159.
+Package pdftex.def Info: graphics/phase.png used on input line 158.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
  <graphics/ampl.png, id=253, 321.8424pt x 322.806pt>
 File: graphics/ampl.png Graphic file (type png)
 
 <use graphics/ampl.png>
-Package pdftex.def Info: graphics/ampl.png used on input line 167.
+Package pdftex.def Info: graphics/ampl.png used on input line 166.
 (pdftex.def)             Requested size: 101.17645pt x 101.47754pt.
 File: graphics/original.png Graphic file (type png)
  <use graphics/original.png>
-Package pdftex.def Info: graphics/original.png used on input line 183.
+Package pdftex.def Info: graphics/original.png used on input line 182.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/flat_power.jpg, id=255, 256.96pt x 256.96pt>
 File: graphics/flat_power.jpg Graphic file (type jpg)
 
 <use graphics/flat_power.jpg>
-Package pdftex.def Info: graphics/flat_power.jpg used on input line 191.
+Package pdftex.def Info: graphics/flat_power.jpg used on input line 190.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/randomized_phase.jpg, id=256, 256.96pt x 256.96pt>
 File: graphics/randomized_phase.jpg Graphic file (type jpg)
 
 <use graphics/randomized_phase.jpg>
-Package pdftex.def Info: graphics/randomized_phase.jpg used on input line 199.
+Package pdftex.def Info: graphics/randomized_phase.jpg used on input line 198.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
  [9 <./graphics/original.png (PNG copy)> <./graphics/phase.png (PNG copy)> <./g
 raphics/ampl.png>]
@@ -572,28 +572,28 @@ raphics/ampl.png>]
 File: graphics/graph_fft_1.jpg Graphic file (type jpg)
 
 <use graphics/graph_fft_1.jpg>
-Package pdftex.def Info: graphics/graph_fft_1.jpg used on input line 214.
+Package pdftex.def Info: graphics/graph_fft_1.jpg used on input line 213.
 (pdftex.def)             Requested size: 101.17645pt x 58.07689pt.
 
 <graphics/graph_fft_2.jpg, id=269, 495.8525pt x 281.05pt>
 File: graphics/graph_fft_2.jpg Graphic file (type jpg)
 
 <use graphics/graph_fft_2.jpg>
-Package pdftex.def Info: graphics/graph_fft_2.jpg used on input line 222.
+Package pdftex.def Info: graphics/graph_fft_2.jpg used on input line 221.
 (pdftex.def)             Requested size: 101.17645pt x 57.34544pt.
 
 <graphics/graph_fft_3.jpg, id=270, 492.84125pt x 256.96pt>
 File: graphics/graph_fft_3.jpg Graphic file (type jpg)
 
 <use graphics/graph_fft_3.jpg>
-Package pdftex.def Info: graphics/graph_fft_3.jpg used on input line 230.
+Package pdftex.def Info: graphics/graph_fft_3.jpg used on input line 229.
 (pdftex.def)             Requested size: 101.17645pt x 52.75163pt.
 
 <graphics/graph_fft_4.jpg, id=271, 491.8375pt x 264.99pt>
 File: graphics/graph_fft_4.jpg Graphic file (type jpg)
 
 <use graphics/graph_fft_4.jpg>
-Package pdftex.def Info: graphics/graph_fft_4.jpg used on input line 236.
+Package pdftex.def Info: graphics/graph_fft_4.jpg used on input line 235.
 (pdftex.def)             Requested size: 101.17645pt x 54.5093pt.
 
 
@@ -603,17 +603,17 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: graphics/FrequencyOrdered.png Graphic file (type png)
 
 <use graphics/FrequencyOrdered.png>
-Package pdftex.def Info: graphics/FrequencyOrdered.png used on input line 251.
+Package pdftex.def Info: graphics/FrequencyOrdered.png used on input line 250.
 (pdftex.def)             Requested size: 344.18852pt x 130.68925pt.
  [10 <./graphics/flat_power.jpg> <./graphics/randomized_phase.jpg>]
 <graphics/freq_bins.png, id=282, 620.3175pt x 628.3475pt>
 File: graphics/freq_bins.png Graphic file (type png)
 
 <use graphics/freq_bins.png>
-Package pdftex.def Info: graphics/freq_bins.png used on input line 263.
+Package pdftex.def Info: graphics/freq_bins.png used on input line 262.
 (pdftex.def)             Requested size: 186.09668pt x 188.50569pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
@@ -623,14 +623,14 @@ _fft_3.jpg> <./graphics/graph_fft_4.jpg> <./graphics/FrequencyOrdered.png>]
 <graphics/guy.jpg, id=302, 1386.17876pt x 877.2775pt>
 File: graphics/guy.jpg Graphic file (type jpg)
  <use graphics/guy.jpg>
-Package pdftex.def Info: graphics/guy.jpg used on input line 289.
+Package pdftex.def Info: graphics/guy.jpg used on input line 288.
 (pdftex.def)             Requested size: 202.3529pt x 128.052pt.
 
 <graphics/guyTopCompressions.png, id=303, 672.914pt x 444.862pt>
 File: graphics/guyTopCompressions.png Graphic file (type png)
 
 <use graphics/guyTopCompressions.png>
-Package pdftex.def Info: graphics/guyTopCompressions.png used on input line 293
+Package pdftex.def Info: graphics/guyTopCompressions.png used on input line 292
 .
 (pdftex.def)             Requested size: 202.3529pt x 133.77187pt.
 
@@ -638,28 +638,28 @@ Package pdftex.def Info: graphics/guyTopCompressions.png used on input line 293
 File: graphics/horizontalGrad.png Graphic file (type png)
 
 <use graphics/horizontalGrad.png>
-Package pdftex.def Info: graphics/horizontalGrad.png used on input line 310.
+Package pdftex.def Info: graphics/horizontalGrad.png used on input line 309.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/smallVertical.png, id=307, 61.6704pt x 61.6704pt>
 File: graphics/smallVertical.png Graphic file (type png)
 
 <use graphics/smallVertical.png>
-Package pdftex.def Info: graphics/smallVertical.png used on input line 315.
+Package pdftex.def Info: graphics/smallVertical.png used on input line 314.
 (pdftex.def)             Requested size: 101.17645pt x 101.18617pt.
 
 <graphics/smallHorizontal.png, id=308, 61.6704pt x 61.6704pt>
 File: graphics/smallHorizontal.png Graphic file (type png)
 
 <use graphics/smallHorizontal.png>
-Package pdftex.def Info: graphics/smallHorizontal.png used on input line 320.
+Package pdftex.def Info: graphics/smallHorizontal.png used on input line 319.
 (pdftex.def)             Requested size: 101.17645pt x 101.18617pt.
  [13 <./graphics/guy.jpg> <./graphics/guyTopCompressions.png (PNG copy)>]
 <graphics/randomFullSpace.png, id=318, 256.96pt x 256.96pt>
 File: graphics/randomFullSpace.png Graphic file (type png)
 
 <use graphics/randomFullSpace.png>
-Package pdftex.def Info: graphics/randomFullSpace.png used on input line 332.
+Package pdftex.def Info: graphics/randomFullSpace.png used on input line 331.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/randomBottomHalfSpace.png, id=319, 256.96pt x 256.96pt>
@@ -667,7 +667,7 @@ File: graphics/randomBottomHalfSpace.png Graphic file (type png)
 
 <use graphics/randomBottomHalfSpace.png>
 Package pdftex.def Info: graphics/randomBottomHalfSpace.png used on input line 
-337.
+336.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/randomBottomQuarterSpace.png, id=320, 256.96pt x 256.96pt>
@@ -675,7 +675,7 @@ File: graphics/randomBottomQuarterSpace.png Graphic file (type png)
 
 <use graphics/randomBottomQuarterSpace.png>
 Package pdftex.def Info: graphics/randomBottomQuarterSpace.png used on input li
-ne 342.
+ne 341.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
 <graphics/singular_values_color_space.pdf, id=321, 442.65375pt x 337.26pt>
@@ -683,7 +683,7 @@ File: graphics/singular_values_color_space.pdf Graphic file (type pdf)
 
 <use graphics/singular_values_color_space.pdf>
 Package pdftex.def Info: graphics/singular_values_color_space.pdf used on input
- line 347.
+ line 346.
 (pdftex.def)             Requested size: 303.53708pt x 231.279pt.
  [14 <./graphics/horizontalGrad.png (PNG copy)> <./graphics/smallVertical.png> 
 <./graphics/smallHorizontal.png> <./graphics/randomFullSpace.png (PNG copy)> <.
@@ -694,32 +694,32 @@ File: graphics/singular_values_symmetry.pdf Graphic file (type pdf)
 
 <use graphics/singular_values_symmetry.pdf>
 Package pdftex.def Info: graphics/singular_values_symmetry.pdf used on input li
-ne 358.
+ne 357.
 (pdftex.def)             Requested size: 303.53708pt x 228.3388pt.
 
 <graphics/coast.png, id=360, 256.96pt x 256.96pt>
 File: graphics/coast.png Graphic file (type png)
  <use graphics/coast.png>
-Package pdftex.def Info: graphics/coast.png used on input line 369.
+Package pdftex.def Info: graphics/coast.png used on input line 368.
 (pdftex.def)             Requested size: 86.00037pt x 86.00076pt.
 
 <graphics/forest.png, id=361, 256.96pt x 256.96pt>
 File: graphics/forest.png Graphic file (type png)
  <use graphics/forest.png>
-Package pdftex.def Info: graphics/forest.png used on input line 373.
+Package pdftex.def Info: graphics/forest.png used on input line 372.
 (pdftex.def)             Requested size: 86.00037pt x 86.00076pt.
 
 <graphics/street.png, id=362, 256.96pt x 256.96pt>
 File: graphics/street.png Graphic file (type png)
  <use graphics/street.png>
-Package pdftex.def Info: graphics/street.png used on input line 380.
+Package pdftex.def Info: graphics/street.png used on input line 379.
 (pdftex.def)             Requested size: 86.00037pt x 86.00076pt.
 
 <graphics/tallbuilding.png, id=363, 256.96pt x 256.96pt>
 File: graphics/tallbuilding.png Graphic file (type png)
 
 <use graphics/tallbuilding.png>
-Package pdftex.def Info: graphics/tallbuilding.png used on input line 384.
+Package pdftex.def Info: graphics/tallbuilding.png used on input line 383.
 (pdftex.def)             Requested size: 86.00037pt x 86.00076pt.
 
 <graphics/singular_values_natural_images_log.pdf, id=364, 449.68pt x 338.26375p
@@ -727,7 +727,7 @@ t>
 File: graphics/singular_values_natural_images_log.pdf Graphic file (type pdf)
  <use graphics/singular_values_natural_images_log.pdf>
 Package pdftex.def Info: graphics/singular_values_natural_images_log.pdf used o
-n input line 389.
+n input line 388.
 (pdftex.def)             Requested size: 278.24104pt x 209.30843pt.
  [15 <./graphics/singular_values_symmetry.pdf>]
 <graphics/singular_vectors_gradient.pdf, id=404, 136.51pt x 378.41376pt>
@@ -735,7 +735,7 @@ File: graphics/singular_vectors_gradient.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_gradient.pdf>
 Package pdftex.def Info: graphics/singular_vectors_gradient.pdf used on input l
-ine 405.
+ine 404.
 (pdftex.def)             Requested size: 101.17645pt x 280.4664pt.
 
 <graphics/singular_vectors_horizontal.pdf, id=405, 144.54pt x 402.50375pt>
@@ -743,7 +743,7 @@ File: graphics/singular_vectors_horizontal.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_horizontal.pdf>
 Package pdftex.def Info: graphics/singular_vectors_horizontal.pdf used on input
- line 410.
+ line 409.
 (pdftex.def)             Requested size: 101.17645pt x 281.74455pt.
 
 <graphics/singular_vectors_vertical.pdf, id=406, 137.51375pt x 401.5pt>
@@ -751,7 +751,7 @@ File: graphics/singular_vectors_vertical.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_vertical.pdf>
 Package pdftex.def Info: graphics/singular_vectors_vertical.pdf used on input l
-ine 415.
+ine 414.
 (pdftex.def)             Requested size: 96.12033pt x 280.64986pt.
  [16 <./graphics/coast.png (PNG copy)> <./graphics/forest.png (PNG copy)> <./gr
 aphics/street.png (PNG copy)> <./graphics/tallbuilding.png (PNG copy)> <./graph
@@ -761,7 +761,7 @@ File: graphics/singular_vectors_diagonal.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_diagonal.pdf>
 Package pdftex.def Info: graphics/singular_vectors_diagonal.pdf used on input l
-ine 426.
+ine 425.
 (pdftex.def)             Requested size: 505.89pt x 261.10104pt.
  [17 <./graphics/singular_vectors_gradient.pdf> <./graphics/singular_vectors_ho
 rizontal.pdf
@@ -778,7 +778,7 @@ File: graphics/singular_vectors_coast.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_coast.pdf>
 Package pdftex.def Info: graphics/singular_vectors_coast.pdf used on input line
- 436.
+ 435.
 (pdftex.def)             Requested size: 242.82503pt x 234.48097pt.
 
 <graphics/singular_vectors_forest.pdf, id=580, 350.30875pt x 338.26375pt>
@@ -786,7 +786,7 @@ File: graphics/singular_vectors_forest.pdf Graphic file (type pdf)
 
 <use graphics/singular_vectors_forest.pdf>
 Package pdftex.def Info: graphics/singular_vectors_forest.pdf used on input lin
-e 440.
+e 439.
 (pdftex.def)             Requested size: 242.82503pt x 234.48097pt.
  [18 <./graphics/singular_vectors_diagonal.pdf> <./graphics/singular_vectors_co
 ast.pdf
@@ -801,30 +801,30 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
 Chapter 3.
 
 LaTeX Warning: Reference `sec:non_windowed' on page 20 undefined on input line 
-462.
+461.
 
 
-LaTeX Warning: Reference `sec:windowed' on page 20 undefined on input line 462.
+LaTeX Warning: Reference `sec:windowed' on page 20 undefined on input line 461.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--465
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 
  []
 
 [20
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
 
  []
 
 
 LaTeX Warning: Reference `sec:non_windowed' on page 21 undefined on input line 
-478.
+477.
 
 
-LaTeX Warning: Reference `sec:windowed' on page 21 undefined on input line 478.
+LaTeX Warning: Reference `sec:windowed' on page 21 undefined on input line 477.
 
 
 [21] [22]
@@ -832,7 +832,7 @@ Chapter 4.
 [23
 
 ]
-Underfull \hbox (badness 1033) in paragraph at lines 542--546
+Underfull \hbox (badness 1033) in paragraph at lines 541--545
 []\OT1/cmr/m/n/10 Agoston, Max K. \OT1/cmr/m/it/10 Com-puter Graph-ics and Ge-o
 -met-ric Mod-elling: Math-e-mat-ics\OT1/cmr/m/n/10 . Springer; 2005 edi-tion,
  []
@@ -845,31 +845,31 @@ File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 603.
+ 602.
 (pdftex.def)             Requested size: 190.79231pt x 589.48088pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 603.
+ 602.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 603.
+ 602.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 603.
+ 602.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 603.
+ 602.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
  [26 <./graphics/windowed_kmeans.pdf>] <graphics/windowed_mds.pdf, id=865, page
 =1, 807.25589pt x 763.4121pt>
@@ -877,39 +877,39 @@ File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 60
-4.
+3.
 (pdftex.def)             Requested size: 807.25392pt x 763.41023pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 60
-4.
+3.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 60
-4.
+3.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 60
-4.
+3.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 60
-4.
+3.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
  [27 <./graphics/windowed_mds.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 607.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 607.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 606.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 606.
 
 (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 607.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 607.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 606.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 606.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 875C5447647C51DB75CEF0150F5AF72B;1939.
 
@@ -919,7 +919,7 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 607.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 606.
  ) 
 Here is how much of TeX's memory you used:
  8244 strings out of 493315
@@ -949,7 +949,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (28 pages, 7883213 bytes).
+Output written on report.pdf (28 pages, 7883264 bytes).
 PDF statistics:
  962 PDF objects out of 1000 (max. 8388607)
  704 compressed objects within 8 object streams
