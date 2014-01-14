@@ -504,7 +504,7 @@ Fourth row is again somewhat of a fail case. The neighbor 1 can be considered as
 
 Last row queries for a beach pictures, and two of the neighbors are correct. The second neighbor is having somewhat similar structure, and due to the fact that sea in query image is turquoise, we have got similar picture in structure, however showing a field of grass ( turquoise is closer to green than blue ). Last two neighbors are clear fail cases, with only somewhat similar color distribution.
 \section{Windowed Performance}
-
+In this section we show results of our descriptors where they have been computed $16$ times per image, for each cell of uniformly spaced $4$ by $4$ grid.
 \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{graphics/windowed_knearest.pdf}
@@ -512,8 +512,19 @@ Last row queries for a beach pictures, and two of the neighbors are correct. The
         \label{fig:windowed_knearest}
 \end{figure}
 Again going from the top of the figure we will discuss the querying results for each row, just as in previous section.
+In the first row we observe a clear improvement especially in terms of three nearest neighbors, all showing a view down the street. Clearly computing the localized version of descriptor has improved the query results. Other two neighbors are still in town scenes with similar color distribution.
 
+The second row is still hard case for our descriptor, however now 3 out of 5 neighbors are also in town images, and interestingly all neighbors are scenes showing the outdoor environment during the sunset. We argue that localized version of $L^*a^*b^*$ color descriptor are picking up the perceived lightness correctly. Again as in the case of non-windowed versions all neighbors exhibit similar frequency distribution with strong low frequency components and some additional strong contributions form higher frequencies.
+
+For the third row, we observe the decline in performance, the last neighbor not being mountain anymore. This is caused by the fact that mountains have very descriptive global structure, that might not be well preserved in local patches. Still the last neighbor has very similar color, and also have quite complex texture on building's facade.
+
+Fourth row is also a clear improvement where all neighbors are showing similar scenes of deserts. We still pickup the image with the road as our third nearest neighbor, however all images are perceptually similar. The factor that seems to be grouping them together is the strong horizontal periodicity in bottom half of all images, that is successfully picked up by our frequency descriptor. 
+
+Fifth row is also improvement, where all neighbors have similar orientations, showing us mostly images of coast lines, with the exception of neighbor 3. The reason it is showing is the strong contribution from the high frequencies (grass), that is also present in query image (leaves in the foreground ). Still the color distribution is close by, with grass of neighbor 3 being dark brown, that is a close in $L^*a^*b^*$ to the light brown of the coastline sand.
+
+Overall the windowed version of our descriptor is performing better then non windowed version, across different categories, as expected.
 We also provide a results of k-means clustering with $k=6$ and MDS based visualization of our space in the appendix.
+
 \chapter{Conclusions and Further Work}
 \label{chap:Conclusions}
 Work done during this project was of an exploratory nature, where we have investigated what cues for image understanding can be obtained by analyzing the outputs of FFT and SVD algorithms. We have found that these methods do provide us with useful information when analyzing natural images, and can be easily used in generating meaningful low level descriptors, as shown in previous chapter. Fourier domain informs us about the overall image texture and roughness. Similarly our analysis of Singular Value Decomposition shows that the singular vectors can tell us about the image geometry, and could be used for matching images of similar orientation. Our results show embedding that successfully cluster images of similar nature quite well, however they are clearly not competitive in terms of performance with state of the art algorithms.

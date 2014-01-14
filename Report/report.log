@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 JAN 2014 16:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 JAN 2014 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -461,7 +461,7 @@ rt.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...nclusions and Further Work}{24}{chapter.4}
+l.28 ...nclusions and Further Work}{25}{chapter.4}
                                                    [1
 
 ])
@@ -843,88 +843,89 @@ Package pdftex.def Info: graphics/windowed_knearest.pdf used on input line 510.
 
 (pdftex.def)             Requested size: 505.89pt x 377.06697pt.
  [23 <./graphics/windowed_knearest.pdf>]
+[24]
 Chapter 4.
-[24
+[25
 
 ]
-Underfull \hbox (badness 1033) in paragraph at lines 565--569
+Underfull \hbox (badness 1033) in paragraph at lines 576--580
 []\OT1/cmr/m/n/10 Agoston, Max K. \OT1/cmr/m/it/10 Com-puter Graph-ics and Ge-o
 -met-ric Mod-elling: Math-e-mat-ics\OT1/cmr/m/n/10 . Springer; 2005 edi-tion,
  []
 
-[25
+[26
 
-] [26]
-<graphics/windowed_kmeans.pdf, id=1357, page=1, 190.7928pt x 589.48233pt>
+] [27]
+<graphics/windowed_kmeans.pdf, id=1361, page=1, 190.7928pt x 589.48233pt>
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 626.
+ 637.
 (pdftex.def)             Requested size: 190.79231pt x 589.48088pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 626.
+ 637.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 626.
+ 637.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 626.
+ 637.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
 Package pdftex.def Info: graphics/windowed_kmeans.pdf, page1 used on input line
- 626.
+ 637.
 (pdftex.def)             Requested size: 257.50964pt x 795.61389pt.
- [27 <./graphics/windowed_kmeans.pdf>] <graphics/windowed_mds.pdf, id=1373, pag
+ [28 <./graphics/windowed_kmeans.pdf>] <graphics/windowed_mds.pdf, id=1378, pag
 e=1, 807.25589pt x 763.4121pt>
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
-Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 62
-7.
+Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 63
+8.
 (pdftex.def)             Requested size: 807.25392pt x 763.41023pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
-Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 62
-7.
+Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 63
+8.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
-Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 62
-7.
+Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 63
+8.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
-Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 62
-7.
+Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 63
+8.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
-Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 62
-7.
+Package pdftex.def Info: graphics/windowed_mds.pdf, page1 used on input line 63
+8.
 (pdftex.def)             Requested size: 614.48164pt x 581.10782pt.
- [28 <./graphics/windowed_mds.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 630.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 630.
+ [29 <./graphics/windowed_mds.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
 
 (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 630.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 630.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 641.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 875C5447647C51DB75CEF0150F5AF72B;1939.
 
@@ -934,11 +935,11 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 630.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
  ) 
 Here is how much of TeX's memory you used:
- 8259 strings out of 493315
- 128494 string characters out of 6137904
+ 8260 strings out of 493315
+ 128501 string characters out of 6137904
  223430 words of memory out of 5000000
  11481 multiletter control sequences out of 15000+600000
  14774 words of font info for 57 fonts, out of 8000000 for 9000
@@ -964,10 +965,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (29 pages, 15450567 bytes).
+Output written on report.pdf (30 pages, 15452808 bytes).
 PDF statistics:
- 1471 PDF objects out of 1728 (max. 8388607)
- 1023 compressed objects within 11 object streams
- 98 named destinations out of 1000 (max. 500000)
+ 1475 PDF objects out of 1728 (max. 8388607)
+ 1026 compressed objects within 11 object streams
+ 99 named destinations out of 1000 (max. 500000)
  468 words of extra memory for PDF output out of 10000 (max. 10000000)
 
