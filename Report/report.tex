@@ -487,14 +487,22 @@ K-means clustering attempts to partition a set of objects into $k$ clusters in w
 K-nearest neighbors is an algorithm which takes a test object and compares it to objects in a given feature space to return an output based on the k-nearest neighbors within that space. In our case we build the feature space with all the image descriptors and then query into it to return the index of the k-nearest images within that space. Retrieving images visually similar to a query image is the ultimate goal of our descriptor design, so this visualization gives us an idea of how well our descriptors ultimately perform.
 
 \section{Non-Windowed Performance}
-
+In this section we show and discuss the results of our descriptors in terms or k-nearest neighbor query output. As title indicates in this section we will discuss the results using the non windowed version of our descriptors, and in the following sections we will show the same queries using windowed variant.
 \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{graphics/non_windowed_knearest.pdf}
         \caption{A sample of query images and the top 5 neighbors using our best-performing descriptor}
         \label{fig:non_windowed_knearest}
 \end{figure}
+Going from the top row of figure \ref{fig:non_windowed_knearest} we can see that for the query image, most of the neighbors are selected correctly also showing a town scenes from down the street. The only exception being the second neighbor, however notice that it does have very close structure (vertical buildings on the sides of the image) and color distribution.
 
+Second row is clear fail case - one reason might be that our database does not really contain much of images with similar color distribution (the sunset sky). Other then that the closest neighbor can be said to have similar geometric structure to the query, with a ground plane, and gradient on the sky. Other images might have been chosen since they have similar frequency transforms with a strong contributions form low frequencies, as well very strong high frequency periodicity ( neighbor 2 window crate, neighbors 3 and 4 facades)
+
+Third row show mountains, and all of our results show similar images this is caused by the fact that all mountain images have similar frequency structure, with a lot of complicated texture, as well as similar color distribution, all having generally blue hint to them.
+
+Fourth row is again somewhat of a fail case. The neighbor 1 can be considered as similar image, but other three show different scenes. Arguably the structure and color is similar for neighbors 2-4, and thus have been selected as neighbors. The last neighbor appearance is less obvious, and is most likely caused by similar horizontal periodicity in both images.
+
+Last row queries for a beach pictures, and two of the neighbors are correct. The second neighbor is having somewhat similar structure, and due to the fact that sea in query image is turquoise, we have got similar picture in structure, however showing a field of grass ( turquoise is closer to green than blue ). Last two neighbors are clear fail cases, with only somewhat similar color distribution.
 \section{Windowed Performance}
 
 \begin{figure}[H]
@@ -503,7 +511,9 @@ K-nearest neighbors is an algorithm which takes a test object and compares it to
         \caption{A sample of query images and the top 5 neighbors using our windowed descriptor}
         \label{fig:windowed_knearest}
 \end{figure}
+Again going from the top of the figure we will discuss the querying results for each row, just as in previous section.
 
+We also provide a results of k-means clustering with $k=6$ and MDS based visualization of our space in the appendix.
 \chapter{Conclusions and Further Work}
 \label{chap:Conclusions}
 Work done during this project was of an exploratory nature, where we have investigated what cues for image understanding can be obtained by analyzing the outputs of FFT and SVD algorithms. We have found that these methods do provide us with useful information when analyzing natural images, and can be easily used in generating meaningful low level descriptors, as shown in previous chapter. Fourier domain informs us about the overall image texture and roughness. Similarly our analysis of Singular Value Decomposition shows that the singular vectors can tell us about the image geometry, and could be used for matching images of similar orientation. Our results show embedding that successfully cluster images of similar nature quite well, however they are clearly not competitive in terms of performance with state of the art algorithms.
