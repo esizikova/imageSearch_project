@@ -24,6 +24,6 @@
 \contentsline {section}{\numberline {3.2}Windowed descriptors}{21}{section.3.2}
 \contentsline {section}{\numberline {3.3}Collection understanding methods}{21}{section.3.3}
 \contentsline {section}{\numberline {3.4}Non-Windowed Performance}{22}{section.3.4}
-\contentsline {section}{\numberline {3.5}Windowed Performance}{23}{section.3.5}
-\contentsline {chapter}{\numberline {4}Conclusions and Further Work}{24}{chapter.4}
-\contentsline {section}{\numberline {4.1}Appendix}{26}{section.4.1}
+\contentsline {section}{\numberline {3.5}Windowed Performance}{22}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusions and Further Work}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Appendix}{25}{section.4.1}
