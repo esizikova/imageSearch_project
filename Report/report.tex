@@ -86,9 +86,14 @@ HSV model is a fairly straightforward transformation from the RGB model, as show
 
 In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The saturation and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. \\
 
-{\color{red} @Elena - if you have some nice figure for L*a*b we can put it here}\\
+\begin{figure}[hbtp]
+\centering
+\caption{Visualisation of Comission on Illumination (CIE) $L^*a^*b^*$ Color Space, also known as $L^*a^*b^*$ color space. Image obtained from \cite{lab_blogspot}.}
+\includegraphics[scale=0.2]{graphics/lab_space.jpg}
+\end{figure}
 
-Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. Since $L^*a^*b^*$ aims to be most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
+
+Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. The advantage of $L^*a^*b^*$ color space is that it better preserves color distances, based on human perception, i.e. distances between colors in $L^*a^*b^*$ space are close to the distances humans would give after visual inspection. Since this color space aims to be the most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
 
 \subsection{Color-based Descriptors}
 The color information is widely used for image retrial, since as a descriptor it has a nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, color closely relate to how we percieve images as similar. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
@@ -156,7 +161,7 @@ Consider the decomposition of an image of a building in a city from the GIST dat
 %        \end{subfigure}
         \caption{Phase and power spectra of building image}\label{fig:fft_localization}
 \end{figure}
-As Oliva writes in \cite{gist_descriptor}, the phase image represents local properties of the image. It contains information relative to the form and the position of image components. This can be further understood by taking the true phase values of the image, and setting all the amplitude values to $1$ (effectively taking out all amplitude variation and flattening the image), or taking true amplitude values and randomizing the phase:
+As Oliva and al. write in \cite{gist_descriptor}, the phase image represents local properties of the image. It contains information relative to the form and the position of image components. This can be further understood by taking the true phase values of the image, and setting all the amplitude values to $1$ (effectively taking out all amplitude variation and flattening the image), or taking true amplitude values and randomizing the phase:
 \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.2\textwidth}
@@ -182,11 +187,11 @@ As Oliva writes in \cite{gist_descriptor}, the phase image represents local prop
         \end{subfigure}
         \caption{Analysis of Contributions of both Phase and Amplitude to an Image}\label{fig:fft_randomization}
 \end{figure}
-Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. However, after Oliva \cite{gist_descriptor}, the amplitude image (power spectra) informs us on global properties of the image structure, telling us about the orientation, smoothness, lenght and strenght of the edges that appear in the image.
+Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. However, after \cite{gist_descriptor}, the amplitude image (power spectra) informs us on global properties of the image structure, telling us about the orientation, smoothness, lenght and strenght of the edges that appear in the image.
 Two images that are similar might have different local information in terms of contours appearing in them, however they should have similar power spectra. This insight motivates our decision to investigate the amplitude image for our descriptor, since our goal is do capture the global properties of the image.
 
 \subsection{Localization fact}
-To understand the properties of the $2$-D Fourier Transform more deeply, let us first analyze the $1$-D variant first. Consider the following functions, and their representations in the Fourier domain (\ref{fig:fft_localization}). A plot of $f(x)=\cos {x}$ is not very well localized in the spatial domain, that is, we can inutitively state that function is streteched along the x-axis. In more mathematical terms we can say that a small change in the function domain $\delta_x$ relates to small change $\delta_y$ in the function image.  However, when we analyze same function in the Fourier domain, we notice that its representation is extremly packed --- for $F(cos(x))$, the representation is just a single peak. Conversely, $g(x)=\cos {50x}$ is well localized in the spatial domain, i.e. function can be thought of being squeezed along x-axis. Again, more strict definition would be that small change in the function domain $\delta_x$, relates to dramatic change$\delta_y$, i.e. $\delta_y \gg \delta_x$. However, in the Fourier domain, we observe inverted behaviour - the peaks of the $F(g(x))$ spread apart away from the zero frequency. This simple fact regarding the behavior of Fourier Transfrom suggested us a way of how to describes images in the Fourier domain, analyzing its amplitude image $A(x,y)$. Images containing a lot of high frequency periodicy (buildings, trees) will have more contribution from these (high) frequencies, while images showing open landscapes will mostly consist of low frequencies. Similarly to our approach with color descriptors, we can try to generate bins of different frequencies, and then normalize them to get overall contribution from each frequency range.
+To understand the properties of the $2$-D Fourier Transform more deeply, let us first analyze the $1$-D variant first. Consider the following functions, and their representations in the Fourier domain (\ref{fig:fft_localization}). A plot of $f(x)=\cos {x}$ is not very well localized in the spatial domain, that is, we can inutitively state that function is streteched along the x-axis. In more mathematical terms we can say that a small change in the function domain $\delta_x$ relates to small change $\delta_y$ in the function image.  However, when we analyze same function in the Fourier domain, we notice that its representation is extremly packed --- for $F(cos(x))$, the representation is just a single peak. Conversely, $g(x)=\cos {50x}$ is well localized in the spatial domain, i.e. function can be thought of being squeezed along x-axis. Again, more strict definition would be that small change in the function domain $\delta_x$, relates to dramatic change $\delta_y$, i.e. $\delta_y \gg \delta_x$. However, in the Fourier domain, we observe inverted behaviour - the peaks of the $F(g(x))$ spread apart away from the zero frequency. This simple fact regarding the behavior of Fourier Transfrom suggested us a way of how to describes images in the Fourier domain, analyzing its amplitude image $A(x,y)$. Images containing a lot of high frequency periodicy (buildings, trees) will have more contribution from these (high) frequencies, while images showing open landscapes will mostly consist of low frequencies. Similarly to our approach with color descriptors, we can try to generate bins of different frequencies, and then normalize them to get overall contribution from each frequency range.
 
 \begin{figure}[h]
         \centering
@@ -236,7 +241,7 @@ where $r_0 = \{0, \omega_1\}$ is a range of frequencies from zero to some small 
 One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies. Notice that this analysis discards a lot of information about the distribution of frequency contribution.
 
 \subsection{Frequency-Based Descriptor}
-Given that simple descriptor described in the previous section allowed us to create quite meaningful ordering of images we decided to extend it to give us better information regarding the overall frequency distribution, similarly to our color descriptors. The said extension, simply consider a set of disjoint, uniformly spaced, frequency ranges $\{r_0, r_1, ..., r_n\}$, see fig. \ref{fig:freqDescriptor}.   
+Given that simple descriptor described in the previous section allowed us to create quite meaningful ordering of images we decided to extend it to give us better information regarding the overall frequency distribution, similarly to our color descriptors. The said extension, simply consider a set of disjoint, uniformly spaced, frequency ranges $\{r_0, r_1, ..., r_n\}$, see fig. \ref{fig:freqDescriptor}:
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.3]{graphics/freq_bins.png}
@@ -244,7 +249,7 @@ Given that simple descriptor described in the previous section allowed us to cre
 \label{fig:freqDescriptor}
 \end{figure}
 
-Our descirptor is then a vector $\vec{d}(I)$, of n-values, where each value is simple averaging of frequency values in specific bin, that is then normalized by $N = \sum_x,y A(x,y)$, the averaging of all values in an image. This way, each element $d_i$ give us percentage contribution from each frequency range. We will discuss the performance in chapter \ref{chap:analysis}.\\
+Our descriptor is then a vector $\vec{d}(I)$, of n-values, where each value is simple averaging of frequency values in specific bin, that is then normalized by $N = \sum_x,y A(x,y)$, the averaging of all values in an image. This way, each element $d_i$ gives us the percentage of contribution from each frequency range. We will discuss the performance in chapter \ref{chap:analysis}.\\
 
 {\color{red}Or add the figures with performance here}
 
@@ -492,6 +497,11 @@ This project have not really focused on the color investigation very deeply wher
   \emph{Computer Graphics and Geometric Modelling: Mathematics}.
   Springer; 2005 edition,
   ISBN:1852338172
+  
+\bibitem{lab_blogspot}
+  Molina, Luis.
+  \emph{LAB Color Space (translated from Spanish)}.
+  2010 Blogpost: \url{http://sobrecolores.blogspot.com/2010/03/modo-de-color-lab.html}
   
 \bibitem{HSV_non_uniform}
     D. Androutsos and K. N. Plataniotis and A. N. Venetsanopoulos,
