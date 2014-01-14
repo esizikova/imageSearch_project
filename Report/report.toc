@@ -10,11 +10,11 @@
 \contentsline {section}{\numberline {2.4}Fourier Transform}{8}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Amplitude and Phase Analysis}{8}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Localization fact}{9}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Frequency-Based Descriptor}{11}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.3}Frequency-Based Descriptor}{10}{subsection.2.4.3}
 \contentsline {section}{\numberline {2.5}Singular Value Decomposition}{11}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}SVD and Compression}{12}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Singular Values}{12}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{16}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{15}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{18}{subsection.2.5.4}
 \contentsline {chapter}{\numberline {3}Analysis}{19}{chapter.3}
 \contentsline {chapter}{\numberline {4}Conclusions and Further Work}{20}{chapter.4}

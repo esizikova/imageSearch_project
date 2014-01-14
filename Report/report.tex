@@ -26,7 +26,8 @@ This report explores a variety of image properties which make it possible to und
 
 There are many possible situations in which we would need to understand and compare image structure. For example, one might like to search for a location in which a photograph was taken, by looking at all the other available images, and finding the image closest to the search image. Alternatively, one may want to cluster images based on their content, and see what categories the image collection can be decomposed to. Both of these would be easy problems to solve, if the images were annotated with words; textual search is a well-solved problem. However, when the images are not labelled and the collection size is extremely large, it is impractical to label by hand. For such problems, it is important to have a model to summarize image content automatically.
 
-Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures to create a mathematical model of the image. {\color{red} While the exact implementation is not available, Google Image Search does not provide clustering capabilities of analyzing existing input datasets. [[not sure what this is trying to say?]]} A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a GIST descriptor {\color{red}(cite Freedmans work!!!)}, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates {\color{red}(!!!! Expand)}. 
+Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures to create a mathematical model of the image. While the exact implementation is not available, and hence we cannot begin to analyze the performance of this method, Google Image Search does not provide clustering capabilities or the possibility of analysis of an input dataset.
+{\color{red} [[not sure what this is trying to say?]]} A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a GIST descriptor {\color{red}(cite Freedmans work!!!)}, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates {\color{red}(!!!! Expand)}. 
 
 Having completed a graduate course in algorithms, our goal was to understand the results of such a study, and specifically answer the question: why can we estimate properties of the spatial envelope the way \cite{gist_descriptor} does? 
 
@@ -55,15 +56,16 @@ When decomposing images using SVD or working with the FFT of an image, we chose 
 \subsection{Color Spaces}
 \label{sec:colorSpaces}
 % The subset of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. 
-In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
+In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors, see \ref{fig:rgb_cube}. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{graphics/rgb_cube.png}
 \caption{RGB Cube Model}
+\label{fig:rgb_cube}
 \end{figure}
 
 One of such models is Hue-Saturation-Value model, which were designed to give more intuitive in terms of human color perception, and thus is widely used as color picker in many photo-editing and digital painting packages \cite{color_model_ref}.
-HSV model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}.
+HSV model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}. In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The saturation and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively.
 
 \begin{figure}[hbtp]
         \centering
@@ -91,11 +93,17 @@ HSV model is a fairly straightforward transformation from the RGB model, as show
         \caption{Transformation of the RGB cube to HSV color space}\label{fig:hsv_visualisation}
 \end{figure}
 
-In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The saturation and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively. \\
 
-{\color{red} @Elena - if you have some nice figure for L*a*b we can put it here}\\
 
-Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. Since $L^*a^*b^*$ aims to be most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
+Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. The advantage of $L^*a^*b^*$ color space is that it better preserves color distances, based on human perception, i.e. distances between colors in $L^*a^*b^*$ space are close to the distances humans would give after visual inspection. Since this color space aims to be the most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
+
+\begin{figure}[hbtp]
+ \centering
+ \caption{Visualisation of Comission on Illumination (CIE) $L^*a^*b^*$ Color Space, also known as $L^*a^*b^*$ color space. Image obtained from \cite{lab_blogspot}.}
+ \includegraphics[scale=0.17]{graphics/lab_space.jpg}
+\end{figure}
+ 
+
 
 \subsection{Color-based Descriptors}
 The color information is widely used for image retrial, since as a descriptor it has a nice properties of being rotationally invariant, as well as not being dependent on image resolution. As mentioned in previous section, color closely relate to how we percieve images as similar. Also similar objects will yield similar colors, especially in terms of natural objects ( i.e. forest images will always be mostly green, landscapes will always show a blue sky etc. ). 
@@ -163,7 +171,7 @@ Consider the decomposition of an image of a building in a city from the GIST dat
 %        \end{subfigure}
         \caption{Phase and power spectra of building image}\label{fig:fft_localization}
 \end{figure}
-As Oliva writes in \cite{gist_descriptor}, the phase image represents local properties of the image. It contains information relative to the form and the position of image components. This can be further understood by taking the true phase values of the image, and setting all the amplitude values to $1$ (effectively taking out all amplitude variation and flattening the image), or taking true amplitude values and randomizing the phase:
+As Oliva and al. write in \cite{gist_descriptor}, the phase image represents local properties of the image. It contains information relative to the form and the position of image components. This can be further understood by taking the true phase values of the image, and setting all the amplitude values to $1$ (effectively taking out all amplitude variation and flattening the image), or taking true amplitude values and randomizing the phase:
 \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.2\textwidth}
@@ -189,7 +197,7 @@ As Oliva writes in \cite{gist_descriptor}, the phase image represents local prop
         \end{subfigure}
         \caption{Analysis of Contributions of both Phase and Amplitude to an Image}\label{fig:fft_randomization}
 \end{figure}
-Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. However, after Oliva \cite{gist_descriptor}, the amplitude image (power spectra) informs us on global properties of the image structure, telling us about the orientation, smoothness, lenght and strenght of the edges that appear in the image.
+Note that a reconstructed image in which the amplitude information was not preserved retains the information about the edges and outlines in the original image. However, after \cite{gist_descriptor}, the amplitude image (power spectra) informs us on global properties of the image structure, telling us about the orientation, smoothness, lenght and strenght of the edges that appear in the image.
 Two images that are similar might have different local information in terms of contours appearing in them, however they should have similar power spectra. This insight motivates our decision to investigate the amplitude image for our descriptor, since our goal is do capture the global properties of the image.
 
 \subsection{Localization fact}
@@ -513,6 +521,11 @@ Our data base provided pictures from 8 categories, and provided labels were desc
 	Computer Vision and Image Understanding 
 	Vol 94: 44-66,
 	2004
+	
+\bibitem{lab_blogspot}
+   Molina, Luis.
+   \emph{LAB Color Space (translated from Spanish)}.
+   2010 Blogpost: \url{http://sobrecolores.blogspot.com/2010/03/modo-de-color-lab.html}
 
 \end{thebibliography}
 
