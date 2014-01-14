@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.25)  14 JAN 2014 17:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.25)  14 JAN 2014 18:26
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -655,39 +655,13 @@ File: graphics/singular_vectors_forest.pdf Graphic file (type pdf)
 gonal.pdf> <./graphics/singular_vectors_coast.pdf> <./graphics/singular_vectors
 _forest.pdf>] [19]
 Chapter 3.
-
-LaTeX Warning: Reference `sec:non_windowed' on page 20 undefined on input line 
-460.
-
-
-LaTeX Warning: Reference `sec:windowed' on page 20 undefined on input line 460.
-
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 462--463
-
- []
-
 [20
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 470--471
-
- []
-
-
-LaTeX Warning: Reference `sec:non_windowed' on page 21 undefined on input line 
-476.
-
-
-LaTeX Warning: Reference `sec:windowed' on page 21 undefined on input line 476.
-
-
-
 
 pdfTeX warning: pdflatex (file ./graphics/non_windowed_knearest.pdf): PDF inclu
 sion: found PDF version <1.5>, but at most version <1.4> allowed
-<graphics/non_windowed_knearest.pdf, id=820, 808.01875pt x 602.25pt>
+<graphics/non_windowed_knearest.pdf, id=824, 808.01875pt x 602.25pt>
 File: graphics/non_windowed_knearest.pdf Graphic file (type pdf)
 
 <use graphics/non_windowed_knearest.pdf> [21] [22 <./graphics/non_windowed_knea
@@ -695,7 +669,7 @@ rest.pdf>]
 
 pdfTeX warning: pdflatex (file ./graphics/windowed_knearest.pdf): PDF inclusion
 : found PDF version <1.5>, but at most version <1.4> allowed
-<graphics/windowed_knearest.pdf, id=1079, 808.01875pt x 602.25pt>
+<graphics/windowed_knearest.pdf, id=1083, 808.01875pt x 602.25pt>
 File: graphics/windowed_knearest.pdf Graphic file (type pdf)
 
 <use graphics/windowed_knearest.pdf> [23 <./graphics/windowed_knearest.pdf>]
@@ -704,7 +678,7 @@ Chapter 4.
 [25
 
 ]
-Underfull \hbox (badness 1033) in paragraph at lines 575--579
+Underfull \hbox (badness 1033) in paragraph at lines 579--583
 []\OT1/cmr/m/n/10 Agoston, Max K. \OT1/cmr/m/it/10 Com-puter Graph-ics and Ge-o
 -met-ric Mod-elling: Math-e-mat-ics\OT1/cmr/m/n/10 . Springer; 2005 edi-tion,
  []
@@ -712,7 +686,7 @@ Underfull \hbox (badness 1033) in paragraph at lines 575--579
 [26
 
 ] [27]
-<graphics/windowed_kmeans.pdf, id=1356, page=1, 190.7928pt x 589.48233pt>
+<graphics/windowed_kmeans.pdf, id=1362, page=1, 190.7928pt x 589.48233pt>
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1>
@@ -728,7 +702,7 @@ File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 File: graphics/windowed_kmeans.pdf Graphic file (type pdf)
 
 <use graphics/windowed_kmeans.pdf, page 1> [28 <./graphics/windowed_kmeans.pdf>
-] <graphics/windowed_mds.pdf, id=1372, page=1, 807.25589pt x 763.4121pt>
+] <graphics/windowed_mds.pdf, id=1378, page=1, 807.25589pt x 763.4121pt>
 File: graphics/windowed_mds.pdf Graphic file (type pdf)
 
 <use graphics/windowed_mds.pdf, page 1>
@@ -746,20 +720,17 @@ File: graphics/windowed_mds.pdf Graphic file (type pdf)
 <use graphics/windowed_mds.pdf, page 1> [29 <./graphics/windowed_mds.pdf>]
 (./report.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6738 strings out of 495061
- 105089 string characters out of 1182621
+ 6740 strings out of 495061
+ 105113 string characters out of 1182621
  182748 words of memory out of 3000000
- 9668 multiletter control sequences out of 15000+50000
+ 9670 multiletter control sequences out of 15000+50000
  14774 words of font info for 57 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,16n,39p,1737b,523s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,39p,1740b,523s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -778,9 +749,9 @@ s/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/ms
 bm10.pfb>
-Output written on report.pdf (30 pages, 15578169 bytes).
+Output written on report.pdf (30 pages, 15580265 bytes).
 PDF statistics:
- 1467 PDF objects out of 1728 (max. 8388607)
+ 1473 PDF objects out of 1728 (max. 8388607)
  99 named destinations out of 1000 (max. 500000)
  468 words of extra memory for PDF output out of 10000 (max. 10000000)
 
