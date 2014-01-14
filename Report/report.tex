@@ -3,6 +3,7 @@
 \usepackage[margin=0.75in]{geometry}
 \usepackage{hyperref}
 \usepackage{amsfonts}
+\usepackage{pdfpages}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{caption}
@@ -25,7 +26,7 @@ There are many possible situations in which we would need to understand and comp
 
 Existing methods of image search by analyzing content of the image include Google Goggles and Google Image Search, both are based on similar technology \cite{google_blog}, which checks for distinctive points, analyzes lines and textures to create a mathematical model of the image. While the exact implementation is not available, and hence we cannot begin to analyze the performance of this method, Google Image Search does not provide clustering capabilities or the possibility of analysis of an input dataset.
 
-A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a GIST descriptor {\color{red}(cite Freedmans work - @Elena what work?)}, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates. The concise representation of an image using few well understood parameters served as an inspiration for our investigation in this project, by analysis of the image properties using FFT and SVD we tried to discover parameters that allow us to organize collections of images.
+A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which creates a descriptor, also known as the GIST descriptor, and uses perceptual dimensions (e.g. naturalness, openness, roughness, expansion, ruggedness) to classify natural images (e.g. pictures of coasts, mountains, or cities). The author's work with a low dimensional representation of a scene is collectively known as the \emph{Spatial Envelope}. The properties of the spatial envelope are estimated by means of Discrete Fourier Transform (DFT), Windowed Fourier transform (WFT), as well as spectral properties of the image are estimates. The concise representation of an image using few well understood parameters served as an inspiration for our investigation in this project, by analysis of the image properties using FFT and SVD we tried to discover parameters that allow us to organize collections of images.
 
 In our work we mainly focus on looking at image color distribution, frequency transform, and singular value decomposition.
 As mentioned above analysis of image's frequency domain has yielded a very good descriptors, so naturally we decided to investigate the way such descriptors can be obtained. Similarly after seeing how well the SVD performs for image compression we have hoped to obtain a low dimensional descriptor that could be used for image comparison.
@@ -611,6 +612,11 @@ Our data base provided pictures from 8 categories, and provided labels were desc
 
 
 \end{thebibliography}
+
+\section{Appendix}
+\includepdf[pages={1}]{graphics/windowed_kmeans.pdf}
+\includepdf[pages={1}]{graphics/windowed_mds.pdf}
+
 
 \end{document}
 
