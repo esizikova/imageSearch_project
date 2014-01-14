@@ -469,9 +469,20 @@ Our frequency descriptor, that looks at the contributions from various bands of 
 As discussed in section \ref{sec:SVDDescriptor} the SVD based descriptor looks at frequencies of first singular vectors of 3 versions of input image, one being rotated by $45^\circ$ and second rotated by $-45^\circ$. Thus in total we consider 6 singular vectors $\vec{u}_0, \vec{v}_0, \vec{u}_{45}, \vec{v}_{45},, \vec{u}_{-45}, \vec{v}_{-45}$, and look at their frequency transform, preserving top 30 frequencies. Thus in total we have descriptor $d_3(I)$ of length $|d_3(I)| = 180$.
  
 \section{Windowed descriptors}
+
 For natural images computing the descriptor over the whole image might led to two images with different appearance be placed in our space quite close by, especially for our color based descriptor. Thus we decided, similar to \cite{gist_descriptor}, compute a windowed version of our descriptors, where we divide our images into $n$ by $m$ grid ( in our implementation we use $n = m = 4 $ ), and compute our descriptor for each of the cells. Then we concatenate the descriptor from each cell to create a new windowed descriptor of length $|d_w(I)| = n \cdot m \cdot |d_a(I)|$. This change improved our results, as shown in section \ref{sec:non_windowed}, which will discuss the performance of non-windowed version and in section \ref{sec:windowed} 
 
-\section{Collection understating methods}
+\section{Collection understanding methods}
+
+In order to judge descriptor performance we used a confusion matrix as well as unmodified Matlab implementations of the following algorithms: multidimensional scaling, k-means clustering, and k-nearest neighbor searching. A confusion matrix is a simple visualization of pairwise distances between images of different categories. For each of the Matlab algorithms the motivation for using it is given, along with a short description of the version used. 
+
+Multidimensional scaling is an algorithm used for visualization high-dimensional pairwise euclidean distances in N-dimensional space. The embedding attempts to preserve some measure of input pairwise distance in a lower dimension. For our purposes, we chose to use Matlab's classic (metric based) multidimensional scaling algorithm for embedding into two dimensional space. This visualization provides an idea of what properties of an image a descriptor is differentiating by. For example, if the spread of images seems to correlate only to image color then we know that the descriptor is heavily biased towards differences in color.
+
+K-means clustering attempts to partition a set of objects into $k$ clusters in which each object belongs to the cluster with the nearest mean. We cluster by the squared euclidean distances between our descriptors. This clustering allows us to quickly see if a descriptor groups images from the same category or similar visual appearance together.
+
+K-nearest neighbors is an algorithm which takes a test object and compares it to objects in a given feature space to return an output based on the k-nearest neighbors within that space. In our case we build the feature space with all the image descriptors and then query into it to return the index of the k-nearest images within that space. Retrieving images visually similar to a query image is the ultimate goal of our descriptor design, so this visualization gives us an idea of how well our descriptors ultimately perform.
+
+>>>>>>> 91f6938957d37a037c106b88adcae30123828796
 \section{Non-Windowed Performance}
 \section{Windowed Performance}
 

@@ -70,3 +70,31 @@ temp = diag(S); plot(x(2:10:256),temp(2:10:256), 'b+')
 legend('Coast','Forest','Street','Tall Building')
 title('Singular Values of Natural Images')
 hold off
+
+% log scale
+[U,S,V] = svd(double(coast));
+x = [1:256];
+temp = diag(S); semilogy(x(1:10:256),temp(1:10:256), 'mx')
+hold on
+[U,S,V] = svd(double(forest));
+temp = diag(S); semilogy(x(1:10:256),temp(1:10:256), 'r*')
+[U,S,V] = svd(double(street));
+temp = diag(S); semilogy(x(1:10:256),temp(1:10:256), 'ko')
+[U,S,V] = svd(double(tallbuilding));
+temp = diag(S); semilogy(x(1:10:256),temp(1:10:256), 'b+')
+legend('Coast','Forest','Street','Tall Building')
+title('Singular Values of Natural Images')
+hold off
+
+%%%%%%%%%% Top singular vector plots
+[U,S,V] = svd(double(randomFullSpace));
+figure;
+num_sv = 1;
+num_rows = 3;
+for i = 1:num_sv
+    sv_img = uint8(U(:,i)*S(i,i)*V(:,i)');
+    subplot(num_rows,num_sv,1); imshow(sv_img); title(['SV',int2str(i),': ', int2str(S(i,i))])
+    subplot(num_rows,num_sv,2); plot(U(:,i)); xlim([1,256]); title('U')
+    subplot(num_rows,num_sv,3); plot(V(:,i)); xlim([1,256]); title('V')
+end
+set(gcf, 'Position', [682 489 180 500])

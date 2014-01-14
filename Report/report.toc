@@ -1,25 +1,28 @@
-\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
-\contentsline {section}{\numberline {1.1}Abstract}{2}{section.1.1}
-\contentsline {section}{\numberline {1.2}Background Work}{2}{section.1.2}
-\contentsline {chapter}{\numberline {2}Methods}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Data}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Implementation}{4}{section.2.2}
-\contentsline {section}{\numberline {2.3}Color Analysis}{5}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Color Spaces}{5}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Color-based Descriptors}{6}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Fourier Transform}{8}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Amplitude and Phase Analysis}{8}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Localization fact}{9}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Frequency-Based Descriptor}{10}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Singular Value Decomposition}{11}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}SVD and Compression}{12}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Singular Values}{12}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{15}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{18}{subsection.2.5.4}
-\contentsline {chapter}{\numberline {3}Analysis}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Overview of best performing descriptors}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Windowed descriptors}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Collection understanting methods}{19}{section.3.3}
-\contentsline {section}{\numberline {3.4}Non-Windowed Perfromance}{19}{section.3.4}
-\contentsline {section}{\numberline {3.5}Windowed Performance}{19}{section.3.5}
-\contentsline {chapter}{\numberline {4}Conclusions and Further Work}{20}{chapter.4}
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Abstract}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Background Work}{3}{section.1.2}
+\contentsline {chapter}{\numberline {2}Methods}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Data}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Implementation}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Color Analysis}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Color Spaces}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Color-based Descriptors}{7}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Fourier Transform}{9}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Amplitude and Phase Analysis}{9}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Localization fact}{10}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Frequency-Based Descriptor}{11}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Singular Value Decomposition}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}SVD and Compression}{13}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Singular Values}{13}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{16}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{19}{subsection.2.5.4}
+\contentsline {chapter}{\numberline {3}Analysis}{20}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview of best performing descriptors}{20}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1} Color-Based Descriptor }{20}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2} Frequency-Based Descriptor }{20}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3} SVD-Based Descriptor}{21}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Windowed descriptors}{21}{section.3.2}
+\contentsline {section}{\numberline {3.3}Collection understanding methods}{21}{section.3.3}
+\contentsline {section}{\numberline {3.4}Non-Windowed Performance}{22}{section.3.4}
+\contentsline {section}{\numberline {3.5}Windowed Performance}{22}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusions and Further Work}{23}{chapter.4}
