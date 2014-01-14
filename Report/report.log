@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.25)  14 JAN 2014 15:53
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.25)  14 JAN 2014 16:00
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -443,23 +443,23 @@ Chapter 1.
 Chapter 2.
 [5
 
-] <graphics/rgb_cube.png, id=202, 321.2pt x 244.915pt>
+] <graphics/rgb_cube.png, id=203, 321.2pt x 244.915pt>
 File: graphics/rgb_cube.png Graphic file (type png)
 
 <use graphics/rgb_cube.png>
-<graphics/hsv_cube.png, id=205, 331.2375pt x 203.76125pt>
+<graphics/hsv_cube.png, id=206, 331.2375pt x 203.76125pt>
 File: graphics/hsv_cube.png Graphic file (type png)
 
 <use graphics/hsv_cube.png>
-Underfull \hbox (badness 1917) in paragraph at lines 79--79
+Underfull \hbox (badness 1917) in paragraph at lines 78--78
 []\OT1/cmr/m/n/9 (a) |The RGB cube viewed along
  []
 
-<graphics/hsv_rescale1.png, id=206, 288.07625pt x 249.93375pt>
+<graphics/hsv_rescale1.png, id=207, 288.07625pt x 249.93375pt>
 File: graphics/hsv_rescale1.png Graphic file (type png)
 
 <use graphics/hsv_rescale1.png>
-<graphics/hsv_rescale2.png, id=207, 291.0875pt x 249.93375pt>
+<graphics/hsv_rescale2.png, id=208, 291.0875pt x 249.93375pt>
 File: graphics/hsv_rescale2.png Graphic file (type png)
 
 <use graphics/hsv_rescale2.png> [6 <./graphics/rgb_cube.png (PNG copy)>]
@@ -526,7 +526,7 @@ File: graphics/FrequencyOrdered.png Graphic file (type png)
 File: graphics/freq_bins.png Graphic file (type png)
 
 <use graphics/freq_bins.png>
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
@@ -657,30 +657,30 @@ _forest.pdf>] [19]
 Chapter 3.
 
 LaTeX Warning: Reference `sec:non_windowed' on page 20 undefined on input line 
-462.
+461.
 
 
-LaTeX Warning: Reference `sec:windowed' on page 20 undefined on input line 462.
+LaTeX Warning: Reference `sec:windowed' on page 20 undefined on input line 461.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--465
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 
  []
 
 [20
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
 
  []
 
 
 LaTeX Warning: Reference `sec:non_windowed' on page 21 undefined on input line 
-478.
+477.
 
 
-LaTeX Warning: Reference `sec:windowed' on page 21 undefined on input line 478.
+LaTeX Warning: Reference `sec:windowed' on page 21 undefined on input line 477.
 
 
 [21] [22]
@@ -688,7 +688,7 @@ Chapter 4.
 [23
 
 ]
-Underfull \hbox (badness 1033) in paragraph at lines 542--546
+Underfull \hbox (badness 1033) in paragraph at lines 541--545
 []\OT1/cmr/m/n/10 Agoston, Max K. \OT1/cmr/m/it/10 Com-puter Graph-ics and Ge-o
 -met-ric Mod-elling: Math-e-mat-ics\OT1/cmr/m/n/10 . Springer; 2005 edi-tion,
  []
@@ -785,7 +785,7 @@ s/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/ms
 bm10.pfb>
-Output written on report.pdf (28 pages, 40098858 bytes).
+Output written on report.pdf (28 pages, 40098921 bytes).
 PDF statistics:
  2404 PDF objects out of 2487 (max. 8388607)
  95 named destinations out of 1000 (max. 500000)

@@ -31,8 +31,8 @@ A more relevant study is that of Oliva and Torralba \cite{gist_descriptor} which
 In our work we mainly focus on looking at image Color Distribution, Frequency Transform, and Singular Value Decomposition (SVD).
 As mentioned above, analysis of the frequency domain in images has yielded very well-performing descriptors, so naturally we decided to investigate the way such descriptors can be obtained. Similarly after seeing how well the SVD performs for image compression we have hoped to obtain a low-dimensional descriptor that could be used for image comparison.
 
-There is a huge amount of work being done in the content-based image retrieval, as seen by the sheer amount of available surveys \cite{survey1}\cite{survey2}\cite{survey3}. In general the overall approach is to compute an image descriptor based on the color, texture and shape information, and then use these vectors in to compute similarity. As seen in aforementioned surveys there is a lot of variation in terms of how the features are computed, what are the exact features we look at (which might vary depending on the application ) and then how the results are aggregated and use for analysis.
-In our work we have used similar approach where we compute vectors according to a set of detected features, and then use them for similarity comparisons. However due to time limitations we did not focus on the shape features \cite{sift}, but more on the global image structure that we can understand by doing analysis of Fourier Transform and SVD. With that in mind we used a dataset distributed with \cite{gist_descriptor}, which contains a set of images of exterior environments. This dataset does not contain objects, which would clearly need the use of some more involved descriptors.
+There is a huge amount of work being done in the content-based image retrieval, as seen by the sheer amount of available surveys \cite{survey1}\cite{survey2}\cite{survey3}. In general the overall approach is to compute an image descriptor based on the color, texture and shape information, and then use these vectors in to compute similarity. As seen in aforementioned surveys there is a lot of variation in terms of how the features are computed, what are the exact features we look at (which might vary depending on the application ) and then how the results are aggregated and used for analysis.
+In our work we have used a similar approach where we compute vectors according to a set of detected features, and then use the resulting vectors for similarity comparisons. However due to time limitations we did not focus on the shape features \cite{sift}, but more on the global image structure that we can understand by doing analysis of Fourier Transform and SVD. With that in mind we used a dataset distributed with \cite{gist_descriptor}, which contains a set of images of exterior environments. This dataset does not contain objects, which would clearly need the use of some more involved descriptors.
 
 %Having completed a graduate course in algorithms, our goal was to understand the results of such a study, and specifically answer the question: why can we estimate properties of the spatial envelope the way \cite{gist_descriptor} does? 
 
@@ -46,7 +46,7 @@ In this project, we analyze image structure from three directions: color distrib
 The dataset that we have used for exploring image structure has been provided by Oliva and Torralba \cite{gist_descriptor}. The dataset contains 2600, 256x256 color images labeled as one of 8 outdoor scene categories: coast, mountain, forest, open country, street, inside city, tall buildings and highways. The images in the dataset are varied in complexity: from very simple, planar scenes (e.g. a ground and sky) to very complex and busy images (e.g. cars, people, and buildings in a city). This dataset was chosen because it provides a full range of colors, complexities, and textures, and because image categories allow us to easily pick images with similar physical content.
 
 \section{Implementation}
-All of the analysis and implementation for the project was done in Matlab in order to take advantage of the efficient implementations of SVD, FFT, MDS, k-means clustering, k-nearest neighbors, and various image statistics. All algorithms are implemented using the standard Matlab versions unless otherwise noted. Our analysis is structured into the following three steps:
+All of the analysis and implementation for the project was done in Matlab in order to take advantage of the efficient implementations of SVD, FFT, MDS, $k$-means clustering, $k$-nearest neighbors, and various image statistics. All algorithms are implemented using the standard Matlab packages unless otherwise noted. Our analysis is structured into the following three steps:
 \begin{enumerate}
   \item We perform an exploratory examination of images to see what attributes provide a good summary of a certain image property (e.g. smoothness, visual complexity, etc).
   \item We use a low-dimensional representation of that attribute as an image descriptor.
@@ -59,9 +59,8 @@ When decomposing images using SVD or working with the FFT of an image, we chose 
 \section{Color Analysis}
 \label{sec:color}
 \subsection{Color Spaces}
-\label{sec:colorSpaces}
-% The subset of image colors that can be seen on a computer monitor are known as \emph{gamut}, see \cite{color_model_ref}. As we only considered computer images in .jpg and .png formats, we were mainly concerned with the models that represent the gamut. 
-In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors, see \ref{fig:rgb_cube}. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
+\label{sec:colorSpaces} 
+In computer graphics the subset of colors which can be displayed by computer monitor is called \emph{gamut}\cite{color_model_ref}. There are many models which aim to represent the gamut --- one of the most common and well-known such models is known as the RGB model, in which color at every pixel is a combination of three intensity values, of the Red, Green, and Blue base colors, see \ref{fig:rgb_cube}. RGB models how devices produce colors, so our initial intuition was to look at models that model human vision more closely.  
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{graphics/rgb_cube.png}
@@ -69,7 +68,7 @@ In computer graphics the subset of colors which can be displayed by computer mon
 \label{fig:rgb_cube}
 \end{figure}
 
-One of such models is Hue-Saturation-Value model, which were designed to give more intuitive in terms of human color perception, and thus is widely used as color picker in many photo-editing and digital painting packages \cite{color_model_ref}.
+One of such model is the Hue-Saturation-Value (HSV) model, which was designed to give more intuitive in terms of human color perception, and thus is widely used as color picker in many photo-editing and digital painting packages \cite{color_model_ref}.
 HSV model is a fairly straightforward transformation from the RGB model, as shown in \ref{fig:hsv_visualisation}. In particular, the hue varies from $0^{\circ}$ to $360^{\circ}$, and represents the color. The saturation and value are numbers in the range $[0,1]$ which represent how far is the hue from white and black, respectively.
 
 \begin{figure}[hbtp]
@@ -100,7 +99,7 @@ HSV model is a fairly straightforward transformation from the RGB model, as show
 
 
 
-Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer magenta. For $b*$ negative values give blue color, while positive values relate to yellow. The advantage of $L^*a^*b^*$ color space is that it better preserves color distances, based on human perception, i.e. distances between colors in $L^*a^*b^*$ space are close to the distances humans would give after visual inspection. Since this color space aims to be the most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
+Another color space which we have considered in this work was the $L^*a^*b^*$ color space which also has been designed to model the human perception closely. $L^*$ parameter control the overall lightness of the image, ranging from $L=0$ being black, and $L=100$ yielding white. Both $a^*$ and $b^*$ range from negative to positive values, where negative $a*$ yields, and positive values give colors closer to magenta. For $b*$ negative values give blue color, while positive values relate to yellow. The advantage of $L^*a^*b^*$ color space is that it better preserves color distances, based on human perception, i.e. distances between colors in $L^*a^*b^*$ space are close to the distances humans would give after visual inspection. Since this color space aims to be the most complete color model that represents all colors that are perceived by human vision it was a clear choice to investigate what improvements we might get from the incorporation L*a*b* in our color descriptors, which will be introduced in next section.
 
 \begin{figure}[hbtp]
  \centering
