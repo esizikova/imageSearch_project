@@ -14,5 +14,7 @@
 \BOOKMARK [1][-]{section.2.5}{Singular Value Decomposition}{chapter.2}% 14
 \BOOKMARK [2][-]{subsection.2.5.1}{SVD and Compression}{section.2.5}% 15
 \BOOKMARK [2][-]{subsection.2.5.2}{Singular Values}{section.2.5}% 16
-\BOOKMARK [0][-]{chapter.3}{Analysis}{}% 17
-\BOOKMARK [0][-]{chapter.4}{Suggestions for Further Work}{}% 18
+\BOOKMARK [2][-]{subsection.2.5.3}{Singular Vectors}{section.2.5}% 17
+\BOOKMARK [2][-]{subsection.2.5.4}{A meaningful descriptor}{section.2.5}% 18
+\BOOKMARK [0][-]{chapter.3}{Analysis}{}% 19
+\BOOKMARK [0][-]{chapter.4}{Suggestions for Further Work}{}% 20

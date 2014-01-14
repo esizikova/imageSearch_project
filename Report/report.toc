@@ -14,5 +14,7 @@
 \contentsline {section}{\numberline {2.5}Singular Value Decomposition}{10}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}SVD and Compression}{11}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Singular Values}{12}{subsection.2.5.2}
-\contentsline {chapter}{\numberline {3}Analysis}{15}{chapter.3}
-\contentsline {chapter}{\numberline {4}Suggestions for Further Work}{16}{chapter.4}
+\contentsline {subsection}{\numberline {2.5.3}Singular Vectors}{15}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}A meaningful descriptor}{17}{subsection.2.5.4}
+\contentsline {chapter}{\numberline {3}Analysis}{18}{chapter.3}
+\contentsline {chapter}{\numberline {4}Suggestions for Further Work}{19}{chapter.4}
