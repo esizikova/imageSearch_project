@@ -312,7 +312,99 @@ Figure \ref{fig:rank1_images} shows very simple rank 1 images that only require 
         \label{fig:rand_symmetry}
 \end{figure}
 
-Figure \ref{fig:rand_symmetry} shows that the amount of symmetry within an image can greatly reduce the number of singular values required for reconstruction (in this case by half, since half of the image was repeated). However, this also shows a major issue with directly using the output of SVD for an image descriptor. An image which has symmetry off-axis at a $45^\circ$ angle will still have linearly independent vectors in $U$ and $V$ as the image is still full rank. Despite the fact that half of the image is repeated, the distribution of singular values is nearly identical to the image with no symmetry. It should be noted that $45^\circ$ is chosen because it represents the worst-case off-axis example. Angles above and below will experience some level of symmetry in either the horizontal or vertical direction.
+Figure \ref{fig:rand_symmetry} shows that the amount of symmetry within an image can greatly reduce the number of singular values required for reconstruction (in this case by half, since half of the image was repeated). The direction of symmetry along the horizontal or vertical axis has very little affect on the distribution of singular values. However, an image which has symmetry off-axis at a $45^\circ$ angle will still have linearly independent vectors in $U$ and $V$ as the image is still full rank. Despite the fact that half of the image is repeated, the distribution of singular values is nearly identical to the image with no symmetry. It should be noted that $45^\circ$ is chosen because it represents the worst-case off-axis example. Angles above and below will experience some level of symmetry in either the horizontal or vertical direction.
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.17\textwidth}
+                \begin{subfigure}[H]{\textwidth}
+                	\includegraphics[width=\textwidth]{graphics/coast.png}
+                	\caption{Coast}
+        		\end{subfigure}
+        		\begin{subfigure}[b]{\textwidth}
+        			\includegraphics[width=\textwidth]{graphics/forest.png}
+        			\caption{Forest}
+        		\end{subfigure}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.17\textwidth}
+        		\begin{subfigure}[b]{\textwidth}
+                	\includegraphics[width=\textwidth]{graphics/street.png}
+                	\caption{Street}
+        		\end{subfigure}
+        		\begin{subfigure}[b]{\textwidth}
+        			\includegraphics[width=\textwidth]{graphics/tallbuilding.png}
+        			\caption{Building}
+        		\end{subfigure}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.55\textwidth}
+                \includegraphics[width=\textwidth]{graphics/singular_values_natural_images_log.pdf}
+                \caption{Plot of singular values (log-scale)}
+        \end{subfigure}
+        \caption{Examination of singular values for natural image classes}
+        \label{fig:singular_values_natural}
+\end{figure}
+
+Figure \ref{fig:singular_values_natural} shows a sample of the distribution of singular values for natural images which vary quite a bit in terms of complexity and repeated structure within the image. Images with high repeated structure aligned to the horizontal (a,c) or vertical (d) direction decay more quickly than images with less repeated structure (b). Despite being similar in the repeated structure of the image, the coast and street images are quite different otherwise but have a very similar distribution of singular values. The detail provided by the respective eigenvectors will be helpful in creating a descriptor which differentiates these two images.
+
+\subsection{Singular Vectors}
+
+The left and right singular vectors, given by $U$ and $V$ are vectors in the row and column space of the image $A$. Since the singular values in $S$ are ordered from highest to lowest, the vectors of $U$ and $V$ are conveniently ordered from those with the highest contribution to those with the lowest. In order to get a better understanding of the singular vectors we examine the same low-rank images from Figure \ref{fig:rank1_images}. 
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.2\textwidth}
+                \includegraphics[width=\textwidth]{graphics/singular_vectors_gradient.pdf}
+                \caption{Gradient}
+        \end{subfigure}
+        ~~~
+        \begin{subfigure}[b]{0.2\textwidth}
+                \includegraphics[width=\textwidth]{graphics/singular_vectors_horizontal.pdf}
+                \caption{Vertical}
+        \end{subfigure}
+        ~~~
+        \begin{subfigure}[b]{0.19\textwidth}
+        		\includegraphics[width=\textwidth]{graphics/singular_vectors_vertical.pdf}
+        		\caption{Horizontal}
+        \end{subfigure}
+        \caption{1st singular value composite image (top), left singular vector (mid), and right singular vector (bottom) }
+        \label{fig:rank1_vectors}
+\end{figure}
+
+Figure \ref{fig:rank1_vectors} shows the first composite image that results from the multiplication of the first singular value by the first singular vectors. Since these images are rank 1, all other singular values are $0$ and are not shown. Variation of color in the horizontal direction is caused solely by singular vectors from V and variation in the vertical direction is caused by singular vectors from U. For low-rank matrices, the use of singular vectors as descriptors would preform well and would provide additional information above singular values (orientation of color change). However, similar to the problems summarized in Figure \ref{fig:rand_symmetry}, off-axis color change leads to much different results.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{graphics/singular_vectors_diagonal.pdf}
+        \caption{singular value composite image (top), left singular vector (mid), and right singular vector (bottom)}
+        \label{fig:diagonal_vectors}
+\end{figure}
+
+Figure \ref{fig:diagonal_vectors} shows an example of worst case off-axis color change. Since color change does not align with either axis, the matrix is full rank and the decomposition requires all singular values. This case shows why a direct use of singular vectors to compare images (or singular values) is difficult. Although this image is arguable similar to the horizontal and vertical line images in Figure \ref{fig:rank1_vectors}, it has a much different decomposition.
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+                \includegraphics[width=\textwidth]{graphics/singular_vectors_coast.pdf}
+                \caption{Coast}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.48\textwidth}
+                \includegraphics[width=\textwidth]{graphics/singular_vectors_forest.pdf}
+                \caption{Forest}
+        \end{subfigure}
+        \caption{A comparison between top singular vectors and values of natural images}
+        \label{fig:natural_vectors}
+\end{figure}
+
+Figure \ref{fig:natural_vectors} shows the top contributing singular vectors for a pair of natural images. The benefit of using singular vectors over singular values is again made clear here. Although the distribution of singular values is rather close between the two images (Figure \ref{fig:singular_values_natural}), the singular vectors capture an image's local variation as noise in their contribution. The coast has smooth transitions of color while the forest has sharp and frequent differences. This property gives an overall estimation of the complexity of structure in the image.
+
+\subsection{A meaningful descriptor}
+
+The distribution of singular values has been shown to provide a rough estimation of the amount of symmetry and repeated structure in an image, while doing little to capture more complex local structures. Singular vectors improve upon this to capture local variation as noise in the values of the vectors that contribute the most to an image's reconstruction. Both singular values and singular vectors are skewed by the fact that the decomposition depends heavily on image structure being aligned to the row bases or column bases.
+
+To account for the effects of axis alignment, we simply take an image and rotate it by $45^\circ$ and $-45^\circ$ and concatenate descriptors for both the rotated and non-rotated images. The motivation for this construction being that if there is structure aligned along a line in the image (axis or off-axis), then a $45^\circ$ rotation will bring that closer to (or further from) an axis. Images with no linear structure should see little change from rotation.
+
+To capture local noise in singular vectors we decide to take the FFT of the singular vectors rather than use them directly. This will capture the high frequency components of a noisy vector (such as the forest in \ref{fig:natural_vectors}) as well as the low frequency changes of a coastline or street.
 
 \chapter{Analysis}
 
