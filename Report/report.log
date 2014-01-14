@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  13 JAN 2014 14:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  13 JAN 2014 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -239,28 +239,7 @@ Package color Info: Driver file: pdftex.def on input line 130.
 )
 (./report.aux
 
-LaTeX Warning: Label `fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `fig:tiger' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:tiger' multiply defined.
-
-
-LaTeX Warning: Label `fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:mouse' multiply defined.
+LaTeX Warning: Label `fig:colSpaces' multiply defined.
 
 
 LaTeX Warning: Label `fig:gull' multiply defined.
@@ -279,6 +258,42 @@ LaTeX Warning: Label `fig:tiger' multiply defined.
 
 
 LaTeX Warning: Label `sub@fig:tiger' multiply defined.
+
+
+LaTeX Warning: Label `fig:gull' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:gull' multiply defined.
+
+
+LaTeX Warning: Label `fig:mouse' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:mouse' multiply defined.
+
+
+LaTeX Warning: Label `fig:tiger' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:tiger' multiply defined.
+
+
+LaTeX Warning: Label `fig:gull' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:gull' multiply defined.
+
+
+LaTeX Warning: Label `fig:tiger' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:tiger' multiply defined.
+
+
+LaTeX Warning: Label `fig:mouse' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:mouse' multiply defined.
 
 
 LaTeX Warning: Label `fig:mouse' multiply defined.
@@ -288,36 +303,6 @@ LaTeX Warning: Label `sub@fig:mouse' multiply defined.
 
 
 LaTeX Warning: Label `fig:fft_localization' multiply defined.
-
-
-LaTeX Warning: Label `fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `fig:tiger' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:tiger' multiply defined.
-
-
-LaTeX Warning: Label `fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:gull' multiply defined.
-
-
-LaTeX Warning: Label `fig:mouse' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:mouse' multiply defined.
 
 )
 \openout1 = `report.aux'.
@@ -449,185 +434,269 @@ Chapter 1.
 
 ] [3]
 Chapter 2.
-<graphics/rgb_cube.png, id=121, 321.2pt x 244.915pt>
+<graphics/rgb_cube.png, id=127, 321.2pt x 244.915pt>
 File: graphics/rgb_cube.png Graphic file (type png)
 
 <use graphics/rgb_cube.png>
-Package pdftex.def Info: graphics/rgb_cube.png used on input line 52.
+Package pdftex.def Info: graphics/rgb_cube.png used on input line 53.
 (pdftex.def)             Requested size: 160.59961pt x 122.45718pt.
  [4
 
 ]
-<graphics/hsv_cube.png, id=129, 331.2375pt x 203.76125pt>
+<graphics/hsv_cube.png, id=135, 331.2375pt x 203.76125pt>
 File: graphics/hsv_cube.png Graphic file (type png)
 
 <use graphics/hsv_cube.png>
-Package pdftex.def Info: graphics/hsv_cube.png used on input line 62.
+Package pdftex.def Info: graphics/hsv_cube.png used on input line 63.
 (pdftex.def)             Requested size: 151.76854pt x 93.3582pt.
 
-Underfull \hbox (badness 1917) in paragraph at lines 63--63
+Underfull \hbox (badness 1917) in paragraph at lines 64--64
 []\OT1/cmr/m/n/9 (a) |The RGB cube viewed along
  []
 
-<graphics/hsv_rescale1.png, id=130, 288.07625pt x 249.93375pt>
+<graphics/hsv_rescale1.png, id=136, 288.07625pt x 249.93375pt>
 File: graphics/hsv_rescale1.png Graphic file (type png)
 
 <use graphics/hsv_rescale1.png>
-Package pdftex.def Info: graphics/hsv_rescale1.png used on input line 70.
+Package pdftex.def Info: graphics/hsv_rescale1.png used on input line 71.
 (pdftex.def)             Requested size: 151.76854pt x 131.67863pt.
 
-<graphics/hsv_rescale2.png, id=131, 291.0875pt x 249.93375pt>
+<graphics/hsv_rescale2.png, id=137, 291.0875pt x 249.93375pt>
 File: graphics/hsv_rescale2.png Graphic file (type png)
 
 <use graphics/hsv_rescale2.png>
-Package pdftex.def Info: graphics/hsv_rescale2.png used on input line 78.
+Package pdftex.def Info: graphics/hsv_rescale2.png used on input line 79.
 (pdftex.def)             Requested size: 151.76854pt x 130.31334pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
 [5 <./graphics/rgb_cube.png> <./graphics/hsv_cube.png> <./graphics/hsv_rescale1
 .png> <./graphics/hsv_rescale2.png>]
-<graphics/graph_fft_1.jpg, id=144, 494.84875pt x 284.06125pt>
-File: graphics/graph_fft_1.jpg Graphic file (type jpg)
+<graphics/colorSpaces.png, id=150, 1374.13374pt x 593.21625pt>
+File: graphics/colorSpaces.png Graphic file (type png)
 
-<use graphics/graph_fft_1.jpg>
-Package pdftex.def Info: graphics/graph_fft_1.jpg used on input line 116.
-(pdftex.def)             Requested size: 101.17645pt x 58.07689pt.
+<use graphics/colorSpaces.png>
+Package pdftex.def Info: graphics/colorSpaces.png used on input line 99.
+(pdftex.def)             Requested size: 412.2433pt x 177.96625pt.
 
-<graphics/graph_fft_2.jpg, id=145, 495.8525pt x 281.05pt>
-File: graphics/graph_fft_2.jpg Graphic file (type jpg)
+<graphics/colorHistogram.png, id=153, 887.315pt x 450.68375pt>
+File: graphics/colorHistogram.png Graphic file (type png)
 
-<use graphics/graph_fft_2.jpg>
-Package pdftex.def Info: graphics/graph_fft_2.jpg used on input line 124.
-(pdftex.def)             Requested size: 101.17645pt x 57.34544pt.
+<use graphics/colorHistogram.png>
+Package pdftex.def Info: graphics/colorHistogram.png used on input line 108.
+(pdftex.def)             Requested size: 266.19655pt x 135.20616pt.
+ [6 <./graphics/colorSpaces.png>]
+<graphics/original.png, id=170, 256.96pt x 256.96pt>
+File: graphics/original.png Graphic file (type png)
 
-<graphics/graph_fft_3.jpg, id=146, 492.84125pt x 256.96pt>
-File: graphics/graph_fft_3.jpg Graphic file (type jpg)
+<use graphics/original.png>
+Package pdftex.def Info: graphics/original.png used on input line 130.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+ <graphics/phase.png, id=171, 256.96pt x 256.96pt>
+File: graphics/phase.png Graphic file (type png)
 
-<use graphics/graph_fft_3.jpg>
-Package pdftex.def Info: graphics/graph_fft_3.jpg used on input line 132.
-(pdftex.def)             Requested size: 101.17645pt x 52.75163pt.
+<use graphics/phase.png>
+Package pdftex.def Info: graphics/phase.png used on input line 138.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+ <graphics/ampl.png, id=172, 321.8424pt x 322.806pt>
+File: graphics/ampl.png Graphic file (type png)
 
-<graphics/graph_fft_4.jpg, id=147, 491.8375pt x 264.99pt>
-File: graphics/graph_fft_4.jpg Graphic file (type jpg)
-
-<use graphics/graph_fft_4.jpg>
-Package pdftex.def Info: graphics/graph_fft_4.jpg used on input line 138.
-(pdftex.def)             Requested size: 101.17645pt x 54.5093pt.
- [6]
-<graphics/FrequencyOrdered.png, id=160, 1147.28625pt x 435.6275pt>
-File: graphics/FrequencyOrdered.png Graphic file (type png)
-
-<use graphics/FrequencyOrdered.png>
-Package pdftex.def Info: graphics/FrequencyOrdered.png used on input line 149.
-(pdftex.def)             Requested size: 344.18852pt x 130.68925pt.
-
-<graphics/original.png, id=161, 256.96pt x 256.96pt>
+<use graphics/ampl.png>
+Package pdftex.def Info: graphics/ampl.png used on input line 146.
+(pdftex.def)             Requested size: 101.17645pt x 101.47754pt.
+ [7 <./graphics/colorHistogram.png>]
 File: graphics/original.png Graphic file (type png)
 
 <use graphics/original.png>
 Package pdftex.def Info: graphics/original.png used on input line 162.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
- <graphics/phase.png, id=162, 256.96pt x 256.96pt>
-File: graphics/phase.png Graphic file (type png)
 
-<use graphics/phase.png>
-Package pdftex.def Info: graphics/phase.png used on input line 170.
-(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
- <graphics/ampl.png, id=163, 321.8424pt x 322.806pt>
-File: graphics/ampl.png Graphic file (type png)
-
-<use graphics/ampl.png>
-Package pdftex.def Info: graphics/ampl.png used on input line 178.
-(pdftex.def)             Requested size: 101.17645pt x 101.47754pt.
-
-<graphics/freq_bins.png, id=164, 620.3175pt x 628.3475pt>
-File: graphics/freq_bins.png Graphic file (type png)
-
-<use graphics/freq_bins.png>
-Package pdftex.def Info: graphics/freq_bins.png used on input line 184.
-(pdftex.def)             Requested size: 101.17645pt x 102.48396pt.
- [7 <./graphics/graph_fft_1.jpg> <./graphics/graph_fft_2.jpg> <./graphics/graph
-_fft_3.jpg> <./graphics/graph_fft_4.jpg> <./graphics/FrequencyOrdered.png>]
-File: graphics/original.png Graphic file (type png)
- <use graphics/original.png>
-Package pdftex.def Info: graphics/original.png used on input line 195.
-(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
-
-<graphics/flat_power.jpg, id=175, 256.96pt x 256.96pt>
+<graphics/flat_power.jpg, id=182, 256.96pt x 256.96pt>
 File: graphics/flat_power.jpg Graphic file (type jpg)
 
 <use graphics/flat_power.jpg>
-Package pdftex.def Info: graphics/flat_power.jpg used on input line 203.
+Package pdftex.def Info: graphics/flat_power.jpg used on input line 170.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
 
-<graphics/randomized_phase.jpg, id=176, 256.96pt x 256.96pt>
+<graphics/randomized_phase.jpg, id=183, 256.96pt x 256.96pt>
 File: graphics/randomized_phase.jpg Graphic file (type jpg)
 
 <use graphics/randomized_phase.jpg>
-Package pdftex.def Info: graphics/randomized_phase.jpg used on input line 211.
+Package pdftex.def Info: graphics/randomized_phase.jpg used on input line 178.
 (pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
  [8 <./graphics/original.png (PNG copy)> <./graphics/phase.png (PNG copy)> <./g
-raphics/ampl.png> <./graphics/freq_bins.png> <./graphics/flat_power.jpg> <./gra
-phics/randomized_phase.jpg>]
-<graphics/guy.jpg, id=185, 1386.17876pt x 877.2775pt>
+raphics/ampl.png> <./graphics/flat_power.jpg> <./graphics/randomized_phase.jpg>
+]
+<graphics/graph_fft_1.jpg, id=194, 494.84875pt x 284.06125pt>
+File: graphics/graph_fft_1.jpg Graphic file (type jpg)
+
+<use graphics/graph_fft_1.jpg>
+Package pdftex.def Info: graphics/graph_fft_1.jpg used on input line 193.
+(pdftex.def)             Requested size: 101.17645pt x 58.07689pt.
+
+<graphics/graph_fft_2.jpg, id=195, 495.8525pt x 281.05pt>
+File: graphics/graph_fft_2.jpg Graphic file (type jpg)
+
+<use graphics/graph_fft_2.jpg>
+Package pdftex.def Info: graphics/graph_fft_2.jpg used on input line 201.
+(pdftex.def)             Requested size: 101.17645pt x 57.34544pt.
+
+<graphics/graph_fft_3.jpg, id=196, 492.84125pt x 256.96pt>
+File: graphics/graph_fft_3.jpg Graphic file (type jpg)
+
+<use graphics/graph_fft_3.jpg>
+Package pdftex.def Info: graphics/graph_fft_3.jpg used on input line 209.
+(pdftex.def)             Requested size: 101.17645pt x 52.75163pt.
+
+<graphics/graph_fft_4.jpg, id=197, 491.8375pt x 264.99pt>
+File: graphics/graph_fft_4.jpg Graphic file (type jpg)
+
+<use graphics/graph_fft_4.jpg>
+Package pdftex.def Info: graphics/graph_fft_4.jpg used on input line 215.
+(pdftex.def)             Requested size: 101.17645pt x 54.5093pt.
+
+<graphics/FrequencyOrdered.png, id=199, 1147.28625pt x 435.6275pt>
+File: graphics/FrequencyOrdered.png Graphic file (type png)
+
+<use graphics/FrequencyOrdered.png>
+Package pdftex.def Info: graphics/FrequencyOrdered.png used on input line 230.
+(pdftex.def)             Requested size: 344.18852pt x 130.68925pt.
+
+<graphics/freq_bins.png, id=201, 620.3175pt x 628.3475pt>
+File: graphics/freq_bins.png Graphic file (type png)
+
+<use graphics/freq_bins.png>
+Package pdftex.def Info: graphics/freq_bins.png used on input line 242.
+(pdftex.def)             Requested size: 186.09668pt x 188.50569pt.
+ [9 <./graphics/graph_fft_1.jpg> <./graphics/graph_fft_2.jpg> <./graphics/graph
+_fft_3.jpg> <./graphics/graph_fft_4.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+[10 <./graphics/FrequencyOrdered.png> <./graphics/freq_bins.png>]
+<graphics/guy.jpg, id=218, 1386.17876pt x 877.2775pt>
 File: graphics/guy.jpg Graphic file (type jpg)
  <use graphics/guy.jpg>
-Package pdftex.def Info: graphics/guy.jpg used on input line 241.
+Package pdftex.def Info: graphics/guy.jpg used on input line 270.
 (pdftex.def)             Requested size: 202.3529pt x 128.052pt.
 
-<graphics/guyTopCompressions.png, id=186, 672.914pt x 444.862pt>
+<graphics/guyTopCompressions.png, id=219, 672.914pt x 444.862pt>
 File: graphics/guyTopCompressions.png Graphic file (type png)
 
 <use graphics/guyTopCompressions.png>
-Package pdftex.def Info: graphics/guyTopCompressions.png used on input line 246
+Package pdftex.def Info: graphics/guyTopCompressions.png used on input line 274
 .
 (pdftex.def)             Requested size: 202.3529pt x 133.77187pt.
- [9 <./graphics/guy.jpg> <./graphics/guyTopCompressions.png (PNG copy)>] [10]
+ [11 <./graphics/guy.jpg> <./graphics/guyTopCompressions.png (PNG copy)>]
+<graphics/horizontalGrad.png, id=231, 256.96pt x 256.96pt>
+File: graphics/horizontalGrad.png Graphic file (type png)
+
+<use graphics/horizontalGrad.png>
+Package pdftex.def Info: graphics/horizontalGrad.png used on input line 291.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+
+<graphics/smallVertical.png, id=232, 61.6704pt x 61.6704pt>
+File: graphics/smallVertical.png Graphic file (type png)
+
+<use graphics/smallVertical.png>
+Package pdftex.def Info: graphics/smallVertical.png used on input line 296.
+(pdftex.def)             Requested size: 101.17645pt x 101.18617pt.
+
+<graphics/smallHorizontal.png, id=233, 61.6704pt x 61.6704pt>
+File: graphics/smallHorizontal.png Graphic file (type png)
+
+<use graphics/smallHorizontal.png>
+Package pdftex.def Info: graphics/smallHorizontal.png used on input line 301.
+(pdftex.def)             Requested size: 101.17645pt x 101.18617pt.
+
+<graphics/randomFullSpace.png, id=235, 256.96pt x 256.96pt>
+File: graphics/randomFullSpace.png Graphic file (type png)
+
+<use graphics/randomFullSpace.png>
+Package pdftex.def Info: graphics/randomFullSpace.png used on input line 313.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+
+<graphics/randomBottomHalfSpace.png, id=236, 256.96pt x 256.96pt>
+File: graphics/randomBottomHalfSpace.png Graphic file (type png)
+
+<use graphics/randomBottomHalfSpace.png>
+Package pdftex.def Info: graphics/randomBottomHalfSpace.png used on input line 
+318.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+
+<graphics/randomBottomQuarterSpace.png, id=237, 256.96pt x 256.96pt>
+File: graphics/randomBottomQuarterSpace.png Graphic file (type png)
+
+<use graphics/randomBottomQuarterSpace.png>
+Package pdftex.def Info: graphics/randomBottomQuarterSpace.png used on input li
+ne 323.
+(pdftex.def)             Requested size: 101.17645pt x 101.17853pt.
+
+<graphics/singular_values_color_space.pdf, id=238, 442.65375pt x 337.26pt>
+File: graphics/singular_values_color_space.pdf Graphic file (type pdf)
+
+<use graphics/singular_values_color_space.pdf>
+Package pdftex.def Info: graphics/singular_values_color_space.pdf used on input
+ line 328.
+(pdftex.def)             Requested size: 303.53708pt x 231.279pt.
+ [12 <./graphics/horizontalGrad.png (PNG copy)> <./graphics/smallVertical.png> 
+<./graphics/smallHorizontal.png>] <graphics/singular_values_symmetry.pdf, id=25
+0, 449.68pt x 338.26375pt>
+File: graphics/singular_values_symmetry.pdf Graphic file (type pdf)
+
+<use graphics/singular_values_symmetry.pdf>
+Package pdftex.def Info: graphics/singular_values_symmetry.pdf used on input li
+ne 339.
+(pdftex.def)             Requested size: 303.53708pt x 228.3388pt.
+ [13 <./graphics/randomFullSpace.png (PNG copy)> <./graphics/randomBottomHalfSp
+ace.png (PNG copy)> <./graphics/randomBottomQuarterSpace.png (PNG copy)> <./gra
+phics/singular_values_color_space.pdf>] [14 <./graphics/singular_values_symmetr
+y.pdf>]
 Chapter 3.
-[11
+[15
 
 ]
 Chapter 4.
-[12
+[16
 
 ]
-Underfull \hbox (badness 1033) in paragraph at lines 316--320
+Underfull \hbox (badness 1033) in paragraph at lines 399--403
 []\OT1/cmr/m/n/10 Agoston, Max K. \OT1/cmr/m/it/10 Com-puter Graph-ics and Ge-o
 -met-ric Mod-elling: Math-e-mat-ics\OT1/cmr/m/n/10 . Springer; 2005 edi-tion,
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
-[13
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 419.
+[17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 419.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 419.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 419.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 9D4FE27C8B7424901169FCA4F2187A0B;1068.
+(rerunfilecheck)             Checksum: 809910B7BD112F883D027D51D9CAE64F;1137.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 323.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 419.
  ) 
 Here is how much of TeX's memory you used:
- 6957 strings out of 493315
- 107824 string characters out of 6137904
- 197878 words of memory out of 5000000
- 10280 multiletter control sequences out of 15000+600000
- 14606 words of font info for 56 fonts, out of 8000000 for 9000
+ 7033 strings out of 493315
+ 109857 string characters out of 6137904
+ 198472 words of memory out of 5000000
+ 10332 multiletter control sequences out of 15000+600000
+ 14774 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,11n,38p,1241b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,38p,1737b,502s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -638,17 +707,20 @@ local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/lo
 cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
 l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
 texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
-ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/201
-3/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (14 pages, 1746812 bytes).
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
+3/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-d
+ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (18 pages, 2415268 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 322 compressed objects within 4 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 280 words of extra memory for PDF output out of 10000 (max. 10000000)
 
