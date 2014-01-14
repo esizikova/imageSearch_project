@@ -455,8 +455,17 @@ To capture local noise in singular vectors we decide to take the FFT of the sing
 
 \section{Overview of best performing descriptors}
 \section{Windowed descriptors}
-\section{Collection understanting methods}
-\section{Non-Windowed Perfromance}
+\section{Collection understanding methods}
+
+In order to judge descriptor performance we used a confusion matrix as well as unmodified Matlab implementations of the following algorithms: multidimensional scaling, k-means clustering, and k-nearest neighbor searching. A confusion matrix is a simple visualization of pairwise distances between images of different categories. For each of the Matlab algorithms the motivation for using it is given, along with a short description of the version used. 
+
+Multidimensional scaling is an algorithm used for visualization high-dimensional pairwise euclidean distances in N-dimensional space. The embedding attempts to preserve some measure of input pairwise distance in a lower dimension. For our purposes, we chose to use Matlab's classic (metric based) multidimensional scaling algorithm for embedding into two dimensional space. This visualization provides an idea of what properties of an image a descriptor is differentiating by. For example, if the spread of images seems to correlate only to image color then we know that the descriptor is heavily biased towards differences in color.
+
+K-means clustering attempts to partition a set of objects into $k$ clusters in which each object belongs to the cluster with the nearest mean. We cluster by the squared euclidean distances between our descriptors. This clustering allows us to quickly see if a descriptor groups images from the same category or similar visual appearance together.
+
+K-nearest neighbors is an algorithm which takes a test object and compares it to objects in a given feature space to return an output based on the k-nearest neighbors within that space. In our case we build the feature space with all the image descriptors and then query into it to return the index of the k-nearest images within that space. Retrieving images visually similar to a query image is the ultimate goal of our descriptor design, so this visualization gives us an idea of how well our descriptors ultimately perform.
+
+\section{Non-Windowed Performance}
 \section{Windowed Performance}
 
 \chapter{Conclusions and Further Work}

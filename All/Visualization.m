@@ -48,25 +48,6 @@ weights(1) = 3;
 weights(2) = 2;
 weights(3) = 4;
 
-%TEST OF WINDOWING -- CAN REMOVE
-%imshow(images{2}(:,:,:));
-%newImg = uint8(zeros(size(images{2})));
-%pause(2)
-%for i = 1:rBins
-%    for j = 1:cBins
-%        rWidth = round(size(images{2},1)/rBins);
-%        cWidth = round(size(images{2},2)/cBins);
-%        rRange = 1+rWidth*(i-1):rWidth*i;
-%        cRange = 1+cWidth*(j-1):cWidth*j;
-%        imshow(images{2}(rRange,cRange,:));
-%        newImg(rRange,cRange,:) = images{2}(rRange,cRange,:);
-%        drawnow;
-%        pause(0.3)
-%    end
-%end;
-%imshow(newImg(:,:,:));
-
-
 % compute descriptors for single image to get the total length
 %disp(images);
 descriptorLength = 0;
