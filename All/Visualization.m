@@ -44,9 +44,9 @@ arguments{3} = bands;
 
 %prepare weights
 weights = zeros(size(fHandles,2));
-weights(1) = 3;
-weights(2) = 2;
-weights(3) = 4;
+weights(1) = 4;
+weights(2) = 1.5;
+weights(3) = 3;
 
 % compute descriptors for single image to get the total length
 %disp(images);
@@ -93,7 +93,7 @@ D = squareform(dVec);
 
 % nearest neighbor
 if(neighborQuery)
-    queryImageIdx = 60;
+    queryImageIdx = 5;
     queryDescriptor = descriptors(queryImageIdx, :);
     
     neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
@@ -105,6 +105,8 @@ if(neighborQuery)
             title(['Neighbor ' num2str(i) ] );
     end;
 end;
+set(gcf,'Position',[582 806 1007 166])
+
 % Confusion matrix plotting
 if ( confMatrix )
     plotMatrix( D, labels );
