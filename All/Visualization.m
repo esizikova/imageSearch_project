@@ -5,7 +5,7 @@ clear all;
 % Choose what visualization you want + options
 confMatrix = 0;
 embedding2D = 1;
-kMeans = 0;
+kMeans = 1;
 neighborQuery = 1;
 
 % Add subfolders to search path
@@ -23,8 +23,8 @@ functionMap = createFunctionHandleMap();
 %specify the number of bins to break an image up into
 %NOTE: If division is not even it will still run, but the last row/col may
 %      be left out depending on rounding
-rBins = 4; %num bins in row direction
-cBins = 4; %num bins in column direction
+rBins = 1; %num bins in row direction
+cBins = 1; %num bins in column direction
 
 %prepare bads for fftbands descriptor
 bands = createBands ( 8, rBins, cBins );
@@ -93,7 +93,7 @@ D = squareform(dVec);
 
 % nearest neighbor
 if(neighborQuery)
-    queryImageIdx = 5;
+    queryImageIdx = 128;
     queryDescriptor = descriptors(queryImageIdx, :);
     
     neighborIds = nearestNeighbor ( queryImageIdx, descriptors, labels, 5 );
