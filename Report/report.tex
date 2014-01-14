@@ -251,6 +251,7 @@ where $r_0 = \{0, \omega_1\}$ is a range of frequencies from zero to some small 
 One can see that the images on the left side of the spectrum, with a lot of contribution from high frequencies and not so much from low frequencies have many small details: they show leaves, rock incisions on the mountain, and fine building facade. In comparison, the images at the right side of the spectrum are images of open country, roads, and beaches. These images are simple, in the sense that they have a dominant horizon line and not so much small detail. It follows that these images are described mostly by low frequencies, and not by high frequencies. Notice that this analysis discards a lot of information about the distribution of frequency contribution.
 
 \subsection{Frequency-Based Descriptor}
+\label{sec:freqDescriptor}
 Given that simple descriptor described in the previous section allowed us to create quite meaningful ordering of images we decided to extend it to give us better information regarding the overall frequency distribution, similarly to our color descriptors. The said extension, simply consider a set of disjoint, uniformly spaced, frequency ranges $\{r_0, r_1, ..., r_n\}$, see fig. \ref{fig:freqDescriptor}.   
 \begin{figure}[hbtp]
 \centering
@@ -259,9 +260,7 @@ Given that simple descriptor described in the previous section allowed us to cre
 \label{fig:freqDescriptor}
 \end{figure}
 
-Our descirptor is then a vector $\vec{d}(I)$, of n-values, where each value is simple averaging of frequency values in specific bin, that is then normalized by $N = \sum_x,y A(x,y)$, the averaging of all values in an image. This way, each element $d_i$ give us percentage contribution from each frequency range. We will discuss the performance in chapter \ref{chap:analysis}.\\
-
-{\color{red}Or add the figures with performance here}
+Our descriptor is then a vector $\vec{d}(I)$, of n-values, where each value is simple averaging of frequency values in specific bin, that is then normalized by $N = \sum_x,y A(x,y)$, the averaging of all values in an image. This way, each element $d_i$ give us percentage contribution from each frequency range. We will discuss the performance in chapter \ref{chap:analysis}.\\
 
 \section{Singular Value Decomposition}
 \label{sec:SVD}
@@ -443,7 +442,7 @@ Figure \ref{fig:diagonal_vectors} shows an example of worst case off-axis color 
 Figure \ref{fig:natural_vectors} shows the top contributing singular vectors for a pair of natural images. The benefit of using singular vectors over singular values is again made clear here. Although the distribution of singular values is rather close between the two images (Figure \ref{fig:singular_values_natural}), the singular vectors capture an image's local variation as noise in their contribution. The coast has smooth transitions of color while the forest has sharp and frequent differences. This property gives an overall estimation of the complexity of structure in the image.
 
 \subsection{A meaningful descriptor}
-
+\label{sec:SVDDescriptor}
 The distribution of singular values has been shown to provide a rough estimation of the amount of symmetry and repeated structure in an image, while doing little to capture more complex local structures. Singular vectors improve upon this to capture local variation as noise in the values of the vectors that contribute the most to an image's reconstruction. Both singular values and singular vectors are skewed by the fact that the decomposition depends heavily on image structure being aligned to the row bases or column bases.
 
 To account for the effects of axis alignment, we simply take an image and rotate it by $45^\circ$ and $-45^\circ$ and concatenate descriptors for both the rotated and non-rotated images. The motivation for this construction being that if there is structure aligned along a line in the image (axis or off-axis), then a $45^\circ$ rotation will bring that closer to (or further from) an axis. Images with no linear structure should see little change from rotation.
@@ -453,18 +452,36 @@ To capture local noise in singular vectors we decide to take the FFT of the sing
 \chapter{Analysis}
 \label{chap:analysis}
 
+
 \section{Overview of best performing descriptors}
+In this section we provide a quick discussion on the descriptors that we have decided to combine together and use as an aggregate descriptor to differentiate between images. The aggregated descriptor $d_a(I)$ is simply a concatenation of normalized descriptor vectors $\{\hat{d_1}(I), \hat{d_2}(I), \hat{d_3}(I)\}$. We are aware of the fact that each descriptor $d_i(I)$ might have a different importance thus in our testing stage we have tried to discover a proper weighting to each component. In sections \ref{sec:non_windowed} and \ref{sec:windowed} we show the performance of aggregated descriptor on our dataset.
+
+{\color{red} @Steve - Once you're done with the performance, check if vector lengths below agree with the ones used in visualization :) }\\
+
+\subsection{ Color-Based Descriptor }
+In our analysis we have not found the particular space performing much better than any other. One reason for that might be that, referring to the figure \ref{fig:colSpaces}, the HSV and $L^*a^*b^*$ color spaces are non-linear, while our comparison metric was euclidean distance. When comparing colors in these spaces a more sophisticated techniques than just stacking the histograms for each channel \cite{lab_fuzzy_hist}. Due to time constraints we have not implemented any of these methods and thus we have simply settled on comparing basic image statistics $\mu, \sigma$ in  $L^*a^*b^*$ color space, that is having our descriptor length $|d_1(I)| = 6$. As soon as we use windowed version of this descriptor it was found sufficient to differentiate images of different colors in our database. However we note in chapter \ref{chap:Conclusions}, that these clearly should be improved in any future work.
+\subsection{ Frequency-Based Descriptor }
+Our frequency descriptor, that looks at the contributions from various bands of frequencies \ref{sec:freqDescriptor} have been found to differentiate images of different appearance very well \ref{fig:fft_low_freq_order}. In final version we have decided to use 32 frequency bands, giving us a descriptor of length $|d_2(I)| = 32$ 
+
+\subsection{ SVD-Based Descriptor}
+{\color{red} @Steve - This might be a bit of a bs here, please check }\\
+
+As discussed in section \ref{sec:SVDDescriptor} the SVD based descriptor looks at frequencies of first singular vectors of 3 versions of input image, one being rotated by $45^\circ$ and second rotated by $-45^\circ$. Thus in total we consider 6 singular vectors $\vec{u}_0, \vec{v}_0, \vec{u}_{45}, \vec{v}_{45},, \vec{u}_{-45}, \vec{v}_{-45}$, and look at their frequency transform, preserving top 30 frequencies. Thus in total we have descriptor $d_3(I)$ of length $|d_3(I)| = 180$.
+ 
 \section{Windowed descriptors}
-\section{Collection understanting methods}
-\section{Non-Windowed Perfromance}
+For natural images computing the descriptor over the whole image might led to two images with different appearance be placed in our space quite close by, especially for our color based descriptor. Thus we decided, similar to \cite{gist_descriptor}, compute a windowed version of our descriptors, where we divide our images into $n$ by $m$ grid ( in our implementation we use $n = m = 4 $ ), and compute our descriptor for each of the cells. Then we concatenate the descriptor from each cell to create a new windowed descriptor of length $|d_w(I)| = n \cdot m \cdot |d_a(I)|$. This change improved our results, as shown in section \ref{sec:non_windowed}, which will discuss the performance of non-windowed version and in section \ref{sec:windowed} 
+
+\section{Collection understating methods}
+\section{Non-Windowed Performance}
 \section{Windowed Performance}
 
 \chapter{Conclusions and Further Work}
-Work done during this project was of an exploratory nature, where we have investigated what cues for image understanding can be obtained by analysing the outputs of FFT and SVD algorithms. We have found that these methods do provide us with useful information when analysing natural images, and can be easily used in generating meaningful low level descriptors, as shown in previous chapter. Fourier domain informs us about the overal image texture and roughness. Similarly our analysis of Singular Value Decomposition shows that the singular vectors can tell us about the image geometry, and could be used for matching images of similar orientation. Our results show embedding that succesfully cluster images of similar nature quite well, however they are clearly not competetive in terms of performance with state of the art algorithms.
+\label{chap:Conclusions}
+Work done during this project was of an exploratory nature, where we have investigated what cues for image understanding can be obtained by analyzing the outputs of FFT and SVD algorithms. We have found that these methods do provide us with useful information when analyzing natural images, and can be easily used in generating meaningful low level descriptors, as shown in previous chapter. Fourier domain informs us about the overall image texture and roughness. Similarly our analysis of Singular Value Decomposition shows that the singular vectors can tell us about the image geometry, and could be used for matching images of similar orientation. Our results show embedding that successfully cluster images of similar nature quite well, however they are clearly not competitive in terms of performance with state of the art algorithms.
 
-In this work we have been working under the assumption that parameters that control image apperance and are of equal importance. Those are clearly wrong and more involved machine learning techniques should be used to learn about behaviour of the space of natural images. Also, as mentioned previously, SVD and FT seem to give us similar understanding of an image, with discovering images of simpler versus more complex structure. It would be interesting to investigate the relationship between SVD and Fourier Transform in terms of natural images. 
+In this work we have been working under the assumption that parameters that control image appearance and are of equal importance. Those are clearly wrong and more involved machine learning techniques should be used to learn about behavior of the space of natural images. Also, as mentioned previously, SVD and FT seem to give us similar understanding of an image, with discovering images of simpler versus more complex structure. It would be interesting to investigate the relationship between SVD and Fourier Transform in terms of natural images. 
 
-In this is project we have not really focused on the color investigation very deeply, and have settled on comparing images based on eulidean distance between the  color values. However HSV and $L^*a^*b^*$ color spaces are non-linear, thus euclidean metric is not giving us the true distance in those spaces. Further investigation of the non-linear distance metrics in HSV and $L^*a^*b^*$ spaces would most likely yield better results.
+In this is project we have not really focused on the color investigation very deeply, and have settled on comparing images based on euclidean distance between the  color values. However HSV and $L^*a^*b^*$ color spaces are non-linear, thus euclidean metric is not giving us the true distance in those spaces. Further investigation of the non-linear distance metrics in HSV and $L^*a^*b^*$ spaces would most likely yield better results.
 
 Our data base provided pictures from 8 categories, and provided labels were describing these categories. However some images from one category might appear very similar to image in other category (i.e. \textit{tall buildings} and \textit{inside city} categories). With that in mind we have decided not to measure performance using the provided labels, but rather be more exploratory, since our focus was to develop understanding the factors that would cluster visually similar pictures togheter. Thus our conclusions are based on the exploration of the embeddings provided by MDS, k-means clustering, and confusion matrices. In any future investigation the database would have to be relabeled to create a subsets of visually similar images ( for example by asking users of Amazon Mechanical Turk ), and use these labels. Also our dataset has been limited to outdoor categories. It would be interesting to measure the performance in terms of database that also captures indoor environments, as well as pictures of man-made objects.
 
@@ -528,6 +545,13 @@ Our data base provided pictures from 8 categories, and provided labels were desc
    Molina, Luis.
    \emph{LAB Color Space (translated from Spanish)}.
    2010 Blogpost: \url{http://sobrecolores.blogspot.com/2010/03/modo-de-color-lab.html}
+
+\bibitem{lab_fuzzy_hist}
+   Han, Ju and Ma, Kai-Kuang.
+   \emph{Fuzzy Color Histogram and Its Use in Color Image Retrieval},
+   Trans. Img. Proc.,
+   Vol. 11 : 944 -- 952, 
+   Aug. 2002,
 
 \end{thebibliography}
 
