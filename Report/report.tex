@@ -486,9 +486,23 @@ K-means clustering attempts to partition a set of objects into $k$ clusters in w
 
 K-nearest neighbors is an algorithm which takes a test object and compares it to objects in a given feature space to return an output based on the k-nearest neighbors within that space. In our case we build the feature space with all the image descriptors and then query into it to return the index of the k-nearest images within that space. Retrieving images visually similar to a query image is the ultimate goal of our descriptor design, so this visualization gives us an idea of how well our descriptors ultimately perform.
 
->>>>>>> 91f6938957d37a037c106b88adcae30123828796
 \section{Non-Windowed Performance}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{graphics/non_windowed_knearest.pdf}
+        \caption{A sample of query images and the top 5 neighbors using our best-performing descriptor}
+        \label{fig:non_windowed_knearest}
+\end{figure}
+
 \section{Windowed Performance}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{graphics/windowed_knearest.pdf}
+        \caption{A sample of query images and the top 5 neighbors using our windowed descriptor}
+        \label{fig:windowed_knearest}
+\end{figure}
 
 \chapter{Conclusions and Further Work}
 \label{chap:Conclusions}
